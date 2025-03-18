@@ -1,0 +1,76 @@
+/* Global Font Styles */
+  
+  /* Headings */
+  h1 {
+    font-size: 48px;
+    font-weight: 700;
+  }
+  
+  h2 {
+    font-size: 32px;
+    font-weight: 600;
+  }
+  
+  h3 {
+    font-size: 28px;
+    font-weight: 600;
+  }
+  
+  h4 {
+    font-size: 24px;
+    font-weight: 500;
+  }
+  
+  h5 {
+    font-size: 22px;
+    font-weight: 500;
+  }
+  
+  h6 {
+    font-size: 20px;
+    font-weight: 500;
+  }
+  
+  /* Paragraph */
+  p {
+    font-size: 16px;
+    font-weight: 400;
+  }
+  
+  /* Links */
+
+  a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Buttons */
+  button {
+    font-size: 16px;
+    font-weight: 600;
+    padding: 10px 16px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+  }
+  
+ 
+  
+  /* Navigation */
+  nav {
+    font-size: 18px;
+    font-weight: 600;
+  }
+  
+  /* Small Text */
+  .small {
+    font-size: 14px;
+    font-weight: 400;
+  }
+  
+  /* Captions & Labels */
+  .caption {
+    font-size: 12px;
+    font-weight: 400;
+    color: #666;
+  }
+  
