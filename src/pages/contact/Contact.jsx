@@ -207,7 +207,7 @@ const styles = {
   },
   addressTitle: {
     fontSize: '14px',
-    fontWeight: '700',
+    fontWeight: '500',
     marginTop: '20px',
     marginBottom: '8px',
     color: '#ffffff'

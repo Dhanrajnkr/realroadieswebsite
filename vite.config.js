@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      '/api': 'http://localhost:5000', // Adjust to your backend's local URL
+      '/api': 'http://dev-api.realroadies.com', // Adjust to your backend's local URL
     }
   }
   
