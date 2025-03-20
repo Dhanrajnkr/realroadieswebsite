@@ -1,42 +1,55 @@
-import React from 'react';
-import { Container, Row, Col, Card, Button } from 'react-bootstrap';
+import React, { useState, useEffect } from 'react';
+import { Container, Row, Col, Button } from 'react-bootstrap';
+
 
 const AdventureToursDetails = () => {
-  // Sample tour data
-  const tours = [
-    {
-      id: 1,
-      title: "Himalayan Expedition",
-      days: 7,
-      organizer: "RealRoadies",
-      price: 1299,
-      image: "../src/assets/images/ab1.png"
-    },
-    {
-      id: 2,
-      title: "Coastal Highway Tour",
-      days: 5,
-      organizer: "RealRoadies",
-      price: 999,
-      image: "../src/assets/images/ab1.png"
-    },
-    {
-      id: 3,
-      title: "Desert Safari",
-      days: 4,
-      organizer: "RealRoadies",
-      price: 1199,
-      image: "../src/assets/images/ab1.png"
-    },
-    {
-      id: 4,
-      title: "Mountain Pass Challenge",
-      days: 6,
-      organizer: "RealRoadies",
-      price: 1499,
-      image: "../src/assets/images/ab1.png"
-    }
-  ];
+  const [tripData, setTripData] = useState([]);
+  const [allTrips, setAllTrips] = useState([]);
+  const [loading, setLoading] = useState(true);
+  
+
+  useEffect(() => {
+    setLoading(true);
+    fetch('/api/v1/trip/trips/categories/all', {
+      method: 'GET',
+      headers: {
+        'Authorization': 'Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IlNXSmtyLXFSRjlja2RzUUwxaWMwViJ9.eyJpc3MiOiJodHRwczovL3JlYWxyb2FkaWVzLnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJzbXN8Njc0NTU1MWFmOGQ1NTY0M2M4YmUwMWRjIiwiYXVkIjpbImh0dHBzOi8vcmVhbHJvYWRpZXMudXMuYXV0aDAuY29tL2FwaS92Mi8iLCJodHRwczovL3JlYWxyb2FkaWVzLnVzLmF1dGgwLmNvbS91c2VyaW5mbyJdLCJpYXQiOjE3NDI0NTMxMjEsImV4cCI6MTc0MjQ1NjcyMSwic2NvcGUiOiJvcGVuaWQgcHJvZmlsZSBwaG9uZSByZWFkOmN1cnJlbnRfdXNlciB1cGRhdGU6Y3VycmVudF91c2VyX21ldGFkYXRhIGRlbGV0ZTpjdXJyZW50X3VzZXJfbWV0YWRhdGEgY3JlYXRlOmN1cnJlbnRfdXNlcl9tZXRhZGF0YSBjcmVhdGU6Y3VycmVudF91c2VyX2RldmljZV9jcmVkZW50aWFscyBkZWxldGU6Y3VycmVudF91c2VyX2RldmljZV9jcmVkZW50aWFscyB1cGRhdGU6Y3VycmVudF91c2VyX2lkZW50aXRpZXMgb2ZmbGluZV9hY2Nlc3MiLCJndHkiOiJwYXNzd29yZCIsImF6cCI6InRhVzgxNkM4T2Q2Mm9ESnFRbEtSYTVvSUdYcE4zbFhxIn0.Wj7V-ujMeg8DAhb3r3831HiXnSSuTO_qwZTLNqxo2I7WeVaxMJKOBx9AEA82iXtpy-i-OKr5gBq3ctIWRrxp987FD_roRsjH5m6VR6Q8jQ2F0pg355hUBID_cfRaDKI5jk0TiI2cHBdbWMjh6GZyfTJH5lX9Jmwr5uy9PO_0kWJ-Oe4wWYOnOOup9WRcphyiEFZ_7jbZ4VipJeP6nyJ9IHHD-GuhIeYoAfAOipELO0W6uSX8X7y0xRnzOEozaW8tcjN2Lkl0-5FwP3whYXch98HTqKMeizemzzc387EKUg-ZW_R5adGSU74KSxm-HrsrnjV1YGnDOZ3Wm8YgVR-3tw'
+      }
+    })
+      .then(response => response.json())
+      .then(data => {
+        setTripData(data);
+        
+        // Extract all trips from different categories into a single array
+        const extractedTrips = [];
+        if (data && data.data) {
+          data.data.forEach(category => {
+            if (category.trips && Array.isArray(category.trips)) {
+              extractedTrips.push(...category.trips);
+            }
+          });
+        }
+        
+        setAllTrips(extractedTrips);
+        setLoading(false);
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+        setLoading(false);
+      });
+  }, []);
+
+  // Format duration for display
+  const formatDuration = (duration) => {
+    if (!duration) return '';
+    return duration.split(' ')[0] + ' days';
+  };
+
+  // Calculate discounted price
+  const calculatePrice = (price, discount) => {
+    if (!price || !discount) return price;
+    return Math.round(price * (1 - discount/100));
+  };
 
   return (
     <section id="adventureTours" style={styles.section}>
@@ -45,38 +58,48 @@ const AdventureToursDetails = () => {
           {/* Tour Grid */}
           <Row className="justify-content-center">
             <Col md={10}>
-              <Row className="g-4">
-                {tours.map((tour) => (
-                  <Col md={6} key={tour.id}>
-                    <div style={styles.tourCard}>
-                      <div style={styles.imageContainer}>
-                        <img
-                          src={tour.image}
-                          alt={tour.title}
-                          style={styles.tourImage}
-                        />
-                      </div>
-                      <div style={styles.tourContent}>
-                        <div style={styles.tourInfo}>
-                          <div style={styles.titleContainer}>
-                            <h4 style={styles.tourTitle}>
-                              {tour.title} | <span style={styles.tourDays}>{tour.days} days</span>
-                            </h4>
+              {loading ? (
+                <div style={styles.loading}>Loading adventures...</div>
+              ) : (
+                <Row className="g-4">
+                  {allTrips.length > 0 ? (
+                    allTrips.map((tour) => (
+                      <Col md={6} key={tour._id}>
+                        <div style={styles.tourCard}>
+                          <div style={styles.imageContainer}>
+                            <img
+                              src={tour.primary_image?.link_url || "../src/assets/images/ab1.png"}
+                              alt={tour.name}
+                              style={styles.tourImage}
+                            />
                           </div>
-                          <div style={styles.tourDetailsRow}>
-                            <div style={styles.tourDetails}>
-                              <span style={styles.tourOrganizer}>Organized by {tour.organizer}</span>
+                          <div style={styles.tourContent}>
+                            <div style={styles.tourInfo}>
+                              <div style={styles.titleContainer}>
+                                <h4 style={styles.tourTitle}>
+                                  {tour.name} | <span style={styles.tourDays}>{formatDuration(tour.duration)}</span>
+                                </h4>
+                              </div>
+                              <div style={styles.tourDetailsRow}>
+                                <div style={styles.tourDetails}>
+                                  <span style={styles.tourOrganizer}>Organized by {tour.organized_by}</span>
+                                </div>
+                                <Button style={styles.tourButton}>
+                                  Starting at ₹{calculatePrice(tour.starting_market_price, tour.discount_starts)}
+                                </Button>
+                              </div>
                             </div>
-                            <Button style={styles.tourButton}>
-                              Starting at ₹{tour.price}
-                            </Button>
                           </div>
                         </div>
-                      </div>
-                    </div>
-                  </Col>
-                ))}
-              </Row>
+                      </Col>
+                    ))
+                  ) : (
+                    <Col className="text-center">
+                      <p style={styles.noTrips}>No adventure tours available at the moment.</p>
+                    </Col>
+                  )}
+                </Row>
+              )}
             </Col>
           </Row>
 
@@ -84,7 +107,7 @@ const AdventureToursDetails = () => {
           <Row className="mt-5 justify-content-center">
             <Col md={10} className="text-center">
               <div style={styles.comingsoon}>
-                <p style={styles.comingsoontext}>More adventures coming soon</p>
+                <p style={styles.comingsoonText}>More adventures coming soon</p>
               </div>
             </Col>
           </Row>
@@ -127,7 +150,7 @@ const styles = {
   tourImage: {
     width: '100%',
     height: '100%',
-    objectFit: 'fit',
+    objectFit: 'cover',
     transition: 'transform 0.3s ease',
   },
   tourContent: {
@@ -189,14 +212,23 @@ const styles = {
     paddingTop: '20px',
     marginTop: '20px',
     paddingBottom: '10px',
-    
-
   },
   comingsoonText: {
     color: '#a0a0a0',
     fontSize: '20px',
     fontWeight: '400',
     fontStyle: 'italic',
+  },
+  loading: {
+    textAlign: 'center',
+    padding: '40px',
+    fontSize: '18px',
+    color: '#a0a0a0',
+  },
+  noTrips: {
+    color: '#a0a0a0',
+    fontSize: '18px',
+    padding: '30px',
   }
 };
 
