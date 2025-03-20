@@ -8,7 +8,7 @@ import GetawaysNavbar from '../../../components/getawaysnavbar/GetawaysNavbar';
 const BikingEventHome = () => {
   return (
     <>
-      <GetawaysNavbar/>
+     
       <Container fluid style={styles.container}>
         <Row className="justify-content-center">
           <Col xs={12} md={10} lg={10} xl={8}>

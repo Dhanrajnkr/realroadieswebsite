@@ -8,7 +8,7 @@ const AdventureToursDetails = () => {
       id: 1,
       title: "Himalayan Expedition",
       days: 7,
-      organizer: "RealRoadies",
+      organizer: "RealRoadies Adventure Team",
       price: 1299,
       image: "../src/assets/images/ab1.png"
     },
@@ -24,7 +24,7 @@ const AdventureToursDetails = () => {
       id: 3,
       title: "Desert Safari",
       days: 4,
-      organizer: "RealRoadies",
+      organizer: "RealRoadies Desert Division",
       price: 1199,
       image: "../src/assets/images/ab1.png"
     },
@@ -59,16 +59,15 @@ const AdventureToursDetails = () => {
                       <div style={styles.tourContent}>
                         <div style={styles.tourInfo}>
                           <div style={styles.titleContainer}>
-                            <h4 style={styles.tourTitle}>
-                              {tour.title} | <span style={styles.tourDays}>{tour.days} days</span>
-                            </h4>
+                            <h4 style={styles.tourTitle}>{tour.title}</h4>
+                            <span style={styles.tourDays}>{tour.days} days</span>
                           </div>
                           <div style={styles.tourDetailsRow}>
                             <div style={styles.tourDetails}>
                               <span style={styles.tourOrganizer}>Organized by {tour.organizer}</span>
                             </div>
                             <Button style={styles.tourButton}>
-                              Starting at ₹{tour.price}
+                              Starting at ${tour.price}
                             </Button>
                           </div>
                         </div>
@@ -80,11 +79,11 @@ const AdventureToursDetails = () => {
             </Col>
           </Row>
 
-          {/* coming soon */}
+          {/* Footer */}
           <Row className="mt-5 justify-content-center">
             <Col md={10} className="text-center">
-              <div style={styles.comingsoon}>
-                <p style={styles.comingsoontext}>More adventures coming soon</p>
+              <div style={styles.footer}>
+                <p style={styles.footerText}>More adventures coming soon</p>
               </div>
             </Col>
           </Row>
@@ -111,23 +110,23 @@ const styles = {
   },
   tourCard: {
     backgroundColor: '#111111',
+    borderRadius: '8px',
     overflow: 'hidden',
-    marginBottom: '0px',
-    border: '1px solid #343a40',
+    marginBottom: '20px',
+    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
     display: 'flex',
     flexDirection: 'column',
     height: '100%',
   },
   imageContainer: {
     width: '100%',
-    height: '180px',
+    height: '220px',
     overflow: 'hidden',
-    position: 'relative',
   },
   tourImage: {
     width: '100%',
     height: '100%',
-    objectFit: 'fit',
+    objectFit: 'cover',
     transition: 'transform 0.3s ease',
   },
   tourContent: {
@@ -140,19 +139,24 @@ const styles = {
     flex: 1,
   },
   titleContainer: {
-    marginBottom: '0px',
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: '10px',
   },
   tourTitle: {
-    fontSize: '16px',
-    fontWeight: '400',
+    fontSize: '18px',
+    fontWeight: '600',
     color: '#ffffff',
     margin: 0,
-    display: 'inline-block',
   },
   tourDays: {
-    fontSize: '10px',
-    fontWeight: '400',
-    color: '#ffffff',
+    fontSize: '14px',
+    fontWeight: '500',
+    color: '#FFDD00',
+    backgroundColor: 'rgba(255, 221, 0, 0.1)',
+    padding: '4px 8px',
+    borderRadius: '4px',
   },
   tourDetailsRow: {
     display: 'flex',
@@ -163,8 +167,7 @@ const styles = {
   tourDetails: {
     display: 'flex',
     alignItems: 'center',
-    fontSize: '12px',
-    fontWeight: '400',
+    fontSize: '14px',
     color: '#a0a0a0',
     margin: 0,
   },
@@ -174,28 +177,23 @@ const styles = {
   tourButton: {
     backgroundColor: '#FFDD00',
     color: '#000000',
-    fontWeight: '500',
-    fontSize: '15px',
-    padding: '8px 12px',
+    fontWeight: '600',
+    fontSize: '14px',
+    padding: '8px 16px',
     border: 'none',
-    borderRadius: 0,
+    borderRadius: '4px',
     cursor: 'pointer',
     transition: 'background-color 0.3s ease',
     whiteSpace: 'nowrap',
   },
-  comingsoon: {
+  footer: {
     borderTop: '1px solid #333333',
-    borderBottom: '1px solid #333333',
     paddingTop: '20px',
     marginTop: '20px',
-    paddingBottom: '10px',
-    
-
   },
-  comingsoonText: {
+  footerText: {
     color: '#a0a0a0',
-    fontSize: '20px',
-    fontWeight: '400',
+    fontSize: '14px',
     fontStyle: 'italic',
   }
 };

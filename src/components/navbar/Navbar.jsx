@@ -20,23 +20,12 @@ function NavbarSection() {
           <Navbar.Collapse id="navbarTogglerDemo02">
             <Nav className="ms-auto mb-2 mb-lg-0">
               <Nav.Link className="mx-lg-3" href="/about" style={styles.navLink}>About</Nav.Link>
+              
+              {/* Changed to link to a getaways page that will show the GetawaysNavbar */}
+              <Nav.Link className="mx-lg-3" href="/getaways" style={styles.navLink}>Getaways</Nav.Link>
 
-              {/* Modified NavDropdown with custom styling */}
-              <NavDropdown
-                title={<span style={styles.dropdownToggle}>Getaways</span>}
-                className="mx-lg-3"
-                id="getaways-dropdown"
-                renderMenuOnMount={true}
-              >
-                <div style={styles.dropdownMenu}>
-                  <NavDropdown.Item href="/bikingeventshome" style={styles.dropdownItem}>Biking Events</NavDropdown.Item>
-                  <NavDropdown.Item href="/traininghome" style={styles.dropdownItem}>Trainings</NavDropdown.Item>
-                  <NavDropdown.Item href="/adventure-tours" style={styles.dropdownItem}>Adventure Tours</NavDropdown.Item>
-                </div>
-              </NavDropdown>
-
-              <Nav.Link className="mx-lg-3" href="/events" style={styles.navLink}>Events</Nav.Link>
-              <Nav.Link className="mx-lg-3" href="/services" style={styles.navLink}>Services</Nav.Link>
+              <Nav.Link className="mx-lg-3" href="/corporateevent" style={styles.navLink}>Corporate Events</Nav.Link>
+              {/* <Nav.Link className="mx-lg-3" href="/services" style={styles.navLink}>Services</Nav.Link> */}
               <Nav.Link className="mx-lg-3" href="/contact" style={styles.navLink}>Contact</Nav.Link>
             </Nav>
           </Navbar.Collapse>
@@ -76,28 +65,28 @@ const styles = {
   },
   navLink: {
     color: '#fff',
-    fontSize: '16px', // Fixed typo from 'fontsize' to 'fontSize' and set to match CommonCss.css
-    fontWeight: '500', // Matches CommonCss.css for links
+    fontSize: '16px',
+    fontWeight: '500',
     padding: '8px 15px',
   },
   navDropdown: {
     color: '#fff',
-    fontWeight: '500', // Matches CommonCss.css for links
+    fontWeight: '500',
   },
   dropdownToggle: {
     color: '#fff !important',
-    fontSize: '16px', // Added to match CommonCss.css
-    fontWeight: '500', // Matches CommonCss.css for links
+    fontSize: '16px',
+    fontWeight: '500',
   },
   dropdownMenu: {
-    borderRadius: 'none', // Fixed typo from 'borderradius' to 'borderRadius'
+    borderRadius: 'none',
     marginTop: '10px'
   },
   dropdownItem: {
     padding: '8px 20px',
     color: '#000',
     transition: 'all 0.2s ease',
-    fontSize: '16px', // Added to match CommonCss.css
-    fontWeight: '400', // Added to match CommonCss.css for regular text
+    fontSize: '16px',
+    fontWeight: '400',
   }
 };

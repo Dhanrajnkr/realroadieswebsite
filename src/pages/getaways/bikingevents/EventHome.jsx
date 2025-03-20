@@ -1,13 +1,13 @@
 import React from 'react';
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 
-const TrainingHome = () => {
+const EventHome = () => {
   
         // Sample tour data
         const tours = [
           {
             id: 1,
-            title: "off-road training",
+            title: "Himalayan Expedition",
             days: 7,
             organizer: "RealRoadies",
             price: 1299,
@@ -85,7 +85,7 @@ const TrainingHome = () => {
                 <Row className="mt-5 justify-content-center">
                   <Col md={10} className="text-center">
                     <div style={styles.comingsoon}>
-                      <p style={styles.comingsoontext}>More adventures coming soon</p>
+                      <p style={styles.comingsoontext}>more coming soon</p>
                     </div>
                   </Col>
                 </Row>
@@ -128,7 +128,7 @@ const TrainingHome = () => {
         tourImage: {
           width: '100%',
           height: '100%',
-          objectFit: 'fit',
+          objectFit: 'fill',
           transition: 'transform 0.3s ease',
         },
         tourContent: {
@@ -193,13 +193,12 @@ const TrainingHome = () => {
           
       
         },
-        comingsoonText: {
+        comingsoontext: {
           color: '#a0a0a0',
           fontSize: '20px',
           fontWeight: '400',
-          fontStyle: 'italic',
         }
       };
  
 
-export default TrainingHome
+export default EventHome
