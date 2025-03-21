@@ -5,7 +5,7 @@ import ExplanationSection from './ExplanationSection';
 import FeatureSection from './FeatureSection';
 import OfferSection from './OfferSection';
 
-function HeroSection() {
+const HeroSection = () => {
   return (
     <>
       <section style={styles.heroSection}>
