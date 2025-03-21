@@ -44,7 +44,7 @@ const About = () => {
       </div>
       <AboutFeaturesAndMission />
     </>
-  );
+  ); 
 };
 
 const styles = {
