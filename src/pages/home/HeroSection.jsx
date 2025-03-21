@@ -4,13 +4,14 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import ExplanationSection from './ExplanationSection';
 import FeatureSection from './FeatureSection';
 import OfferSection from './OfferSection';
+import homevideo from '../../assets/images/home1.mp4';
 
 const HeroSection = () => {
   return (
     <>
       <section style={styles.heroSection}>
         <video style={styles.video} autoPlay muted loop playsInline>
-          <source src="../src/assets/images/home1.mp4" type="video/mp4" />
+          <source src={homevideo} type="video/mp4" />
           Your browser does not support the video tag.
         </video>
 
