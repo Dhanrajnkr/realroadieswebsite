@@ -16,34 +16,34 @@ const FeaturesAndMission = () => {
           <FeatureBox
             title="RealRoadies Garage"
             description="A digital hub for your rides with high-visibility, emergency data, service history, and ownership details."
-            imageUrl="../src/assets/images/ab1.png"
+            imageUrl="../src/assets/images/2.png"
           />
           <FeatureBox
             title="RealRoadies Corporate Events"
             description="Motorcycle-centric corporate events that encourage team bonding and adrenaline-fueled networking."
-            imageUrl="../src/assets/images/ab1.png"
+            imageUrl="../src/assets/images/b6.png"
           />
           <FeatureBox
             title="RealRoadies Rewards"
             description="A membership program that unlocks exclusive discounts, offers, and early-bird access to events."
-            imageUrl="../src/assets/images/ab1.png"
+            imageUrl="../src/assets/images/b5.jpg"
           />
         </Col>
         <Col md={5}>
           <FeatureBox
             title="RealRoadies Getaways"
             description="Exclusive long-distance, high-adventure, and resilience-rich motorcycle tours for enthusiasts."
-            imageUrl="../src/assets/images/ab1.png"
+            imageUrl="../src/assets/images/getaway.png"
           />
           <FeatureBox
             title="RealRoadies Store"
             description="Top-tier biking gear, safety essentials, and lifestyle merchandise tailored for motorcycle enthusiasts."
-            imageUrl="../src/assets/images/ab1.png"
+            imageUrl="../src/assets/images/1.png"
           />
           <FeatureBox
             title="RealRoadies Utilities"
             description="Smart vehicle tracking, safety kits, and curated content with AI-driven biking insights."
-            imageUrl="../src/assets/images/ab1.png"
+            imageUrl="../src/assets/images/rider.jpg"
           />
         </Col>
       </Row>
@@ -55,7 +55,7 @@ const FeaturesAndMission = () => {
             <Row className="align-items-center g-0">
               <Col xs={2} md={1}>
                 <img
-                  src="../src/assets/images/ab1.png"
+                  src="../src/assets/images/hill.jpg"
                   alt="TalentHunt"
                   style={styles.featureImage}
                 />

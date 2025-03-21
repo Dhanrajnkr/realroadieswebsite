@@ -37,14 +37,14 @@ const About = () => {
       {/* Full-screen Image Section - with reduced space above */}
       <div style={styles.fullScreenImageSection}>
         <img
-          src="../src/assets/images/long.png"
+          src="../src/assets/images/backimg.jpg"
           alt="Motorcycle Adventure"
           style={styles.fullScreenImage}
         />
       </div>
       <AboutFeaturesAndMission />
     </>
-  );
+  ); 
 };
 
 const styles = {

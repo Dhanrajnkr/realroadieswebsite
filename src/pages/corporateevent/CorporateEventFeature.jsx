@@ -32,24 +32,24 @@ const CorporateEventFeature = () => {
           <FeatureBox
             title="Corporate Brand Rides & Promotions"
             description="Amplify your brand with high-visibility motorcycle rides. Whether you're launching a new product, celebrating a milestone, or creating brand awareness, our custom rides put your brand in the spotlight."
-            imageUrl="../src/assets/images/ab1.png"
+            imageUrl="../src/assets/images/brand.jpg"
           />
           <FeatureBox
             title="Team-Building & Leadership Rides"
             description="Encourage teamwork, leadership, and resilience with our interactive motorcycle experiences. From scenic rides to off-road challenges, we help strengthen bonds beyond the office."
-            imageUrl="../src/assets/images/ab1.png"
+            imageUrl="../src/assets/images/team.jpg"
           />
         </Col>
         <Col md={5}>
           <FeatureBox
             title="Diversity & Inclusion Rides"
             description="Promote gender diversity and inclusion with exclusive women-only rides or co-gender rides designed to break stereotypes and encourage equal participation."
-            imageUrl="../src/assets/images/ab1.png"
+            imageUrl="../src/assets/images/iclu.jpg"
           />
           <FeatureBox
             title="CSR & Cause-Based Rides"
             description="Support sustainability, road safety, or social causes with corporate-backed awareness rides, charity motorcycle events, and community engagement campaigns."
-            imageUrl="../src/assets/images/ab1.png"
+            imageUrl="../src/assets/images/base.jpg"
           />
         </Col>
       </Row>
@@ -61,7 +61,7 @@ const CorporateEventFeature = () => {
             <Row className="align-items-center g-0">
               <Col xs={2} md={1}>
                 <img
-                  src="../src/assets/images/ab1.png"
+                  src="../src/assets/images/fuel.jpg"
                   alt="TalentHunt"
                   style={styles.featureImage}
                 />
