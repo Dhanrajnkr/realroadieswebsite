@@ -1,6 +1,8 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import AboutFeaturesAndMission from './AboutFeaturesAndMission';
+import image from '../../assets/images/ab2.png';
+import back from '../../assets/images/backimg.jpg';
 
 const About = () => {
   return (
@@ -25,7 +27,7 @@ const About = () => {
             {/* Right Side - Placeholder for Image/Video */}
             <Col md={6} className="text-center">
               <img
-          src="../src/assets/images/ab2.png"
+          src={image}
           alt="Motorcycle Adventure"
           style={styles.imagePlaceholder}
         />
@@ -37,7 +39,7 @@ const About = () => {
       {/* Full-screen Image Section - with reduced space above */}
       <div style={styles.fullScreenImageSection}>
         <img
-          src="../src/assets/images/backimg.jpg"
+          src={back}
           alt="Motorcycle Adventure"
           style={styles.fullScreenImage}
         />

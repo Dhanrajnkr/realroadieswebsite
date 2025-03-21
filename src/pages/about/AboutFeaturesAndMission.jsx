@@ -1,5 +1,13 @@
 import React from "react";
 import { Container, Row, Col, Card } from "react-bootstrap";
+import  image from '../../assets/images/2.png'
+import event from '../../assets/images/b6.png';
+import reward from '../../assets/images/b5.jpg';
+import get from '../../assets/images/getaway.png';
+import store from '../../assets/images/1.png';
+import utiles from '../../assets/images/rider.jpg';
+import hunt from '../../assets/images/hill.jpg';
+import mission from '../../assets/images/ab1.png';
 
 const FeaturesAndMission = () => {
   return (
@@ -16,34 +24,34 @@ const FeaturesAndMission = () => {
           <FeatureBox
             title="RealRoadies Garage"
             description="A digital hub for your rides with high-visibility, emergency data, service history, and ownership details."
-            imageUrl="../src/assets/images/2.png"
+            imageUrl={image}
           />
           <FeatureBox
             title="RealRoadies Corporate Events"
             description="Motorcycle-centric corporate events that encourage team bonding and adrenaline-fueled networking."
-            imageUrl="../src/assets/images/b6.png"
+            imageUrl={event}
           />
           <FeatureBox
             title="RealRoadies Rewards"
             description="A membership program that unlocks exclusive discounts, offers, and early-bird access to events."
-            imageUrl="../src/assets/images/b5.jpg"
+            imageUrl={reward}
           />
         </Col>
         <Col md={5}>
           <FeatureBox
             title="RealRoadies Getaways"
             description="Exclusive long-distance, high-adventure, and resilience-rich motorcycle tours for enthusiasts."
-            imageUrl="../src/assets/images/getaway.png"
+            imageUrl={get}
           />
           <FeatureBox
             title="RealRoadies Store"
             description="Top-tier biking gear, safety essentials, and lifestyle merchandise tailored for motorcycle enthusiasts."
-            imageUrl="../src/assets/images/1.png"
+            imageUrl={store}
           />
           <FeatureBox
             title="RealRoadies Utilities"
             description="Smart vehicle tracking, safety kits, and curated content with AI-driven biking insights."
-            imageUrl="../src/assets/images/rider.jpg"
+            imageUrl={utiles}
           />
         </Col>
       </Row>
@@ -55,7 +63,7 @@ const FeaturesAndMission = () => {
             <Row className="align-items-center g-0">
               <Col xs={2} md={1}>
                 <img
-                  src="../src/assets/images/hill.jpg"
+                  src={hunt}
                   alt="TalentHunt"
                   style={styles.featureImage}
                 />
@@ -85,7 +93,7 @@ const FeaturesAndMission = () => {
         </Col>
         <Col md={5} className="text-center">
           <img
-            src="../src/assets/images/ab1.png"
+            src={mission}
             alt="Our Mission"
             style={styles.missionImage}
           />
