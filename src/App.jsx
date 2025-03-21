@@ -12,9 +12,9 @@ import AdventureToursDetails from './pages/getaways/Adventuretours/AdventureTour
 import Contact from './pages/contact/Contact';
 import RefundPolicy from './pages/company/refund-policy/RefundPolicy';
 import PrivacyPolicy from './pages/company/privacy-policy/PrivacyPolicy';
-import TermsConditions from './pages/Company/terms&conditions/TermsConditions';
-import Details from './pages/Getaways/details/Details';
-import About from './pages/About/About';
+import TermsConditions from './pages/company/terms&conditions/TermsConditions';
+import Details from './pages/getaways/details/Details';
+import About from './pages/about/About';
 
 const App=() => {
   return (
