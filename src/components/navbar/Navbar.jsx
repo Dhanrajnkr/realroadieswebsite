@@ -31,7 +31,7 @@ function NavbarSection() {
             <Navbar expand="lg" variant="dark" style={styles.navbar}>
               <Navbar.Brand href="/" style={styles.brand}>
                 <img
-                  src="../src/assets/images/rr-logo.png"
+                  src="https://m.media-amazon.com/images/I/51WRaOtap-L.jpg"
                   alt="realroadies logo"
                   height="40"
                   className="d-inline-block align-text-top"
