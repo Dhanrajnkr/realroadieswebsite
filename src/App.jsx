@@ -5,16 +5,16 @@ import './App.css';
 import NavbarSection from './components/navbar/Navbar';
 import Footer from './components/footer/Footer';
 import HeroSection from "./pages/Home/HeroSection";
-import TrainingHome from './pages/getaways/trainings/TrainingHome';
-import Getaways from './pages/getaways/Getaways';
-import About from './pages/about/About';
-import CorporateEvent from './pages/corporateevent/CorporateEvent';
-import AdventureToursDetails from './pages/getaways/Adventuretours/AdventureToursDetails';
-import Contact from './pages/contact/Contact';
-import Details from './pages/getaways/details/Details';
-import TermsConditions from './pages/company/terms&conditions/TermsConditions';
-import RefundPolicy from './pages/company/refund-policy/RefundPolicy';
-import PrivacyPolicy from './pages/company/privacy-policy/PrivacyPolicy';
+import TrainingHome from './pages/Getaways/trainings/TrainingHome';
+import Getaways from './pages/Getaways/Getaways';
+import About from './pages/About/About';
+import CorporateEvent from './pages/Corporateevent/CorporateEvent';
+import AdventureToursDetails from './pages/Getaways/Adventuretours/AdventureToursDetails';
+import Contact from './pages/Contact/Contact';
+import Details from './pages/Getaways/details/Details';
+import TermsConditions from './pages/Company/terms&conditions/TermsConditions';
+import RefundPolicy from './pages/Company/refund-policy/RefundPolicy';
+import PrivacyPolicy from './pages/Company/privacy-policy/PrivacyPolicy';
 
 const App=() => {
   return (
