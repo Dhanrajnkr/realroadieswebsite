@@ -18,32 +18,32 @@ const RefundPolicy = () => {
                 </p>
 
                 <h2 style={styles.subheading}>2. Eligibility for Refunds</h2>
-                <p style={styles.text}>
-                  Refunds are applicable under the following conditions:
+                  <p>Refunds are applicable under the following conditions:</p>
+                <div style={styles.text}>
                   <ul style={styles.list}>
                     <li style={styles.listItem}>If a user is charged incorrectly due to a technical error.</li>
                     <li style={styles.listItem}>If the purchased service/subscription is not activated or delivered within the promised time frame.</li>
                     <li style={styles.listItem}>If a user cancels a subscription within the permitted refund window as per platform policies (Google Play/App Store).</li>
                     <li style={styles.listItem}>If the service provided is significantly different from the description mentioned in the app.</li>
                   </ul>
-                </p>
+                </div>
 
                 <h2 style={styles.subheading}>3. Non-Refundable Situations</h2>
-                <p style={styles.text}>
-                  Refunds will not be provided in the following cases:
+                  <p>Refunds will not be provided in the following cases:</p>
+                <div style={styles.text}>
                   <ul style={styles.list}>
                     <li style={styles.listItem}>If the user has used the service for a substantial period.</li>
                     <li style={styles.listItem}>If the user changes their mind after making a purchase.</li>
                     <li style={styles.listItem}>If the refund request is made beyond the applicable refund window.</li>
                     <li style={styles.listItem}>If the issue is caused by factors beyond our control (e.g., device incompatibility).</li>
                   </ul>
-                </p>
+                </div>
 
                 <h2 style={styles.subheading}>4. How to Request a Refund</h2>
-                <p style={styles.text}>
-                  To request a refund, follow these steps:<br/><br/>
+                <div style={styles.text}>
+                 <p> To request a refund, follow these steps:<br/><br/>
                   
-                  1. Contact our support team via <a href="mailto:srikanth@stipe.so" style={styles.link}>srikanth@stipe.so</a> with the following details:
+                  1. Contact our support team via <a href="mailto:srikanth@stipe.so" style={styles.link}>srikanth@stipe.so</a> with the following details:</p>
                   <ul style={styles.list}>
                     <li style={styles.listItem}>Transaction ID</li>
                     <li style={styles.listItem}>Reason for refund</li>
@@ -51,17 +51,17 @@ const RefundPolicy = () => {
                   </ul>
                   2. Our team will review the request and respond within 5-7 business days.<br/>
                   3. If approved, refunds will be processed to the original payment method within 7-10 business days.
-                </p>
+                </div>
 
                 <h2 style={styles.subheading}>5. Refund Processing Time</h2>
-                <p style={styles.text}>
-                  Refunds may take different durations depending on the payment method:
+                <div style={styles.text}>
+                 <p>Refunds may take different durations depending on the payment method:</p> 
                   <ul style={styles.list}>
                     <li style={styles.listItem}>UPI/Wallet Payments: 3-5 business days</li>
                     <li style={styles.listItem}>Credit/Debit Cards: 5-7 business days</li>
                     <li style={styles.listItem}>Net Banking: 7-10 business days</li>
                   </ul>
-                </p>
+                </div>
 
                 <h2 style={styles.subheading}>6. Changes to the Refund Policy</h2>
                 <p style={styles.text}>

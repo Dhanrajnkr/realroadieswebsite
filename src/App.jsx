@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import NavbarSection from './components/navbar/Navbar';
 import Footer from './components/footer/Footer';
-import HeroSection from './pages/Home/HeroSection';
+import HeroSection from "./pages/Home/HeroSection";
 import TrainingHome from './pages/getaways/trainings/TrainingHome';
 import Getaways from './pages/getaways/Getaways';
 import About from './pages/about/About';
@@ -16,7 +16,7 @@ import TermsConditions from './pages/company/terms&conditions/TermsConditions';
 import RefundPolicy from './pages/company/refund-policy/RefundPolicy';
 import PrivacyPolicy from './pages/company/privacy-policy/PrivacyPolicy';
 
-function App() {
+const App=() => {
   return (
     <Router>
       <div className="App">
