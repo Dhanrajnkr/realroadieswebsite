@@ -9,7 +9,7 @@ const TermsConditions = () => {
       <section style={styles.section}>
         <Container fluid style={styles.container}>
           <Row className="justify-content-center">
-            <Col xs={12} md={10} lg={10} xl={8}>
+            <Col xs={12} md={10} lg={10} xl={10}>
               <div style={styles.content}>
                 <h2 style={styles.title}>RealRoadies Terms of Use</h2>
                 <p style={styles.text}>By using our website, web/desktop/mobile apps and services, you agree to the following terms.</p>
