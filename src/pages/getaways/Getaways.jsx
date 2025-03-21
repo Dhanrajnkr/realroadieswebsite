@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Nav } from 'react-bootstrap';
+import { Nav, Container, Row, Col } from 'react-bootstrap';
 import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import TrainingHome from './trainings/TrainingHome';
 import AdventureToursHome from './Adventuretours/AdventureToursHome';
@@ -38,37 +38,41 @@ const Getaways = () => {
     <div style={styles.mainContainer}>
       {/* Navigation tabs - always visible */}
       <div style={styles.navbar}>
-        <div style={styles.navContainer}>
-          <Nav className="justify-content-start" style={styles.nav}>
-            <Nav.Item>
-              <Nav.Link
-                onClick={() => navigate('/getaways/adventure-tours')}
-                style={getLinkStyle('adventure-tours')}
-                className="px-4 py-2"
-              >
-              Trips & Adventure
-              </Nav.Link>
-            </Nav.Item>
-            <Nav.Item>
-              <Nav.Link
-                onClick={() => navigate('/getaways/traininghome')}
-                style={getLinkStyle('traininghome')}
-                className="px-4 py-2"
-              >
-                Trainings
-              </Nav.Link>
-            </Nav.Item>
-            <Nav.Item>
-              <Nav.Link
-                onClick={() => navigate('/getaways/eventshome')}
-                style={getLinkStyle('eventshome')}
-                className="px-4 py-2"
-              >
-                Events
-              </Nav.Link>
-            </Nav.Item>
-          </Nav>
-        </div>
+        <Container fluid style={styles.container}>
+          <Row className="justify-content-center">
+            <Col xs={12} md={12} lg={12} xl={12}>
+              <Nav className="justify-content-start" style={styles.nav}>
+                <Nav.Item>
+                  <Nav.Link
+                    onClick={() => navigate('/getaways/adventure-tours')}
+                    style={getLinkStyle('adventure-tours')}
+                    className="px-4 py-2"
+                  >
+                    Trips & Adventure
+                  </Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                  <Nav.Link
+                    onClick={() => navigate('/getaways/traininghome')}
+                    style={getLinkStyle('traininghome')}
+                    className="px-4 py-2"
+                  >
+                    Trainings
+                  </Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                  <Nav.Link
+                    onClick={() => navigate('/getaways/eventshome')}
+                    style={getLinkStyle('eventshome')}
+                    className="px-4 py-2"
+                  >
+                    Events
+                  </Nav.Link>
+                </Nav.Item>
+              </Nav>
+            </Col>
+          </Row>
+        </Container>
       </div>
 
       {/* Content area for the different pages - no gap */}
@@ -99,18 +103,21 @@ const styles = {
     position: 'sticky',
     top: 0,
     zIndex: 100,
-    marginBottom: 0 
+    marginBottom: 0,
+    paddingLeft: '15px',
+    paddingRight: '15px',
+    paddingTop: '10px',
+    paddingBottom: '10px'
   },
-  navContainer: {
-    maxWidth: '1200px',
-    margin: '0 auto',
-    padding: '0 15px'
+  container: {
+    padding: 0
   },
   nav: {
     display: 'flex',
     justifyContent: 'flex-start',
     padding: '0',
-    margin: '0' 
+    margin: '0',
+    width: '100%'
   },
   navLink: {
     color: '#f8f9fa',
@@ -119,8 +126,8 @@ const styles = {
     fontSize: '14px',
     cursor: 'pointer',
     textDecoration: 'none',
-    margin: 0, 
-    borderRadius: 0 
+    margin: 0,
+    borderRadius: 0
   },
   activeNavLink: {
     color: '#ffffff',
@@ -130,8 +137,8 @@ const styles = {
   contentContainer: {
     width: '100%',
     flex: 1,
-    padding: 0, 
-    marginTop: 0 
+    padding: 0,
+    marginTop: 0
   }
 };
 

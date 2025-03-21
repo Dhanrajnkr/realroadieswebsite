@@ -12,6 +12,9 @@ import CorporateEvent from './pages/corporateevent/CorporateEvent';
 import AdventureToursDetails from './pages/getaways/Adventuretours/AdventureToursDetails';
 import Contact from './pages/contact/Contact';
 import Details from './pages/getaways/details/Details';
+import TermsConditions from './pages/company/terms&conditions/TermsConditions';
+import RefundPolicy from './pages/company/refund-policy/RefundPolicy';
+import PrivacyPolicy from './pages/company/privacy-policy/PrivacyPolicy';
 
 function App() {
   return (
@@ -29,6 +32,9 @@ function App() {
             <Route path="/adventure-tours" element={<AdventureToursDetails />} />
             <Route path="/corporateevent" element={<CorporateEvent />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/termsconditions" element={<TermsConditions />} />
+            <Route path="/refundpolicy" element={<RefundPolicy />} />
+            <Route path="/privacypolicy" element={<PrivacyPolicy />} />
           </Routes>
         </main> 
         <Footer/>

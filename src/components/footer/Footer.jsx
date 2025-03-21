@@ -45,13 +45,13 @@ function Footer() {
             <h5 style={styles.heading}>Company</h5>
             <ul style={styles.linksList}>
               <li style={styles.listItem}>
-                <a href="/terms-conditions" style={styles.link}>Terms & Conditions</a>
+                <a href="/termsconditions" style={styles.link}>Terms & Conditions</a>
               </li>
               <li style={styles.listItem}>
-                <a href="/privacy-policy" style={styles.link}>Privacy Policy</a>
+                <a href="/refundpolicy" style={styles.link}>Privacy Policy</a>
               </li>
               <li style={styles.listItem}>
-                <a href="/refund-policy" style={styles.link}>Refund Policy</a>
+                <a href="/privacypolicy" style={styles.link}>Refund Policy</a>
               </li>
             </ul>
           </Col>

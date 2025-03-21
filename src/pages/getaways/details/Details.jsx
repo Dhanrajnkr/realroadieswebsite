@@ -171,7 +171,7 @@ const Details = () => {
     return (
       <Container fluid style={styles.container}>
         <Row className="justify-content-center">
-          <Col xs={12} md={10} lg={10} xl={8}>
+          <Col xs={12} md={10} lg={10} xl={10}>
             <div style={styles.loadingContainer}>
               <Spinner animation="border" role="status" style={styles.spinner}>
                 <span className="visually-hidden">Loading...</span>
