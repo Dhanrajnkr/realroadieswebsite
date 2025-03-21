@@ -35,12 +35,11 @@ function Footer() {
             <ul style={styles.linksList}>
               <li style={styles.listItem}><a href="/" style={styles.link}>Home</a></li>
               <li style={styles.listItem}><a href="/about" style={styles.link}>About Us</a></li>
-              <li style={styles.listItem}><a href="/store" style={styles.link}>Store</a></li>
-              <li style={styles.listItem}><a href="/blog" style={styles.link}>Blog</a></li>
+              <li style={styles.listItem}><a href="/getaways" style={styles.link}>Getaways</a></li>
+              <li style={styles.listItem}><a href="/corporateevent" style={styles.link}>Corporate Events</a></li>
               <li style={styles.listItem}><a href="/contact" style={styles.link}>Contact Us</a></li>
             </ul>
           </Col>
-
           {/* Company Policies */}
           <Col md={3} lg={2} className="text-start">
             <h5 style={styles.heading}>Company</h5>
@@ -192,7 +191,7 @@ const styles = {
     textDecoration: 'none',
     transition: 'color 0.3s ease',
     fontSize: '16px',  // Changed from 0.95rem to 16px to match links in CommonCss.css
-    fontWeight: '500'  // Added to match links in CommonCss.css
+    fontWeight: '400'  // Added to match links in CommonCss.css
   },
   contactList: {
     listStyle: 'none',

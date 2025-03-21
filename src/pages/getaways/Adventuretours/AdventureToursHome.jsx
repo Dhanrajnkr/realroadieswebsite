@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Button } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 
-
-const AdventureToursDetails = () => {
+const AdventureToursHome = () => {
+  const navigate = useNavigate();
   const [tripData, setTripData] = useState([]);
   const [allTrips, setAllTrips] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -38,6 +39,12 @@ const AdventureToursDetails = () => {
         setLoading(false);
       });
   }, []);
+ 
+ // Function to handle navigation to TripDetails
+const handleNavigateToTripsDetails = (id) => {
+  navigate(`/details/${id}`, { state: { type: 'trip' } });
+};
+
 
   // Format duration for display
   const formatDuration = (duration) => {
@@ -84,7 +91,8 @@ const AdventureToursDetails = () => {
                                 <div style={styles.tourDetails}>
                                   <span style={styles.tourOrganizer}>Organized by {tour.organized_by}</span>
                                 </div>
-                                <Button style={styles.tourButton}>
+                                <Button style={styles.tourButton} 
+                                onClick={() => handleNavigateToTripsDetails(tour._id)}>
                                   Starting at ₹{calculatePrice(tour.starting_market_price, tour.discount_starts)}
                                 </Button>
                               </div>
@@ -232,4 +240,4 @@ const styles = {
   }
 };
 
-export default AdventureToursDetails;
+export default AdventureToursHome;

@@ -8,13 +8,24 @@ import {
   faWhatsapp,
   faXTwitter
 } from '@fortawesome/free-brands-svg-icons';
+import {
+  faCheckCircle,
+  faTimesCircle
+} from '@fortawesome/free-solid-svg-icons';
 
-const BikingEventHomeCards = () => {
+const DetailsCards = ({ 
+  eventDescription, 
+  eventAddress, 
+  eventType, 
+  eventDuration,
+  eventInclusions = [],
+  eventExclusions = []
+}) => {
   // Add state for Read More functionality
   const [expanded, setExpanded] = useState(false);
  
-  // Full content text
-  const fullContent = `Looking for a fun run with your sisters? Or a time trial ahead of
+  // Full content text - use provided description or fallback to default
+  const fullContent = eventDescription || `Looking for a fun run with your sisters? Or a time trial ahead of
     the racing season in Bangalore? Or just want to experience an easy, breezy run
     on a Sunday morning in a space that doesn't make you think twice?
    
@@ -22,11 +33,13 @@ const BikingEventHomeCards = () => {
     The route takes you through scenic paths with beautiful views of the city.
     Professional trainers will be available to provide guidance and support throughout the event.`;
  
-  // Shortened content for collapsed view
-  const shortContent = `Looking for a fun run with your sisters? Or a time trial ahead of
-    the racing season in Bangalore? Or just want to experience an
-    easy, breezy run on a Sunday morning in a space that doesn't make
-    you think twice? ...`;
+  // Shortened content for collapsed view - create a shortened version of the description
+  const shortContent = eventDescription 
+    ? (eventDescription.length > 150 ? eventDescription.substring(0, 150) + '...' : eventDescription)
+    : `Looking for a fun run with your sisters? Or a time trial ahead of
+      the racing season in Bangalore? Or just want to experience an
+      easy, breezy run on a Sunday morning in a space that doesn't make
+      you think twice? ...`;
 
   // Add effect to remove focus outline from accordion
   useEffect(() => {
@@ -55,11 +68,35 @@ const BikingEventHomeCards = () => {
     };
   }, []);
 
+  // Use provided address or default
+  const venueAddress = eventAddress || "RMZ Eco World Road, Adarsh Palm Retreat, Bellandur, Bengaluru, Karnataka 560103, India";
+  
+  // Extract city from address
+  const getCity = (address) => {
+    if (!address) return "Bengaluru";
+    const cities = ["Bengaluru", "Bangalore", "Mumbai", "Delhi", "Chennai", "Hyderabad", "Kolkata", "Pune"];
+    for (const city of cities) {
+      if (address.includes(city)) {
+        return city;
+      }
+    }
+    return "Bengaluru"; // Default city
+  };
+
+  // Format duration for display
+  const formatDuration = (duration) => {
+    if (!duration) return '';
+    return duration.split(' ')[0] + ' days';
+  };
+
+  // Check if we have inclusions or exclusions to display
+  const hasInclusionsOrExclusions = eventType === 'trip' && (eventInclusions.length > 0 || eventExclusions.length > 0);
+
   return (
     <div style={styles.wrapper}>
       <Container fluid style={styles.container}>
         <Row className="justify-content-center">
-          <Col xs={12} md={10} lg={10} xl={8}>
+          <Col xs={12} md={10} lg={10} xl={10}>
             <Row className="gy-3">
               {/* Left Side - Sharing & Interest */}
               <Col md={3}>
@@ -86,24 +123,68 @@ const BikingEventHomeCards = () => {
               </Col>
 
               {/* Middle Section - About */}
-              <Col md={4}>
+              <Col md={6}>
                 <Card className="shadow-sm" style={styles.card}>
                   <h6 style={styles.cardTitle}>About</h6>
                   <div style={styles.cardTextContainer}>
                     <p style={styles.cardText}>
                       {expanded ? fullContent : shortContent}
                     </p>
-                    <a
-                      href="#"
-                      style={styles.readMoreLink}
-                      onClick={(e) => {
-                        e.preventDefault();
-                        setExpanded(!expanded);
-                      }}
-                    >
-                      {expanded ? "Read Less" : "Read More"}
-                    </a>
+                    {fullContent.length > 150 && (
+                      <a
+                        href="#"
+                        style={styles.readMoreLink}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          setExpanded(!expanded);
+                        }}
+                      >
+                        {expanded ? "Read Less" : "Read More..."}
+                      </a>
+                    )}
                   </div>
+                  
+                  {/* Inclusions and Exclusions Accordion (for trips only) */}
+                  {hasInclusionsOrExclusions && (
+                    <div style={styles.accordionWrapper}>
+                      <Accordion>
+                        <Accordion.Item eventKey="inclusions" style={styles.accordionItem}>
+                          <Accordion.Header style={styles.accordionHeader}>
+                            Inclusions & Exclusions
+                          </Accordion.Header>
+                          <Accordion.Body style={styles.accordionBody}>
+                            {eventInclusions.length > 0 && (
+                              <div style={styles.inclusionSection}>
+                                <h6 style={styles.inclusionTitle}>
+                                  <FontAwesomeIcon icon={faCheckCircle} style={{...styles.inclusionIcon, color: '#28a745'}} />
+                                  Inclusions:
+                                </h6>
+                                <ul style={styles.inclusionList}>
+                                  {eventInclusions.map((item, index) => (
+                                    <li key={`inclusion-${index}`} style={styles.inclusionItem}>{item}</li>
+                                  ))}
+                                </ul>
+                              </div>
+                            )}
+                            
+                            {eventExclusions.length > 0 && (
+                              <div style={styles.inclusionSection}>
+                                <h6 style={styles.inclusionTitle}>
+                                  <FontAwesomeIcon icon={faTimesCircle} style={{...styles.inclusionIcon, color: '#dc3545'}} />
+                                  Exclusions:
+                                </h6>
+                                <ul style={styles.inclusionList}>
+                                  {eventExclusions.map((item, index) => (
+                                    <li key={`exclusion-${index}`} style={styles.inclusionItem}>{item}</li>
+                                  ))}
+                                </ul>
+                              </div>
+                            )}
+                          </Accordion.Body>
+                        </Accordion.Item>
+                      </Accordion>
+                    </div>
+                  )}
                  
                   {/* Enhanced Accordion with better styling */}
                   <div style={styles.accordionWrapper}>
@@ -139,24 +220,45 @@ const BikingEventHomeCards = () => {
               </Col>
 
               {/* Right Side - Location */}
-              <Col md={5}>
+              <Col md={3}>
                 <Card className="shadow-sm" style={styles.card}>
-                  <h6 style={styles.locationTitle}>Bengaluru</h6>
-                  <p style={styles.venueName}>The Bay at Ecoworld, Bengaluru</p>
-                  <p style={styles.venueAddress}>
-                    RMZ Eco World Road, Adarsh Palm Retreat, Bellandur, Bengaluru,
-                    Karnataka 560103, India
-                  </p>
-                  {/* Embedded Google Map */}
-                  <iframe
-                    title="Event Location"
-                    src="https://maps.google.com/maps?q=RMZ%20Eco%20World%20Road,%20Bengaluru&t=&z=13&ie=UTF8&iwloc=&output=embed"
-                    width="100%"
-                    height="150"
-                    style={styles.mapIframe}
-                    allowFullScreen=""
-                    loading="lazy"
-                  ></iframe>
+                  <h6 style={styles.cardTitle}>
+                    {eventType === 'trip' ? 'Trip Details' : 'Location'}
+                  </h6>
+                  
+                  {eventType === 'trip' ? (
+                    <div>
+                      <p style={styles.venueAddress}>
+                        {venueAddress}
+                      </p>
+                      {/* Embedded Google Map for trip destination */}
+                      <iframe
+                        title="Trip Destination"
+                        src={`https://maps.google.com/maps?q=${encodeURIComponent(venueAddress)}&t=&z=13&ie=UTF8&iwloc=&output=embed`}
+                        width="100%"
+                        height="150"
+                        style={styles.mapIframe}
+                        allowFullScreen=""
+                        loading="lazy"
+                      ></iframe>
+                    </div>
+                  ) : (
+                    <div>
+                      <p style={styles.venueAddress}>
+                        {venueAddress}
+                      </p>
+                      {/* Embedded Google Map for event location */}
+                      <iframe
+                        title="Event Location"
+                        src={`https://maps.google.com/maps?q=${encodeURIComponent(venueAddress)}&t=&z=13&ie=UTF8&iwloc=&output=embed`}
+                        width="100%"
+                        height="150"
+                        style={styles.mapIframe}
+                        allowFullScreen=""
+                        loading="lazy"
+                      ></iframe>
+                    </div>
+                  )}
                 </Card>
               </Col>
             </Row>
@@ -182,7 +284,7 @@ const styles = {
     border: 'none',
     borderRadius: '0',
     backgroundColor: '#ffffff',
-    marginBottom: '15px', // Added margin bottom for mobile spacing
+    marginBottom: '15px', 
   },
   cardTitle: {
     marginBottom: '15px',
@@ -243,7 +345,8 @@ const styles = {
     cursor: 'pointer'
   },
   accordionWrapper: {
-    marginTop: '0px',
+    marginTop: '1px',
+    marginBottom: '10px',
   },
   accordionItem: {
     border: 'none',
@@ -299,14 +402,65 @@ const styles = {
   },
   venueAddress: {
     fontSize: '14px',
-    fontWeight: '400',
-    color: '#6c757d',
+    fontWeight: '600',
+    color: '#000000',
     marginBottom: '15px'
   },
   mapIframe: {
     border: '0',
     borderRadius: '0'
+  },
+  durationContainer: {
+    marginBottom: '20px',
+    padding: '10px 0',
+    borderTop: '1px solid #dee2e6',
+    borderBottom: '1px solid #dee2e6',
+  },
+  durationTitle: {
+    fontSize: '16px',
+    fontWeight: '600',
+    marginBottom: '5px',
+    color: '#212529'
+  },
+  durationText: {
+    fontSize: '16px',
+    fontWeight: '400',
+    color: '#495057',
+    margin: 0
+  },
+  // New styles for inclusions and exclusions
+  inclusionSection: {
+    marginBottom: '15px'
+  },
+  inclusionTitle: {
+    fontSize: '16px',
+    fontWeight: '600',
+    marginBottom: '8px',
+    display: 'flex',
+    alignItems: 'center'
+  },
+  inclusionIcon: {
+    marginRight: '8px',
+    fontSize: '14px'
+  },
+  inclusionList: {
+    listStyleType: 'none',
+    paddingLeft: '10px',
+    marginBottom: '10px'
+  },
+  inclusionItem: {
+    fontSize: '14px',
+    marginBottom: '5px',
+    position: 'relative',
+    paddingLeft: '15px',
+    lineHeight: '1.4',
+    '&:before': {
+      content: '"•"',
+      position: 'absolute',
+      left: '0',
+      color: '#6c757d'
+    }
   }
 };
 
-export default BikingEventHomeCards;
+export default DetailsCards;

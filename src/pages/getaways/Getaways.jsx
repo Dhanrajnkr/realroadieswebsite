@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { Nav } from 'react-bootstrap';
 import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
-import BikingEventHome from './bikingevents/BikingEventHome';
 import TrainingHome from './trainings/TrainingHome';
 import AdventureToursHome from './Adventuretours/AdventureToursHome';
 import EventHome from './bikingevents/EventHome';
