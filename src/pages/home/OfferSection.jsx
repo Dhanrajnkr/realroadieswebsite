@@ -1,5 +1,9 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
+import Getawaysimg from '../../assets/images/3.png'
+import Garageimg from '../../assets/images/2.png'
+import Eventsimg from '../../assets/images/4.png'
+import Storeimg from '../../assets/images/1.png'
 
 function OfferSection() {
   return (
@@ -19,7 +23,7 @@ function OfferSection() {
               className="feature-card h-100"
               style={styles.featureCard}
             >
-              <img src='../src/assets/images/3.png' alt="Bike" className="img-fluid" style={styles.offerImage} />
+              <img src={Getawaysimg} alt="Bike" className="img-fluid" style={styles.offerImage} />
               <h6 style={styles.cardTitle}>RealRoadies Getaways 🌍</h6>
               <p style={styles.cardText}>
                 Explore breathtaking bike tours, level up your skills with expert
@@ -34,7 +38,7 @@ function OfferSection() {
               className="feature-card h-100"
               style={styles.featureCard}
             >
-               <img src='../src/assets/images/2.png' alt="Bike" className="img-fluid" style={styles.offerImage} />
+               <img src={Garageimg} alt="Bike" className="img-fluid" style={styles.offerImage} />
               <h6 style={styles.cardTitle}>RealRoadies Garage 🏍️</h6>
               <p style={styles.cardText}>
                 Store and manage all your motorcycles in one place. Keep track of
@@ -49,7 +53,7 @@ function OfferSection() {
               className="feature-card h-100"
               style={styles.featureCard}
             >
-               <img src='../src/assets/images/1.png' alt="Bike" className="img-fluid" style={styles.offerImage} />
+               <img src={Storeimg} alt="Bike" className="img-fluid" style={styles.offerImage} />
               <h6 style={styles.cardTitle}>RealRoadies Store 🛍️</h6>
               <p style={styles.cardText}>
                 Get the best riding gear, accessories, and motorcycle essentials.
@@ -64,7 +68,7 @@ function OfferSection() {
               className="feature-card h-100"
               style={styles.featureCard}
             >
-              <img src='../src/assets/images/4.png' alt="Bike" className="img-fluid" style={styles.offerImage} />
+              <img src={Eventsimg} alt="Bike" className="img-fluid" style={styles.offerImage} />
               <h6 style={styles.cardTitle}>RealRoadies Events 🎟️</h6>
               <p style={styles.cardText}>
                 Join the most exciting motorcycle events, from track days to moto

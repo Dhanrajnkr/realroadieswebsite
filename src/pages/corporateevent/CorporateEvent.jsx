@@ -1,6 +1,8 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import CorporateEventFeature from './CorporateEventFeature';
+import eventimg1 from '../../assets/images/RealRoadies-events1.png';
+import fullscreenimg from '../../assets/images/long.png';
 
 const CorporateEvent = () => {
   return (
@@ -14,7 +16,7 @@ const CorporateEvent = () => {
               <div style={styles.headerContainer}>
                 <div style={styles.logoContainer}>
                   <img
-                    src="../src/assets/images/RealRoadies-events1.png"
+                    src={eventimg1}
                     alt="event img"
                     style={styles.logo}
                   />
@@ -126,7 +128,7 @@ const CorporateEvent = () => {
       {/* Full-screen Image Section - with reduced space above */}
       <div style={styles.fullScreenImageSection}>
         <img
-          src="../src/assets/images/long.png"
+          src={fullscreenimg}
           alt="Motorcycle Adventure"
           style={styles.fullScreenImage}
         />

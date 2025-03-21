@@ -1,5 +1,8 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
+import appimg from '../../assets/images/pic-type1.png'
+import appstoreimg from '../../assets/images/playstore.png'
+import playstoreimg from '../../assets/images/appstore.png'
 
 function FeatureSection() {
   return (
@@ -9,7 +12,7 @@ function FeatureSection() {
           <Col lg={5}>
             <div style={styles.imageContainer} className="text-lg-start">
               <img
-                src="../src/assets/images/pic-type1.png"
+                src={appimg}
                 alt="Creative Collaboration"
                 style={styles.featureImage}
                 className="img-fluid"
@@ -37,7 +40,7 @@ function FeatureSection() {
                     onMouseLeave={handleMouseLeave}
                   >
                     <img
-                      src="../src/assets/images/playstore.png"
+                      src={appstoreimg}
                       style={styles.storeImage}
                       alt="Get it on Google Play"
                     />
@@ -49,7 +52,7 @@ function FeatureSection() {
                     onMouseLeave={handleMouseLeave}
                   >
                     <img
-                      src="../src/assets/images/appstore.png"
+                      src={playstoreimg}
                       style={styles.storeImage}
                       alt="Download on App Store"
                     />
