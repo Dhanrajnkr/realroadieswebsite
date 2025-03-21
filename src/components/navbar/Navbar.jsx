@@ -2,6 +2,7 @@ import React from 'react';
 import { Navbar, Container, Nav, Row, Col } from 'react-bootstrap';
 import { useLocation, Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import rrLogo from '../../assets/images/rr-logo.png'; 
 
 function NavbarSection() {
   const location = useLocation();
@@ -31,7 +32,7 @@ function NavbarSection() {
             <Navbar expand="lg" variant="dark" style={styles.navbar}>
               <Navbar.Brand href="/" style={styles.brand}>
                 <img
-                  src="../src/assets/images/rr-logo.png"
+                  src={rrLogo}
                   alt="realroadies logo"
                   height="40"
                   className="d-inline-block align-text-top"
