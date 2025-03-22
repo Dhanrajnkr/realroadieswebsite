@@ -8,21 +8,19 @@ const AdventureToursHome = () => {
   const [allTrips, setAllTrips] = useState([]);
   const [loading, setLoading] = useState(true);
   
-
   useEffect(() => {
     setLoading(true);
-    fetch('/api/v1/trip/trips/categories/all',
- {
+    fetch('/api/v1/trip/trips/categories/all', {
       method: 'GET',
       headers: {
-        'Authorization': 'Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IlNXSmtyLXFSRjlja2RzUUwxaWMwViJ9.eyJpc3MiOiJodHRwczovL3JlYWxyb2FkaWVzLnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJzbXN8Njc0NTU1MWFmOGQ1NTY0M2M4YmUwMWRjIiwiYXVkIjpbImh0dHBzOi8vcmVhbHJvYWRpZXMudXMuYXV0aDAuY29tL2FwaS92Mi8iLCJodHRwczovL3JlYWxyb2FkaWVzLnVzLmF1dGgwLmNvbS91c2VyaW5mbyJdLCJpYXQiOjE3NDI0NTMxMjEsImV4cCI6MTc0MjQ1NjcyMSwic2NvcGUiOiJvcGVuaWQgcHJvZmlsZSBwaG9uZSByZWFkOmN1cnJlbnRfdXNlciB1cGRhdGU6Y3VycmVudF91c2VyX21ldGFkYXRhIGRlbGV0ZTpjdXJyZW50X3VzZXJfbWV0YWRhdGEgY3JlYXRlOmN1cnJlbnRfdXNlcl9tZXRhZGF0YSBjcmVhdGU6Y3VycmVudF91c2VyX2RldmljZV9jcmVkZW50aWFscyBkZWxldGU6Y3VycmVudF91c2VyX2RldmljZV9jcmVkZW50aWFscyB1cGRhdGU6Y3VycmVudF91c2VyX2lkZW50aXRpZXMgb2ZmbGluZV9hY2Nlc3MiLCJndHkiOiJwYXNzd29yZCIsImF6cCI6InRhVzgxNkM4T2Q2Mm9ESnFRbEtSYTVvSUdYcE4zbFhxIn0.Wj7V-ujMeg8DAhb3r3831HiXnSSuTO_qwZTLNqxo2I7WeVaxMJKOBx9AEA82iXtpy-i-OKr5gBq3ctIWRrxp987FD_roRsjH5m6VR6Q8jQ2F0pg355hUBID_cfRaDKI5jk0TiI2cHBdbWMjh6GZyfTJH5lX9Jmwr5uy9PO_0kWJ-Oe4wWYOnOOup9WRcphyiEFZ_7jbZ4VipJeP6nyJ9IHHD-GuhIeYoAfAOipELO0W6uSX8X7y0xRnzOEozaW8tcjN2Lkl0-5FwP3whYXch98HTqKMeizemzzc387EKUg-ZW_R5adGSU74KSxm-HrsrnjV1YGnDOZ3Wm8YgVR-3tw'
-      }
+        'Authorization': 'Bearer YOUR_ACCESS_TOKEN'
+      },
+      mode: 'cors' // Added CORS mode
     })
       .then(response => response.json())
       .then(data => {
         setTripData(data);
         
-        // Extract all trips from different categories into a single array
         const extractedTrips = [];
         if (data && data.data) {
           data.data.forEach(category => {
@@ -41,19 +39,15 @@ const AdventureToursHome = () => {
       });
   }, []);
  
- // Function to handle navigation to TripDetails
-const handleNavigateToTripsDetails = (id) => {
-  navigate(`/details/${id}`, { state: { type: 'trip' } });
-};
+  const handleNavigateToTripsDetails = (id) => {
+    navigate(`/details/${id}`, { state: { type: 'trip' } });
+  };
 
-
-  // Format duration for display
   const formatDuration = (duration) => {
     if (!duration) return '';
     return duration.split(' ')[0] + ' days';
   };
 
-  // Calculate discounted price
   const calculatePrice = (price, discount) => {
     if (!price || !discount) return price;
     return Math.round(price * (1 - discount/100));
@@ -63,7 +57,6 @@ const handleNavigateToTripsDetails = (id) => {
     <section id="adventureTours" style={styles.section}>
       <Container fluid style={styles.mainContainer}>
         <Container style={styles.container}>
-          {/* Tour Grid */}
           <Row className="justify-content-center">
             <Col md={10}>
               {loading ? (
@@ -111,8 +104,6 @@ const handleNavigateToTripsDetails = (id) => {
               )}
             </Col>
           </Row>
-
-          {/* coming soon */}
           <Row className="mt-5 justify-content-center">
             <Col md={10} className="text-center">
               <div style={styles.comingsoon}>
@@ -125,6 +116,7 @@ const handleNavigateToTripsDetails = (id) => {
     </section>
   );
 };
+
 
 const styles = {
   section: {
