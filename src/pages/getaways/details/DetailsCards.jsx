@@ -223,7 +223,7 @@ const DetailsCards = ({
               <Col md={3}>
                 <Card className="shadow-sm" style={styles.card}>
                   <h6 style={styles.cardTitle}>
-                    {eventType === 'trip' ? 'Trip Details' : 'Location'}
+                    {eventType === 'trip' ? 'Location' : 'Location'}
                   </h6>
                   
                   {eventType === 'trip' ? (
@@ -402,7 +402,7 @@ const styles = {
   },
   venueAddress: {
     fontSize: '14px',
-    fontWeight: '600',
+    fontWeight: '400',
     color: '#000000',
     marginBottom: '15px'
   },

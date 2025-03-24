@@ -234,7 +234,7 @@ const Details = () => {
                   (itemType === 'trip' ? "../src/assets/images/ab1.png" : "../src/assets/images/event1.png");
  
   // Get the contact phone
-  const contactPhone = itemData.contact_phone || '919999999999';
+  // const contactPhone = itemData.contact_phone || '919999999999';
  
    // Get the price information with discount calculation for trips
    let displayPrice;
