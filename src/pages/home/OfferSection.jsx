@@ -54,11 +54,9 @@ function OfferSection() {
               style={styles.featureCard}
             >
                <img src={Storeimg} alt="Bike" className="img-fluid" style={styles.offerImage} />
-              <h6 style={styles.cardTitle}>RealRoadies TalentHunt </h6>
+               <h6 style={{...styles.cardTitle, marginTop: '25px'}}>RealRoadies TalentHunt</h6>
               <p style={styles.cardText}>
-                Get the best riding gear, accessories, and motorcycle essentials.
-                Handpicked products for performance, safety, and style – everything a biker needs, all in
-                one place.
+              Fueling the future of Indian motorsport by discovering, promoting, and empowering young riders through events, sponsorships, and global opportunities. Join us in driving their journey to success!
               </p>
             </div>
           </Col>
