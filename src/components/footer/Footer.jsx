@@ -39,7 +39,7 @@ function Footer() {
               <li style={styles.listItem}><a href="/getaways" style={styles.link}>Getaways</a></li>
               <li style={styles.listItem}><a href="/corporateevent" style={styles.link}>Corporate Events</a></li>
               <li style={styles.listItem}><a href="/contact" style={styles.link}>Contact Us</a></li>
-              <li style={styles.listItem}><a href="/TalentHunt" style={styles.link}>Talent Hunt</a></li>
+              <li style={styles.listItem}><a href="/talentHunt" style={styles.link}>Talent Hunt</a></li>
             </ul>
           </Col>
           {/* Company Policies */}

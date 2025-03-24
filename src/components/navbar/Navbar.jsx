@@ -41,35 +41,44 @@ function NavbarSection() {
               </Navbar.Brand>
               <Navbar.Toggle aria-controls="navbarTogglerDemo02" style={styles.toggler} />
               <Navbar.Collapse id="navbarTogglerDemo02">
-                <Nav className="ms-auto mb-2 mb-lg-0">
+                <Nav className="ms-auto mb-2 mb-lg-0" style={styles.navContainer}>
                   <Nav.Link 
                     as={Link} 
                     to="/about" 
-                    className="mx-lg-3 px-4 py-2" 
+                    className="mx-lg-1 px-3 py-2" 
                     style={getLinkStyle('/about')}
                   >
                     About
+                    </Nav.Link>
+                  <Nav.Link 
+                    as={Link} 
+                    to="/corporateevent" 
+                    className="mx-lg-1 px-3 py-2" 
+                    style={getLinkStyle('/corporateevent')}
+                  >
+                    Corporate Events
+                    </Nav.Link>
+                  <Nav.Link 
+                    as={Link} 
+                    to="/talenthunt" 
+                    className="mx-lg-1 px-3 py-2" 
+                    style={getLinkStyle('/talenthunt')}
+                  >
+                    Talent Hunt
                   </Nav.Link>
                   <Nav.Link 
                     as={Link} 
                     to="/getaways" 
-                    className="mx-lg-3 px-4 py-2" 
+                    className="mx-lg-1 px-3 py-2" 
                     style={getLinkStyle('/getaways')}
                   >
                     Getaways
-                  </Nav.Link>
-                  <Nav.Link 
-                    as={Link} 
-                    to="/corporateevent" 
-                    className="mx-lg-3 px-4 py-2" 
-                    style={getLinkStyle('/corporateevent')}
-                  >
-                    Corporate Events
+                 
                   </Nav.Link>
                   <Nav.Link 
                     as={Link} 
                     to="/contact" 
-                    className="mx-lg-3 px-4 py-2" 
+                    className="mx-lg-1 px-3 py-2" 
                     style={getLinkStyle('/contact')}
                   >
                     Contact
@@ -116,13 +125,17 @@ const styles = {
     boxShadow: 'none',
     outline: 'none'
   },
+  navContainer: {
+    gap: '0px' // Reduce gap between nav items
+  },
   navLink: {
     color: '#fff',
     fontSize: '16px',
     fontWeight: '600',
     transition: 'color 0.3s ease',
     margin: 0,
-    borderRadius: 0
+    borderRadius: 0,
+    padding: '8px 12px' // Reduced padding
   },
   activeNavLink: {
     color: '#FFDD00', 

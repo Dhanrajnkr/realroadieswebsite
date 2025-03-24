@@ -2,7 +2,7 @@ import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import CorporateEventFeature from './CorporateEventFeature';
 import eventimg1 from '../../assets/images/RealRoadies-events1.png';
-import fullscreenimg from '../../assets/images/long.png';
+import fullscreenimg from '../../assets/images/fullimage.jpeg';
 
 const CorporateEvent = () => {
   return (
@@ -240,7 +240,7 @@ const styles = {
   fullScreenImage: {
     width: '100%',
     height: '100%',
-    objectFit: 'fill',
+    objectFit: 'cover',
     objectPosition: 'center',
     display: 'block',
    

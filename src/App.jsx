@@ -15,6 +15,7 @@ import PrivacyPolicy from './pages/company/privacy-policy/PrivacyPolicy';
 import TermsConditions from './pages/company/terms&conditions/TermsConditions';
 import Details from './pages/getaways/details/Details';
 import About from './pages/about/About';
+import TalentHunt from './pages/talentunt/TalentHunt';
 
 const App=() => {
   return (
@@ -35,6 +36,7 @@ const App=() => {
             <Route path="/termsconditions" element={<TermsConditions />} />
             <Route path="/refundpolicy" element={<RefundPolicy />} />
             <Route path="/privacypolicy" element={<PrivacyPolicy />} />
+            <Route path="/talenthunt" element={<TalentHunt />} />
           </Routes>
         </main> 
         <Footer/>

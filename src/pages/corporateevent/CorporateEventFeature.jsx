@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Container, Row, Col, Card, Carousel, Image } from 'react-bootstrap';
-import carousel1 from '../../assets/images/ab1.png';
-import carousel2 from '../../assets/images/ab2.png';
-import carousel3 from '../../assets/images/event1.png';
-import carousel4 from '../../assets/images/event2.png';
+import carousel1 from '../../assets/images/cor-event1.png';
+import carousel2 from '../../assets/images/cor-event4.png';
+import carousel3 from '../../assets/images/cor-event2.png';
+import carousel4 from '../../assets/images/cor-event3.png';
 import Feature1 from '../../assets/images/brand.jpg';
 import Feature2 from '../../assets/images/team.jpg';
 import Feature3 from '../../assets/images/iclu.jpg';
@@ -28,7 +28,7 @@ const CorporateEventFeature = () => {
   };
 
   return (
-    <Container fluid style={styles.container}>
+    <Container fluid style={styles.container} className="px-3 px-md-5">
       {/* Products and Features Section */}
       <Row className="justify-content-center">
         <Col md={10}>
@@ -37,7 +37,7 @@ const CorporateEventFeature = () => {
       </Row>
      
       <Row className="justify-content-center">
-        <Col md={5}>
+        <Col lg={5} md={6} className="mb-3 mb-md-0">
           <FeatureBox
             title="Corporate Brand Rides & Promotions"
             description="Amplify your brand with high-visibility motorcycle rides. Whether you're launching a new product, celebrating a milestone, or creating brand awareness, our custom rides put your brand in the spotlight."
@@ -49,7 +49,7 @@ const CorporateEventFeature = () => {
             imageUrl={Feature2}
           />
         </Col>
-        <Col md={5}>
+        <Col lg={5} md={6}>
           <FeatureBox
             title="Diversity & Inclusion Rides"
             description="Promote gender diversity and inclusion with exclusive women-only rides or co-gender rides designed to break stereotypes and encourage equal participation."
@@ -64,7 +64,7 @@ const CorporateEventFeature = () => {
       </Row>
      
       {/* TalentHunt Section */}
-      <Row className="justify-content-center">
+      <Row className="justify-content-center mt-4">
         <Col md={10}>
           <Card style={styles.featureCard}>
             <Row className="align-items-center g-0">
@@ -73,11 +73,12 @@ const CorporateEventFeature = () => {
                   src={Feature5}
                   alt="TalentHunt"
                   style={styles.featureImage}
+                  className="img-fluid"
                 />
               </Col>
               <Col xs={10} md={11} style={styles.talentHuntTextCol}>
                 <h5 style={styles.featureTitle}>RealRoadies TalentHunt: Fueling the Next Motorsport Champion</h5>
-                <div style={styles.featureDescription}>
+                <div style={styles.featureDescription} className="feature-description">
                   At RealRoadies, we're on a mission to discover and support the next big motorsport champion. We connect aspiring racers with corporate sponsorship opportunities, helping them break into the world of MotoGP, endurance racing, and off-road challenges.<br />
                   <strong>If you're a company looking to back raw talent or a rider chasing your dream, join us in shaping the future of motorsports! 🚀🔥</strong>
                 </div>
@@ -88,7 +89,7 @@ const CorporateEventFeature = () => {
       </Row>
 
       {/* Gallery Section */}
-      <Row className="justify-content-center mt-4">
+      <Row className="justify-content-center mt-5">
         <Col md={10}>
           <h4 style={styles.sectionTitle}>Gallery</h4>
         </Col>
@@ -97,7 +98,7 @@ const CorporateEventFeature = () => {
       {/* Main Carousel */}
       <Row className="justify-content-center">
         <Col md={8}>
-          <div style={styles.carouselContainer}>
+          <div style={styles.carouselContainer} className="carousel-wrapper">
             <Carousel
               indicators={false}
               controls={true}
@@ -117,24 +118,51 @@ const CorporateEventFeature = () => {
           {/* Add custom CSS for carousel controls */}
           <style type="text/css">
             {`
+              .feature-description {
+                line-height: 1.4 !important;
+              }
+              
+              .carousel-wrapper {
+                position: relative;
+                margin: 0 auto;
+                overflow: hidden;
+              }
+              
               .custom-carousel .carousel-control-prev,
               .custom-carousel .carousel-control-next {
                 background-color: rgba(4, 4, 4, 0.7);
                 border-radius: 50%;
-                height: 50px;
-                width: 50px;
+                height: 40px;
+                width: 40px;
                 top: 50%;
                 transform: translateY(-50%);
                 opacity: 0.8;
                 position: absolute;
               }
              
-              .custom-carousel .carousel-control-prev {
-                left: -60px;
+              @media (min-width: 768px) {
+                .carousel-wrapper {
+                  padding: 0 50px;
+                  overflow: visible;
+                }
+                
+                .custom-carousel .carousel-control-prev {
+                  left: -60px;
+                }
+               
+                .custom-carousel .carousel-control-next {
+                  right: -60px;
+                }
               }
-             
-              .custom-carousel .carousel-control-next {
-                right: -60px;
+              
+              @media (max-width: 767px) {
+                .custom-carousel .carousel-control-prev {
+                  left: 10px;
+                }
+               
+                .custom-carousel .carousel-control-next {
+                  right: 10px;
+                }
               }
              
               .custom-carousel .carousel-control-prev:hover,
@@ -199,6 +227,7 @@ const FeatureBox = ({ title, description, imageUrl }) => {
               src={imageUrl}
               alt={title}
               style={styles.featureImage}
+              className="img-fluid"
             />
           ) : (
             <div style={styles.featurePlaceholder}></div>
@@ -206,7 +235,7 @@ const FeatureBox = ({ title, description, imageUrl }) => {
         </Col>
         <Col xs={10} style={styles.featureTextCol}>
           <h5 style={styles.featureTitle}>{title}</h5>
-          <div style={styles.featureDescription}>
+          <div style={styles.featureDescription} className="feature-description">
             {description}
           </div>
         </Col>
@@ -219,7 +248,7 @@ const styles = {
   container: {
     backgroundColor: '#000000',
     color: '#ffffff',
-    padding: '2rem 3rem 3rem',
+    padding: '2rem 0 3rem',
     width: '100%',
   },
   sectionTitle: {
@@ -243,7 +272,7 @@ const styles = {
   featureImage: {
     width: '70px',
     height: '70px',
-    objectFit: 'fit',
+    objectFit: 'cover',
     display: 'block'
   },
   featureTextCol: {
@@ -261,13 +290,11 @@ const styles = {
     color: '#a0a0a0',
     fontSize: '12px',
     marginBottom: '0.5rem',
-    lineHeight: '1'
+    // Removed line-height: 1 to improve readability
   },
   carouselContainer: {
     position: 'relative',
-    padding: '0 50px',
     margin: '0 auto',
-    overflow: 'visible',
   },
   carousel: {
     backgroundColor: '#111',
