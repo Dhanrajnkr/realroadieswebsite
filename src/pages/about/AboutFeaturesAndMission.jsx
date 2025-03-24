@@ -12,6 +12,7 @@ import backimg from '../../assets/images/ourCulture.jpeg';
 
 const FeaturesAndMission = () => {
   return (
+    <>
     <Container fluid style={styles.container}>
       {/* Products and Features Section */}
       <Row className="justify-content-center">
@@ -103,19 +104,36 @@ const FeaturesAndMission = () => {
       </Row>
 
       
-      {/* Our Culture Section */}
-<Row className="justify-content-center" style={styles.cultureRow}>
-  <Col md={12}>
+ 
+{/* Our Culture Section */}
+<Row className="justify-content-center m-0" style={styles.cultureRow}>
+  <Col md={12} className="p-0">
     <div style={{
-      ...styles.cultureSection,
-      backgroundImage: `url(${backimg})`,
-      backgroundSize: 'cover',
-      backgroundPosition: 'center',
-      backgroundRepeat: 'no-repeat',
       position: 'relative',
-      padding: '3rem 0',
+      width: '100vw',  // Use viewport width
+      minHeight: '300px',
+      display: 'flex',
+      alignItems: 'center',
+      marginTop: '3.5rem',
+      overflow: 'hidden',
+      marginLeft: 'calc(-50vw + 50%)', // This centers the div if parent has width constraints
+      marginRight: 'calc(-50vw + 50%)'
     }}>
-      {/* Overlay to ensure text readability */}
+      {/* Full screen background image */}
+      <div style={{
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        backgroundImage: `url(${backimg})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        zIndex: 1
+      }}></div>
+      
+      {/* Dark overlay for better text readability */}
       <div style={{
         position: 'absolute',
         top: 0,
@@ -123,28 +141,36 @@ const FeaturesAndMission = () => {
         right: 0,
         bottom: 0,
         backgroundColor: 'rgba(0, 0, 0, 0.6)',
+        zIndex: 2
       }}></div>
       
-      <div style={{ position: 'relative', zIndex: 2 }}>
-        <h3 style={{...styles.sectionTitle, marginBottom: '25px'}}>Our Culture</h3>
-        <p style={{
-          ...styles.cultureText,
-          color: '#ffffff',
-          textShadow: '1px 1px 3px rgba(0,0,0,0.8)',
-          maxWidth: '800px',
-          margin: '0 auto'
-        }}>
-          We are riders first. Our team is built on a shared passion for motorcycles, adventure, and the spirit of the open road. 
-          As enthusiasts, experts, and innovators, we believe in the power of community and the bond that unites all bikers. 
-          Everything we create at RealRoadies is driven by this passion—whether it's fostering the ultimate biker brotherhood, 
-          using technology to enhance safety, or redefining the riding experience. For us, it's more than just motorcycles; 
-          it's a way of life.
-        </p>
+      {/* Content with left alignment */}
+      <div className="container-fluid" style={{ position: 'relative', zIndex: 3, }}>
+        <div className="row">
+          <div className="col-md-10 offset-md-1 text-start">
+            <h3 style={{...styles.sectionTitle, marginBottom: '25px'}}>Our Culture</h3>
+            <p style={{
+              color: '#ffffff',
+              textShadow: '1px 1px 3px rgba(0,0,0,0.8)',
+              fontSize: '16px',
+              lineHeight: '1.6',
+              textAlign: 'left'
+            }}>
+              We are riders first. Our team is built on a shared passion for motorcycles, adventure, and the spirit of the open road.
+              As enthusiasts, experts, and innovators, we believe in the power of community and the bond that unites all bikers.
+              Everything we create at RealRoadies is driven by this passion—whether it's fostering the ultimate biker brotherhood,
+              using technology to enhance safety, or redefining the riding experience. For us, it's more than just motorcycles;
+              it's a way of life.
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   </Col>
 </Row>
+
     </Container>
+    </>
   );
 };
    
@@ -186,7 +212,8 @@ const styles = {
     marginBottom: '25px',
     fontWeight: '700',
     color: '#ffffff',
-    fontSize: '24px'
+    fontSize: '24px',
+    
   },
   featureCard: {
     backgroundColor: 'transparent',
@@ -248,7 +275,6 @@ const styles = {
   cultureSection: {
     // borderTop: '1px solid #333',
     // borderBottom: '1px solid #333',
-    padding: '2rem 0',
     textAlign: 'center'
   },
   cultureTitle: {

@@ -15,9 +15,12 @@ const About = () => {
             <source src={wheelsVideo} type="video/mp4" />
             Your browser does not support the video tag.
           </video>
+          
+          {/* Transparent black overlay on top of the video */}
+          <div style={styles.videoOverlay}></div>
         </div>
         
-        {/* Content with transparent black overlay */}
+        {/* Content on top of video and overlay */}
         <Container fluid style={styles.contentContainer}>
           <Row className="align-items-center">
             <Col md={12} style={styles.textColumn}>
@@ -65,13 +68,22 @@ const styles = {
     height: '100%',
     objectFit: 'cover'
   },
-  contentContainer: {
-    position: 'relative',
-    zIndex: 2,
-    backgroundColor: 'rgba(0, 0, 0, 0.6)', // Transparent black overlay
+  videoOverlay: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
     width: '100%',
     height: '100%',
-    padding: 0
+    backgroundColor: 'rgba(0, 0, 0, 0.6)', // Transparent black overlay directly on video
+    zIndex: 2
+  },
+  contentContainer: {
+    position: 'relative',
+    zIndex: 3, // Higher than the overlay to appear on top
+    width: '100%',
+    height: '100%',
+    padding: 0,
+    backgroundColor: 'transparent' // No background on the content container
   },
   textColumn: {
     color: '#ffffff',

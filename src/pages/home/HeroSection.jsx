@@ -83,7 +83,7 @@ const styles = {
     color: 'white',
     textAlign: 'start',
     margin: 0,
-    padding: '0 1rem'
+    // padding: '0 1rem'
   },
   buttonContainer: {
     marginTop: '1.5rem',
