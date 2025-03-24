@@ -34,7 +34,6 @@ const HeroSection = () => {
           </Container>
         </div>
       </section>
-     
       <OfferSection/>
       <FeatureSection/>
       <ExplanationSection/>
@@ -70,8 +69,8 @@ const styles = {
     alignItems: 'center'
   },
   paragraph: {
-    fontSize: '16px', // Changed from 1rem to 16px to match CommonCss.css
-    fontWeight: '400', // Matches CommonCss.css for paragraphs
+    fontSize: '16px', 
+    fontWeight: '400', 
     color: 'white',
     textAlign: 'center',
     margin: 0,
