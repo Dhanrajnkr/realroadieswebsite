@@ -1,10 +1,10 @@
 import React from "react";
 import { Container, Row, Col, Card } from "react-bootstrap";
-import  image from '../../assets/images/2.png'
-import event from '../../assets/images/b6.png';
-import reward from '../../assets/images/b5.jpg';
+import  Garage from '../../assets/images/2.png'
+import event from '../../assets/images/4.png';
+import reward from '../../assets/images/3.png';
 import get from '../../assets/images/getaway.png';
-import store from '../../assets/images/1.png';
+import store from '../../assets/images/5.png';
 import utiles from '../../assets/images/rider.jpg';
 import hunt from '../../assets/images/hill.jpg';
 import mission from '../../assets/images/ab1.png';
@@ -24,7 +24,7 @@ const FeaturesAndMission = () => {
           <FeatureBox
             title="RealRoadies Garage"
             description="A digital hub for your rides with high-visibility, emergency data, service history, and ownership details."
-            imageUrl={image}
+            imageUrl={Garage}
           />
           <FeatureBox
             title="RealRoadies Corporate Events"
