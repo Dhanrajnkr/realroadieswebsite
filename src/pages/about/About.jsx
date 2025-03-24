@@ -1,49 +1,41 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import AboutFeaturesAndMission from './AboutFeaturesAndMission';
-import image from '../../assets/images/ab2.png';
-import back from '../../assets/images/backimg.jpg';
+import weAreRR from '../../assets/images/we-are-rr.jpeg'; // Keep for fallback
+import wheelsVideo from '../../assets/images/wheels.mp4'; // Import the video file
+import homevideo from '../../assets/images/home1.mp4';
 
 const About = () => {
   return (
     <>
-      {/* Hero Section */}
-      <div style={styles.heroSection}>
-        <Container>
+      <section style={styles.heroSection}>
+        {/* Background Video */}
+        <div style={styles.videoContainer}>
+          <video style={styles.backgroundVideo} autoPlay muted loop playsInline>
+            <source src={wheelsVideo} type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        
+        {/* Content with transparent black overlay */}
+        <Container fluid style={styles.contentContainer}>
           <Row className="align-items-center">
-            {/* Left Side - Text Section */}
-            <Col md={6} style={styles.textColumn}>
-              <h3 style={styles.greeting}>Hello!</h3>
-              <h1 style={styles.title}>We are RealRoadies</h1>
-              <p style={styles.description}>
-                Welcome to RealRoadies, the ultimate destination for those who live
-                and breathe motorcycling! Beyond just a networking platform—we're a
-                community, an adventure, and a revolution on two wheels. Whether
-                you're a weekend warrior, a long-haul tourist, a speed junkie, or
-                a street explorer, RealRoadies is built for YOU.
-              </p>
-            </Col>
-
-            {/* Right Side - Placeholder for Image/Video */}
-            <Col md={6} className="text-center">
-              <img
-          src={image}
-          alt="Motorcycle Adventure"
-          style={styles.imagePlaceholder}
-        />
+            <Col md={12} style={styles.textColumn}>
+              <div style={styles.textContent}>
+                <h3 style={styles.greeting}>Hello!</h3>
+                <h1 style={styles.title}>We are RealRoadies</h1>
+                <p style={styles.description}>
+                  Welcome to RealRoadies, the ultimate destination for those who live
+                  and breathe motorcycling! Beyond just a networking platform—we're a
+                  community, an adventure, and a revolution on two wheels. Whether
+                  you're a weekend warrior, a long-haul tourist, a speed junkie, or
+                  a street explorer, RealRoadies is built for YOU.
+                </p>
+              </div>
             </Col>
           </Row>
         </Container>
-      </div>
-
-      {/* Full-screen Image Section - with reduced space above */}
-      <div style={styles.fullScreenImageSection}>
-        <img
-          src={back}
-          alt="Motorcycle Adventure"
-          style={styles.fullScreenImage}
-        />
-      </div>
+      </section>
       <AboutFeaturesAndMission />
     </>
   ); 
@@ -52,18 +44,46 @@ const About = () => {
 const styles = {
   // Hero Section Styles
   heroSection: {
-    backgroundColor: '#000000',
-    padding: '40px 0', 
-    minHeight: '60vh', 
+    position: 'relative',
+    minHeight: '60vh',
+    width: '100%',
     display: 'flex',
     alignItems: 'center',
+    marginBottom: 0,
+    overflow: 'hidden'
+  },
+  videoContainer: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
     width: '100%',
-    marginBottom: 0 
+    height: '100%',
+    zIndex: 1
+  },
+  backgroundVideo: {
+    width: '100%',
+    height: '100%',
+    objectFit: 'cover'
+  },
+  contentContainer: {
+    position: 'relative',
+    zIndex: 2,
+    backgroundColor: 'rgba(0, 0, 0, 0.6)', // Transparent black overlay
+    width: '100%',
+    height: '100%',
+    padding: 0
   },
   textColumn: {
     color: '#ffffff',
-    paddingRight: '20px',
-    paddingLeft: '20px'
+    minHeight: '50vh',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  textContent: {
+    padding: '30px',
+    width: '100%',
+    maxWidth: '1200px'
   },
   greeting: {
     fontSize: '24px',
@@ -76,20 +96,19 @@ const styles = {
     marginBottom: '15px' 
   },
   description: {
-    fontSize: '14px',
+    fontSize: '16px',
     lineHeight: '1.6',
-    marginBottom: '20px' 
+    marginBottom: '20px',
+    width: '100%'
   },
   imagePlaceholder: {
     width: '100%',
-    height: '200px',
+    height: '300px',
     objectFit: 'fit',
     backgroundColor: '#333333',
     margin: '0 auto',
     maxWidth: '500px'
   },
- 
-  // Full-screen Image Section Styles
   fullScreenImageSection: {
     position: 'relative',
     width: '100%',

@@ -1,13 +1,14 @@
 import React from "react";
 import { Container, Row, Col, Card } from "react-bootstrap";
-import  Garage from '../../assets/images/2.png'
-import event from '../../assets/images/4.png';
-import reward from '../../assets/images/3.png';
-import get from '../../assets/images/getaway.png';
-import store from '../../assets/images/5.png';
-import utiles from '../../assets/images/rider.jpg';
-import hunt from '../../assets/images/hill.jpg';
-import mission from '../../assets/images/ab1.png';
+import  Garage from '../../assets/images/garage.png'
+import event from '../../assets/images/event.png';
+import reward from '../../assets/images/rewards.png';
+import get from '../../assets/images/4.png';
+import store from '../../assets/images/3.png';
+import utiles from '../../assets/images/utilities.png';
+import hunt from '../../assets/images/5.png';
+import mission from '../../assets/images/we-are-rr.jpeg';
+import backimg from '../../assets/images/ourCulture.jpeg';
 
 const FeaturesAndMission = () => {
   return (
@@ -80,10 +81,11 @@ const FeaturesAndMission = () => {
         </Col>
       </Row>
 
-      {/* Our Mission Section */}
+    
             {/* Our Mission Section */}
             <Row className="justify-content-center" style={styles.missionRow}>
         <Col md={5}>
+        
           <h3 style={styles.sectionTitle}>Our Mission</h3>
           <p style={styles.missionText}>
             We exist to inspire, connect, and drive an ecosystem for bikers. From elite expeditions to
@@ -102,20 +104,46 @@ const FeaturesAndMission = () => {
 
       
       {/* Our Culture Section */}
-      <Row className="justify-content-center" style={styles.cultureRow}>
-        <Col md={10}>
-          <div style={styles.cultureSection}>
-            <h3 style={styles.sectionTitle}>Our Culture</h3>
-            <p style={styles.cultureText}>
-              We are riders first. Our team is built on a shared passion for motorcycles, adventure, and the spirit of the open road. 
-              As enthusiasts, experts, and innovators, we believe in the power of community and the bond that unites all bikers. 
-              Everything we create at RealRoadies is driven by this passion—whether it's fostering the ultimate biker brotherhood, 
-              using technology to enhance safety, or redefining the riding experience. For us, it's more than just motorcycles; 
-              it's a way of life.
-            </p>
-          </div>
-        </Col>
-      </Row>
+<Row className="justify-content-center" style={styles.cultureRow}>
+  <Col md={12}>
+    <div style={{
+      ...styles.cultureSection,
+      backgroundImage: `url(${backimg})`,
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      backgroundRepeat: 'no-repeat',
+      position: 'relative',
+      padding: '3rem 0',
+    }}>
+      {/* Overlay to ensure text readability */}
+      <div style={{
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        backgroundColor: 'rgba(0, 0, 0, 0.6)',
+      }}></div>
+      
+      <div style={{ position: 'relative', zIndex: 2 }}>
+        <h3 style={{...styles.sectionTitle, marginBottom: '25px'}}>Our Culture</h3>
+        <p style={{
+          ...styles.cultureText,
+          color: '#ffffff',
+          textShadow: '1px 1px 3px rgba(0,0,0,0.8)',
+          maxWidth: '800px',
+          margin: '0 auto'
+        }}>
+          We are riders first. Our team is built on a shared passion for motorcycles, adventure, and the spirit of the open road. 
+          As enthusiasts, experts, and innovators, we believe in the power of community and the bond that unites all bikers. 
+          Everything we create at RealRoadies is driven by this passion—whether it's fostering the ultimate biker brotherhood, 
+          using technology to enhance safety, or redefining the riding experience. For us, it's more than just motorcycles; 
+          it's a way of life.
+        </p>
+      </div>
+    </div>
+  </Col>
+</Row>
     </Container>
   );
 };
@@ -218,19 +246,25 @@ const styles = {
     alignItems: 'center'
   },
   cultureSection: {
-    borderTop: '1px solid #333',
-    borderBottom: '1px solid #333',
+    // borderTop: '1px solid #333',
+    // borderBottom: '1px solid #333',
     padding: '2rem 0',
     textAlign: 'center'
   },
+  cultureTitle: {
+    fontWeight: '700',
+    fontSize: '24px',
+    color: '#fff',
+    marginBottom: '15px',
+  },
   cultureText: {
-    color: '#a0a0a0',
+    color: '#fff',
     lineHeight: '1.6',
     fontSize: '12px',
     fontWeight: '400',
     maxWidth: '800px',
     margin: '0 auto'
-  }
+  },
 };
 
 export default FeaturesAndMission;

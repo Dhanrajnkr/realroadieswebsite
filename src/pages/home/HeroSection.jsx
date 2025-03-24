@@ -18,8 +18,11 @@ const HeroSection = () => {
         <div style={styles.overlay}>
           <Container>
             <Row className="justify-content-center">
-              <textContainer className="col-md-12 text-center">
-                <p style={styles.paragraph} className="lead">
+              <textContainer className="col-md-12 text-start">
+              <h5 className="offer-heading" style={styles.heading}>
+              Fueling Every Ride – Your Ultimate Biking Companion
+            </h5>
+                <p style={styles.paragraph} >
                   RealRoadies is the ultimate one-stop platform for bikers. Manage your rides, book events, explore epic trips, connect
                   with fellow riders, and take your biking experience to the next level. Whether you're a
                   weekend explorer, a hardcore racer, or a moto influencer, this is your home on the road!
@@ -50,6 +53,12 @@ const styles = {
     height: '60vh',
     minHeight: '400px' // Ensures minimum height on smaller screens
   },
+  heading: {
+    fontSize: '28px', // Changed to match h5 in CommonCss.css
+    fontWeight: '500', // Changed to match h5 in CommonCss.css
+    marginBottom: '18px',
+    color: '#ffffff',
+  },
   video: {
     position: 'absolute',
     top: 0,
@@ -72,7 +81,7 @@ const styles = {
     fontSize: '16px', 
     fontWeight: '400', 
     color: 'white',
-    textAlign: 'center',
+    textAlign: 'start',
     margin: 0,
     padding: '0 1rem'
   },

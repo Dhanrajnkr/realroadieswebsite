@@ -24,7 +24,7 @@ function FeatureSection() {
             <div style={styles.featureContent}>
               <h5 style={styles.heading}>
                 RealRoadies – Ride Anytime, Anywhere!<br />
-                "Your Biking Companion, Now in Your Pocket!"📲
+                "Your Biking Companion, Now in Your Pocket!"
               </h5>
               <p style={styles.paragraph}>
                 Take the ultimate biking experience wherever you go! The RealRoadies app is now

@@ -2,7 +2,7 @@ import React from 'react';
 import { Navbar, Container, Nav, Row, Col } from 'react-bootstrap';
 import { useLocation, Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import rrLogo from '../../assets/images/rr-logo.png'; 
+import rrLogo from '../../assets/images/RealRoadieslogo.png'; 
 
 function NavbarSection() {
   const location = useLocation();
