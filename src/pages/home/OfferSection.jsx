@@ -1,8 +1,8 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import Getawaysimg from '../../assets/images/4.png'
-import Garageimg from '../../assets/images/2.png'
-import Eventsimg from '../../assets/images/RealRoadies 1.png'
+import Garageimg from '../../assets/images/garage.png'
+import Eventsimg from '../../assets/images/event.png'
 import Storeimg from '../../assets/images/5.png'
 
 function OfferSection() {
@@ -12,7 +12,7 @@ function OfferSection() {
         <Row className="mb-4">
           <Col xs={12} className="text-start">
             <h5 className="offer-heading" style={styles.heading}>
-              Welcome to RealRoadies – The Ultimate Biker's Community!
+            The RealRoadies Ecosystem: One Platform, Endless Possibilities
             </h5>
           </Col>
         </Row>
@@ -24,7 +24,7 @@ function OfferSection() {
               style={styles.featureCard}
             >
               <img src={Getawaysimg} alt="Bike" className="img-fluid" style={styles.offerImage} />
-              <h6 style={styles.cardTitle}>RealRoadies Getaways 🌍</h6>
+              <h6 style={styles.cardTitle}>RealRoadies Getaways </h6>
               <p style={styles.cardText}>
                 Explore breathtaking bike tours, level up your skills with expert
                 training, or attend thrilling moto events. Whether it's adventure, learning, or racing,
@@ -39,7 +39,7 @@ function OfferSection() {
               style={styles.featureCard}
             >
                <img src={Garageimg} alt="Bike" className="img-fluid" style={styles.offerImage} />
-              <h6 style={styles.cardTitle}>RealRoadies Garage 🏍️</h6>
+              <h6 style={styles.cardTitle}>RealRoadies Garage </h6>
               <p style={styles.cardText}>
                 Store and manage all your motorcycles in one place. Keep track of
                 insurance, PUC, service reminders, and more. Stay organized and focus on the ride while we
@@ -67,7 +67,7 @@ function OfferSection() {
               style={styles.featureCard}
             >
               <img src={Eventsimg} alt="Bike" className="img-fluid" style={styles.offerImage} />
-              <h6 style={styles.cardTitle}>RealRoadies Events 🎟️</h6>
+              <h6 style={styles.cardTitle}>RealRoadies Events </h6>
               <p style={styles.cardText}>
                 Join the most exciting motorcycle events, from track days to moto
                 festivals. Whether you're racing, networking, or just celebrating the riding culture, find
@@ -89,7 +89,7 @@ const styles = {
     backgroundColor: '#000000',
   },
   heading: {
-    fontSize: '20px', // Changed to match h5 in CommonCss.css
+    fontSize: '28px', // Changed to match h5 in CommonCss.css
     fontWeight: '500', // Changed to match h5 in CommonCss.css
     marginBottom: '18px',
     color: '#ffffff',
@@ -100,9 +100,11 @@ const styles = {
     backgroundColor: '#000000',
   },
   offerImage: {
-    width: '100%',
+    width: '80%',
     height: 'auto',
     objectFit: 'cover',
+    display: 'block',
+    margin: '0 auto', // This centers the image horizontally
   },
   cardTitle: {
     fontSize: '16px', // Changed to match h6 in CommonCss.css
@@ -112,9 +114,9 @@ const styles = {
     color: '#fff',
   },
   cardText: {
-    fontSize: '14px', // Changed to match paragraph in CommonCss.css
-    fontWeight: '400', // Changed to match paragraph in CommonCss.css
-    lineHeight: '1.6', // Matches the line-height in CommonCss.css
+    fontSize: '13px', // Changed to match paragraph in CommonCss.css
+    fontWeight: '300', // Changed to match paragraph in CommonCss.css
+    lineHeight: '1.3', // Matches the line-height in CommonCss.css
     color: '#fff',
     textAlign: 'center',
   }

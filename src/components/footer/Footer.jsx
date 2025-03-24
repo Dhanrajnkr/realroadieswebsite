@@ -173,7 +173,7 @@ const styles = {
   },
   heading: {
     color: '#ffffff',  // Changed to white
-    fontSize: '20px',  // Changed from 1.1rem to 20px to match h5 in CommonCss.css
+    fontSize: '16px',  // Changed from 1.1rem to 20px to match h5 in CommonCss.css
     fontWeight: '500',  // Changed from bold to 500 to match h5 in CommonCss.css
     textTransform: 'uppercase',
     marginBottom: '1.5rem',
@@ -184,7 +184,7 @@ const styles = {
   },
   paragraph: {
     color: '#adb5bd',  // Light gray for readability on black
-    fontSize: '16px',  // Changed from 0.95rem to 16px to match paragraph in CommonCss.css
+    fontSize: '14px',  // Changed from 0.95rem to 16px to match paragraph in CommonCss.css
     fontWeight: '400',  // Added to match paragraph in CommonCss.css
     lineHeight: '1.6',  // Already matches CommonCss.css
     marginBottom: '1rem'
