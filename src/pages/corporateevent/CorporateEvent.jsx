@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import CorporateEventFeature from './CorporateEventFeature';
-import eventimg1 from '../../assets/images/RealRoadies-events1.png';
+import eventimg1 from '../../assets/images/event.png';
 import fullscreenimg from '../../assets/images/fullimage.jpeg';
 
 const CorporateEvent = () => {
