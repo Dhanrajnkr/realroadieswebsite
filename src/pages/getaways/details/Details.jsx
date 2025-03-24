@@ -405,7 +405,7 @@ const Details = () => {
                          </Row>
                        )}
  
-                       {/* Route information */}
+                       {/* Route information
                        {(itemData.start_location_name || itemData.end_location_name || itemData.total_kms) && (
                          <Row className="g-0" style={styles.infoRow}>
                            {(itemData.start_location_name && itemData.end_location_name) && (
@@ -430,7 +430,7 @@ const Details = () => {
                              </Col>
                            )}
                          </Row>
-                       )}
+                       )} */}
  
                        {/* Capacity information */}
                        {(itemData.total_seats || itemData.available_seats) && (

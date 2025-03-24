@@ -4,7 +4,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faGlobe,
   faPhone,
-  faMapMarkerAlt
+  faMapMarkerAlt,
+  faEnvelope
 } from '@fortawesome/free-solid-svg-icons';
 import {
   faWhatsapp,
@@ -38,6 +39,7 @@ function Footer() {
               <li style={styles.listItem}><a href="/getaways" style={styles.link}>Getaways</a></li>
               <li style={styles.listItem}><a href="/corporateevent" style={styles.link}>Corporate Events</a></li>
               <li style={styles.listItem}><a href="/contact" style={styles.link}>Contact Us</a></li>
+              <li style={styles.listItem}><a href="/TalentHunt" style={styles.link}>Talent Hunt</a></li>
             </ul>
           </Col>
           {/* Company Policies */}
@@ -83,6 +85,15 @@ function Footer() {
                   style={styles.link}
                 >
                   #247, 1st Floor, 4th Main Road, Domlur, 2nd Stage, Bengaluru, 560071.
+                </a>
+              </li>
+              <li style={styles.contactItem}>
+                <FontAwesomeIcon icon={faEnvelope} style={styles.icon} />
+                <a
+                  href="mailto:info@realroadies.com"
+                  style={styles.link}
+                >
+                  info@realroadies.com
                 </a>
               </li>
             </ul>
@@ -207,7 +218,8 @@ const styles = {
     color: '#ffc107',
     fontSize: '1rem',
     marginRight: '0.75rem',
-    width: '16px'
+    width: '16px',
+    marginTop: '0.25rem'  
   },
   phoneIndent: {
     width: '16px',

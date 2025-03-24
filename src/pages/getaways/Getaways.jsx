@@ -107,7 +107,7 @@ const styles = {
     paddingLeft: '15px',
     paddingRight: '15px',
     paddingTop: '10px',
-    paddingBottom: '10px'
+    paddingBottom: '0px'
   },
   container: {
     padding: 0

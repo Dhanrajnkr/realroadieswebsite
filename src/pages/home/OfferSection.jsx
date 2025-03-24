@@ -1,9 +1,9 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
-import Getawaysimg from '../../assets/images/3.png'
+import Getawaysimg from '../../assets/images/4.png'
 import Garageimg from '../../assets/images/2.png'
-import Eventsimg from '../../assets/images/4.png'
-import Storeimg from '../../assets/images/1.png'
+import Eventsimg from '../../assets/images/RealRoadies 1.png'
+import Storeimg from '../../assets/images/5.png'
 
 function OfferSection() {
   return (
@@ -54,7 +54,7 @@ function OfferSection() {
               style={styles.featureCard}
             >
                <img src={Storeimg} alt="Bike" className="img-fluid" style={styles.offerImage} />
-              <h6 style={styles.cardTitle}>RealRoadies Store 🛍️</h6>
+              <h6 style={styles.cardTitle}>RealRoadies TalentHunt </h6>
               <p style={styles.cardText}>
                 Get the best riding gear, accessories, and motorcycle essentials.
                 Handpicked products for performance, safety, and style – everything a biker needs, all in
