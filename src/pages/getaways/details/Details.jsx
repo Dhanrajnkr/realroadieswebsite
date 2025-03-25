@@ -363,95 +363,88 @@ const Details = () => {
                 </div>
 
                 {/* Main info section */}
-                <div style={styles.infoSection}>
-                  <Row className="g-0" style={styles.infoRow}>
-                    <Col xs={12} md={6} style={styles.infoItem}>
-                      <FontAwesomeIcon icon={faCalendarAlt} style={styles.icon} />
-                      <div style={styles.infoContent}>
-                        <span style={styles.infoLabel}>Date</span>
-                        <span style={styles.infoText}>
-                          {itemType === 'trip'
-                            ? (itemData.start_date ? formatDate(itemData.start_date) : 'Flexible dates')
-                            : (formatDate(itemData.start_date) + (itemData.is_multiple_days ? ` - ${formatDate(itemData.end_date)}` : ''))}
-                        </span>
-                      </div>
-                    </Col>
-                   
-                    <Col xs={12} md={6} style={styles.infoItem}>
-                      <FontAwesomeIcon icon={faClock} style={styles.icon} />
-                      <div style={styles.infoContent}>
-                        <span style={styles.infoLabel}>{itemType === 'trip' ? 'Duration' : 'Time'}</span>
-                        <span style={styles.infoText}>
-                          {itemType === 'trip'
-                            ? (itemData.duration || 'Duration not specified')
-                            : (itemData.timings || 'Flexible')}
-                        </span>
-                      </div>
-                    </Col>
-                  </Row>
+<div style={styles.infoSection}>
+  <Row className="g-0" style={styles.infoRow}>
+    <Col xs={12} md={4} style={styles.infoItem}>
+      <FontAwesomeIcon icon={faCalendarAlt} style={styles.icon} />
+      <div style={styles.infoContent}>
+        <span style={styles.infoLabel}>Date</span>
+        <span style={styles.infoText}>
+          {itemType === 'trip'
+            ? (itemData.start_date ? formatDate(itemData.start_date) : 'Flexible dates')
+            : (formatDate(itemData.start_date) + (itemData.is_multiple_days ? ` - ${formatDate(itemData.end_date)}` : ''))}
+        </span>
+      </div>
+    </Col>
+    
+    <Col xs={12} md={4} style={styles.infoItem}>
+      <FontAwesomeIcon icon={faClock} style={styles.icon} />
+      <div style={styles.infoContent}>
+        <span style={styles.infoLabel}>{itemType === 'trip' ? 'Duration' : 'Time'}</span>
+        <span style={styles.infoText}>
+          {itemType === 'trip'
+            ? (itemData.duration || 'Duration not specified')
+            : (itemData.timings || 'Flexible')}
+        </span>
+      </div>
+    </Col>
+    
+    <Col xs={12} md={4} style={styles.infoItem}>
+      <FontAwesomeIcon icon={faMapMarkerAlt} style={styles.icon} />
+      <div style={styles.infoContent}>
+        <span style={styles.infoLabel}>{itemType === 'trip' ? 'Meetup Point' : 'Location'}</span>
+        <span style={styles.infoText}>{locationAddress}</span>
+      </div>
+    </Col>
+  </Row>
 
-                  <Row className="g-0" style={styles.infoRow}>
-                    <Col xs={12} md={6} style={styles.infoItem}>
-                      <FontAwesomeIcon icon={faMapMarkerAlt} style={styles.icon} />
-                      <div style={styles.infoContent}>
-                        <span style={styles.infoLabel}>{itemType === 'trip' ? 'Meetup Point' : 'Location'}</span>
-                        <span style={styles.infoText}>{locationAddress}</span>
-                      </div>
-                    </Col>
-                   
-                    <Col xs={12} md={6} style={styles.infoItem}>
-                      <FontAwesomeIcon icon={faUser} style={styles.icon} />
-                      <div style={styles.infoContent}>
-                        <span style={styles.infoLabel}>Organized by</span>
-                        <span style={styles.infoText}>{organizer}</span>
-                      </div>
-                    </Col>
-                  </Row>
-
-                  {/* Trip-specific details */}
-                  {itemType === 'trip' && (
-                    <>
-                      {/* Meetup details */}
-                      {itemData.meetup_time && (
-                        <Row className="g-0" style={styles.infoRow}>
-                          <Col xs={12} md={6} style={styles.infoItem}>
-                            <FontAwesomeIcon icon={faClock} style={styles.icon} />
-                            <div style={styles.infoContent}>
-                              <span style={styles.infoLabel}>Meetup Time</span>
-                              <span style={styles.infoText}>{formatTime(itemData.meetup_time)}</span>
-                            </div>
-                          </Col>
-                          
-                          {itemData.terraintype && (
-                            <Col xs={12} md={6} style={styles.infoItem}>
-                              <FontAwesomeIcon icon={faMountain} style={styles.icon} />
-                              <div style={styles.infoContent}>
-                                <span style={styles.infoLabel}>Terrain</span>
-                                <span style={styles.infoText}>{itemData.terraintype}</span>
-                              </div>
-                            </Col>
-                          )}
-                        </Row>
-                      )}
-
-                      {/* Capacity information */}
-                      {(itemData.total_seats || itemData.available_seats) && (
-                        <Row className="g-0" style={styles.infoRow}>
-                          <Col xs={12} style={styles.infoItem}>
-                            <FontAwesomeIcon icon={faUsers} style={styles.icon} />
-                            <div style={styles.infoContent}>
-                              <span style={styles.infoLabel}>Capacity</span>
-                              <span style={styles.infoText}>
-                                <Badge style={styles.availabilityBadge}>
-                                  {itemData.available_seats || 0} seats available
-                                </Badge> 
-                              </span>
-                            </div>
-                          </Col>
-                        </Row>
-                      )}
-                    </>
-                  )}
+  <Row className="g-0" style={styles.infoRow}>
+    <Col xs={12} md={4} style={styles.infoItem}>
+      <FontAwesomeIcon icon={faUser} style={styles.icon} />
+      <div style={styles.infoContent}>
+        <span style={styles.infoLabel}>Organized by</span>
+        <span style={styles.infoText}>{organizer}</span>
+      </div>
+    </Col>
+    
+    {/* Trip-specific details */}
+    {itemType === 'trip' && itemData.meetup_time && (
+      <Col xs={12} md={4} style={styles.infoItem}>
+        <FontAwesomeIcon icon={faClock} style={styles.icon} />
+        <div style={styles.infoContent}>
+          <span style={styles.infoLabel}>Meetup Time</span>
+          <span style={styles.infoText}>{formatTime(itemData.meetup_time)}</span>
+        </div>
+      </Col>
+    )}
+    
+    {itemType === 'trip' && itemData.terraintype && (
+      <Col xs={12} md={4} style={styles.infoItem}>
+        <FontAwesomeIcon icon={faMountain} style={styles.icon} />
+        <div style={styles.infoContent}>
+          <span style={styles.infoLabel}>Terrain</span>
+          <span style={styles.infoText}>{itemData.terraintype}</span>
+        </div>
+      </Col>
+    )}
+    
+    {/* Capacity information */}
+    {itemType === 'trip' && (itemData.total_seats || itemData.available_seats) && (
+      <Col xs={12} md={4} style={styles.infoItem}>
+        <FontAwesomeIcon icon={faUsers} style={styles.icon} />
+        <div style={styles.infoContent}>
+          <span style={styles.infoLabel}>Capacity</span>
+          <span style={styles.infoText}>
+            <Badge style={styles.availabilityBadge}>
+              {itemData.available_seats || 0} seats available
+            </Badge> 
+          </span>
+        </div>
+      </Col>
+    )}
+  </Row>
+                    
+                
                 </div>
               </div>
             </div>

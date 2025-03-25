@@ -152,58 +152,7 @@ const DetailsCards = ({
                     )}
                   </div>
                   
-                {/* Inclusions Accordion (for trips only) */}
-{eventType === 'trip' && eventInclusions.length > 0 && (
-  <div style={styles.accordionWrapper}>
-    <Accordion>
-      <Accordion.Item eventKey="inclusions" style={styles.accordionItem}>
-        <Accordion.Header style={styles.accordionHeader}>
-          Inclusions
-        </Accordion.Header>
-        <Accordion.Body style={styles.accordionBody}>
-          <div style={styles.inclusionSection}>
-            <ul style={styles.inclusionList}>
-              {eventInclusions.map((item, index) => (
-                <li key={`inclusion-${index}`} style={styles.inclusionItem}>
-                  <FontAwesomeIcon icon={faCheckCircle} style={{...styles.inclusionIcon, color: '#28a745'}} />
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </Accordion.Body>
-      </Accordion.Item>
-    </Accordion>
-  </div>
-)}
-
-{/* Exclusions Accordion (for trips only) */}
-{eventType === 'trip' && eventExclusions.length > 0 && (
-  <div style={styles.accordionWrapper}>
-    <Accordion>
-      <Accordion.Item eventKey="exclusions" style={styles.accordionItem}>
-        <Accordion.Header style={styles.accordionHeader}>
-          Exclusions
-        </Accordion.Header>
-        <Accordion.Body style={styles.accordionBody}>
-          <div style={styles.inclusionSection}>
-            <ul style={styles.inclusionList}>
-              {eventExclusions.map((item, index) => (
-                <li key={`exclusion-${index}`} style={styles.inclusionItem}>
-                  <FontAwesomeIcon icon={faTimesCircle} style={{...styles.inclusionIcon, color: '#dc3545'}} />
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </Accordion.Body>
-      </Accordion.Item>
-    </Accordion>
-  </div>
-)}
-
-                  
-                {/* Itinerary Accordion (for trips only) */}
+               {/* Itinerary Accordion (for trips only) */}
 {hasItinerary && (
   <div style={styles.accordionWrapper}>
     <Accordion>
@@ -214,14 +163,13 @@ const DetailsCards = ({
         <Accordion.Body style={styles.accordionBody}>
           {eventItinerary.map((day, index) => {
             // Extract day information
-            const dayNumber = day.day_number || index + 1;
-            const dayTitle = day.title || `Day ${dayNumber}`;
+            const dayTitle = day.title || '';
             const dayDescription = day.description || '';
             
-            // Format locations if available
+            // Extract locations if available
             const locations = day.locations && day.locations.length > 0 
-              ? <p style={styles.itineraryLocations}><strong>Locations:</strong> {day.locations.join(' → ')}</p> 
-              : null;
+              ? day.locations.join(' → ')
+              : '';
             
             // Format activities if available
             let activities = null;
@@ -233,10 +181,10 @@ const DetailsCards = ({
               
               activities = (
                 <div style={styles.itineraryActivities}>
-                  <p style={styles.itineraryActivitiesTitle}><strong>Activities:</strong></p>
+                  <p style={styles.itineraryActivitiesTitle}><strong></strong></p>
                   <ul style={styles.itineraryActivitiesList}>
                     {activitiesList.map((activity, actIndex) => (
-                      <li key={`activity-${dayNumber}-${actIndex}`} style={styles.itineraryActivityItem}>
+                      <li key={`activity-${index}-${actIndex}`} style={styles.itineraryActivityItem}>
                         {activity.trim()}
                       </li>
                     ))}
@@ -247,9 +195,13 @@ const DetailsCards = ({
             
             return (
               <div key={`day-${index}`} style={styles.itineraryDay}>
-                <h6 style={styles.itineraryDayTitle}>Day {dayNumber}: {dayTitle}</h6>
+                <h6 style={styles.itineraryDayTitle}>{dayTitle}</h6>
                 {dayDescription && <p style={styles.itineraryDayDescription}>{dayDescription}</p>}
-                {locations}
+                {locations && (
+                  <p style={styles.itineraryLocations}>
+                    <strong>Locations:</strong> {locations}
+                  </p>
+                )}
                 {activities}
               </div>
             );
@@ -260,102 +212,149 @@ const DetailsCards = ({
   </div>
 )}
 
-                  {/* Terms and Conditions Accordion */}
+
+
+                {/* Inclusions Accordion (for trips only) */}
+                {eventType === 'trip' && eventInclusions.length > 0 && (
                   <div style={styles.accordionWrapper}>
                     <Accordion>
-                      <Accordion.Item eventKey="1" style={styles.accordionItem}>
+                      <Accordion.Item eventKey="inclusions" style={styles.accordionItem}>
                         <Accordion.Header style={styles.accordionHeader}>
-                          Policy
+                          Inclusions
                         </Accordion.Header>
                         <Accordion.Body style={styles.accordionBody}>
-                         {/* Policies Section */}
-
-
-  <div style={styles.policyLinksContainer}>
-    <a 
-      href="/termsconditions" 
-      target="_blank" 
-      rel="noopener noreferrer" 
-      style={styles.policyLink}
-    >
-      Terms & Conditions
-    </a>
-    <a 
-      href="/privacypolicy" 
-      target="_blank" 
-      rel="noopener noreferrer" 
-      style={styles.policyLink}
-    >
-      Privacy Policy
-    </a>
-    <a 
-      href="/refundpolicy" 
-      target="_blank" 
-      rel="noopener noreferrer" 
-      style={styles.policyLink}
-    >
-      Refund Policy
-    </a>
-  </div>
-
-
+                          <div style={styles.inclusionSection}>
+                            <ul style={styles.inclusionList}>
+                              {eventInclusions.map((item, index) => (
+                                <li key={`inclusion-${index}`} style={styles.inclusionItem}>
+                                  <FontAwesomeIcon icon={faCheckCircle} style={{...styles.inclusionIcon, color: '#28a745'}} />
+                                  {item}
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
                         </Accordion.Body>
                       </Accordion.Item>
                     </Accordion>
                   </div>
-                </Card>
-              </Col>
+                )}
 
-              {/* Right Side - Location */}
-              <Col md={3}>
-                <Card className="shadow-sm" style={styles.card}>
-                  <h6 style={styles.cardTitle}>
-                    {eventType === 'trip' ? 'Location' : 'Location'}
-                  </h6>
-                  
-                  {eventType === 'trip' ? (
-                    <div>
-                      <p style={styles.venueAddress}>
-                        {venueAddress}
-                      </p>
-                      {/* Embedded Google Map for trip destination */}
-                      <iframe
-                        title="Trip Destination"
-                        src={`https://maps.google.com/maps?q=${encodeURIComponent(venueAddress)}&t=&z=13&ie=UTF8&iwloc=&output=embed`}
-                        width="100%"
-                        height="150"
-                        style={styles.mapIframe}
-                        allowFullScreen=""
-                        loading="lazy"
-                        ></iframe>
+                {/* Exclusions Accordion (for trips only) */}
+                {eventType === 'trip' && eventExclusions.length > 0 && (
+                  <div style={styles.accordionWrapper}>
+                    <Accordion>
+                      <Accordion.Item eventKey="exclusions" style={styles.accordionItem}>
+                        <Accordion.Header style={styles.accordionHeader}>
+                          Exclusions
+                        </Accordion.Header>
+                        <Accordion.Body style={styles.accordionBody}>
+                          <div style={styles.inclusionSection}>
+                            <ul style={styles.inclusionList}>
+                              {eventExclusions.map((item, index) => (
+                                <li key={`exclusion-${index}`} style={styles.inclusionItem}>
+                                  <FontAwesomeIcon icon={faTimesCircle} style={{...styles.inclusionIcon, color: '#dc3545'}} />
+                                  {item}
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        </Accordion.Body>
+                      </Accordion.Item>
+                    </Accordion>
+                  </div>
+                )}
+                            
+                {/* Terms and Conditions Accordion */}
+                <div style={styles.accordionWrapper}>
+                  <Accordion>
+                    <Accordion.Item eventKey="1" style={styles.accordionItem}>
+                      <Accordion.Header style={styles.accordionHeader}>
+                        Policys
+                      </Accordion.Header>
+                      <Accordion.Body style={styles.accordionBody}>
+                        {/* Policies Section */}
+                        <div style={styles.policyLinksContainer}>
+                          <a 
+                            href="/termsconditions" 
+                            target="_blank" 
+                            rel="noopener noreferrer" 
+                            style={styles.policyLink}
+                          >
+                            Terms & Conditions
+                          </a>
+                          <a 
+                            href="/privacypolicy" 
+                            target="_blank" 
+                            rel="noopener noreferrer" 
+                            style={styles.policyLink}
+                          >
+                            Privacy Policy
+                          </a>
+                          <a 
+                            href="/refundpolicy" 
+                            target="_blank" 
+                            rel="noopener noreferrer" 
+                            style={styles.policyLink}
+                          >
+                            Refund Policy
+                          </a>
                         </div>
-                      ) : (
-                        <div>
-                          <p style={styles.venueAddress}>
-                            {venueAddress}
-                          </p>
-                          {/* Embedded Google Map for event location */}
-                          <iframe
-                            title="Event Location"
-                            src={`https://maps.google.com/maps?q=${encodeURIComponent(venueAddress)}&t=&z=13&ie=UTF8&iwloc=&output=embed`}
-                            width="100%"
-                            height="150"
-                            style={styles.mapIframe}
-                            allowFullScreen=""
-                            loading="lazy"
-                          ></iframe>
-                        </div>
-                      )}
-                    </Card>
-                  </Col>
-                </Row>
-              </Col>
-            </Row>
-          </Container>
-        </div>
-      );
-    };
-    
+                      </Accordion.Body>
+                    </Accordion.Item>
+                  </Accordion>
+                </div>
+              </Card>
+            </Col>
+
+            {/* Right Side - Location */}
+            <Col md={3}>
+              <Card className="shadow-sm" style={styles.card}>
+                <h6 style={styles.cardTitle}>
+                  {eventType === 'trip' ? 'Meetup Point' : 'Location'}
+                </h6>
+                
+                {eventType === 'trip' ? (
+                  <div>
+                    <p style={styles.venueAddress}>
+                      {venueAddress}
+                    </p>
+                    {/* Embedded Google Map for trip destination */}
+                    <iframe
+                      title="Trip Destination"
+                      src={`https://maps.google.com/maps?q=${encodeURIComponent(venueAddress)}&t=&z=13&ie=UTF8&iwloc=&output=embed`}
+                      width="100%"
+                      height="150"
+                      style={styles.mapIframe}
+                      allowFullScreen=""
+                      loading="lazy"
+                    ></iframe>
+                  </div>
+                ) : (
+                  <div>
+                    <p style={styles.venueAddress}>
+                      {venueAddress}
+                    </p>
+                    {/* Embedded Google Map for event location */}
+                    <iframe
+                      title="Event Location"
+                      src={`https://maps.google.com/maps?q=${encodeURIComponent(venueAddress)}&t=&z=13&ie=UTF8&iwloc=&output=embed`}
+                      width="100%"
+                      height="150"
+                      style={styles.mapIframe}
+                      allowFullScreen=""
+                      loading="lazy"
+                    ></iframe>
+                  </div>
+                )}
+              </Card>
+            </Col>
+          </Row>
+        </Col>
+      </Row>
+    </Container>
+  </div>
+  );
+};
     // Styles updated to match BikingEventHome
     const styles = {
       wrapper: {
@@ -483,10 +482,10 @@ const DetailsCards = ({
         gap: '10px', 
       },
       policyLink: {
-        color: '#212529',
+        color: 'darkblue',
         textDecoration: 'none',
-        fontSize: '14px',
-        fontWeight: '400',
+        fontSize: '12px',
+        fontWeight: '500',
         transition: 'color 0.2s ease',
         display: 'flex',
         alignItems: 'center',

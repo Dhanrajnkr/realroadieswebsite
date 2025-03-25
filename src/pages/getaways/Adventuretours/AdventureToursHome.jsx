@@ -69,46 +69,58 @@ const handleNavigateToTripsDetails = (id) => {
                 <div style={styles.loading}>Loading adventures...</div>
               ) : (
                 <Row className="g-4">
-                  {allTrips.length > 0 ? (
-                    allTrips.map((tour) => (
-                      <Col md={6} key={tour._id}>
-                        <div style={styles.tourCard}>
-                          <div style={styles.imageContainer}>
-                            <img
-                              src={tour.primary_image?.link_url || "../src/assets/images/ab1.png"}
-                              alt={tour.name}
-                              style={styles.tourImage}
-                            />
-                          </div>
-                          <div style={styles.tourContent}>
-                            <div style={styles.tourInfo}>
-                              <div style={styles.titleContainer}>
-                                <h4 style={styles.tourTitle}>
-                                  {tour.name} | <span style={styles.tourDays}>{formatDuration(tour.duration)}</span>
-                                </h4>
-                              </div>
-                              <div style={styles.tourDetailsRow}>
-  <div style={styles.tourDetails}>
-    <span style={styles.tourOrganizer}>Organized by {tour.organized_by}</span>
-  </div>
-  <div style={styles.tourButtonContainer}>
-    <Button style={styles.tourButton} 
-      onClick={() => handleNavigateToTripsDetails(tour._id)}>
-      Starting at ₹{calculatePrice(tour.starting_market_price, tour.discount_starts)}
-    </Button>
-  </div>
-</div>
+                {allTrips.length > 0 ? (
+  allTrips.map((tour) => (
+    <Col md={6} key={tour._id}>
+      <div 
+        style={{
+          ...styles.tourCard,
+          cursor: 'pointer' // Add pointer cursor to indicate clickability
+        }}
+        onClick={() => handleNavigateToTripsDetails(tour._id)}
+      >
+        <div style={styles.imageContainer}>
+          <img
+            src={tour.primary_image?.link_url || "../src/assets/images/ab1.png"}
+            alt={tour.name}
+            style={styles.tourImage}
+          />
+        </div>
+        <div style={styles.tourContent}>
+          <div style={styles.tourInfo}>
+            <div style={styles.titleContainer}>
+              <h4 style={styles.tourTitle}>
+                {tour.name} | <span style={styles.tourDays}>{formatDuration(tour.duration)}</span>
+              </h4>
+            </div>
+            <div style={styles.tourDetailsRow}>
+              <div className="d-flex flex-column flex-sm-row justify-content-between  w-100">
+                <div className="text-start text-sm-start mb-2 mb-sm-0">
+                  <span style={styles.tourOrganizer} className='text-start'>Organized by {tour.organized_by}</span>
+                </div>
+                
+                <Button 
+                  style={styles.tourButton}
+                  onClick={(e) => {
+                    e.stopPropagation(); // Prevent the card's onClick from triggering
+                    handleNavigateToTripsDetails(tour._id);
+                  }}
+                >
+                  Starting at ₹{calculatePrice(tour.starting_market_price, tour.discount_starts)}
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </Col>
+  ))
+) : (
+  <Col className="text-center">
+    <p style={styles.noTrips}>No adventure tours available at the moment.</p>
+  </Col>
+)}
 
-                            </div>
-                          </div>
-                        </div>
-                      </Col>
-                    ))
-                  ) : (
-                    <Col className="text-center">
-                      <p style={styles.noTrips}>No adventure tours available at the moment.</p>
-                    </Col>
-                  )}
                 </Row>
               )}
             </Col>
@@ -214,8 +226,7 @@ const styles = {
   tourButton: {
     backgroundColor: '#FFDD00',
     color: '#000000',
-    fontWeight: '500',
-    width: '100%', // Take full width
+    fontWeight: '500', 
     fontSize: '15px',
     padding: '8px 20px',
     border: 'none',
