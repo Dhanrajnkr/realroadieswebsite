@@ -12,30 +12,35 @@ const CorporateEvent = () => {
         <Container style={styles.container}>
           {/* Header Section */}
           <Row className="mb-4 justify-content-center">
-            <Col md={10}>
-              <div style={styles.headerContainer}>
-                <div style={styles.logoContainer}>
-                  <img
-                    src={eventimg1}
-                    alt="event img"
-                    style={styles.logo}
-                  />
-                </div>
-                <div style={styles.headerContent}>
-                  <h4 style={styles.subHeading}>
-                    Elevate Your Corporate Engagement with High-Octane Experiences
-                  </h4>
-                  <p style={styles.introText}>
-                    At RealRoadies, we redefine corporate events by merging adventure,
-                    teamwork, and brand visibility—powered by motorcycles. Whether it's about
-                    brand promotions, CSR initiatives, diversity & inclusion, or wellness programs,
-                    we craft unforgettable experiences that go beyond the ordinary and accelerate
-                    lasting impact.
-                  </p>
-                </div>
-              </div>
-            </Col>
-          </Row>
+  <Col md={10}>
+    <div className="d-flex flex-column flex-md-row align-items-center">
+      <div className="text-center mb-0 mb-md-0">
+        <img
+          src={eventimg1}
+          alt="event img"
+          className="img-fluid"
+          style={{
+            maxWidth: '100%',
+            height: 'auto',
+            maxHeight: '200px'
+          }}
+        />
+      </div>
+      <div className="ms-md-4">
+        <h4 className="fw-bold mb-3">
+          Elevate Your Corporate Engagement with High-Octane Experiences
+        </h4>
+        <p>
+          At RealRoadies, we redefine corporate events by merging adventure,
+          teamwork, and brand visibility—powered by motorcycles. Whether it's about
+          brand promotions, CSR initiatives, diversity & inclusion, or wellness programs,
+          we craft unforgettable experiences that go beyond the ordinary and accelerate
+          lasting impact.
+        </p>
+      </div>
+    </div>
+  </Col>
+</Row>
 
           {/* Section Title */}
           <Row className="justify-content-center mb-3">

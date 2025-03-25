@@ -83,7 +83,7 @@ const styles = {
     width: '100%',
     height: '100%',
     padding: 0,
-    backgroundColor: 'transparent' // No background on the content container
+    backgroundColor: 'transparent',
   },
   textColumn: {
     color: '#ffffff',

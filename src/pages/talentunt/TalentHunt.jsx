@@ -96,7 +96,7 @@ const styles = {
   },
   imagePlaceholder: {
     width: '100%',
-    height: '280px',
+    height: '250px',
     objectFit: 'cover',
     backgroundColor: '#333333',
     margin: '0 auto',

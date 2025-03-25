@@ -18,7 +18,6 @@ const HeroSection = () => {
         <div style={styles.overlay}>
           <Container>
             <Row className="justify-content-center">
-              <textContainer className="col-md-12 text-start">
               <h5 className="offer-heading" style={styles.heading}>
               Fueling Every Ride – Your Ultimate Biking Companion
             </h5>
@@ -32,7 +31,7 @@ const HeroSection = () => {
                   <button className="btn btn-warning" style={styles.button}>Book Now</button>
                 </div>
                 */}
-              </textContainer>
+             
             </Row>
           </Container>
         </div>

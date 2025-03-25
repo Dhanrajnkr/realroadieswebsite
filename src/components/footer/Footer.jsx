@@ -1,12 +1,17 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// Import regular (outline) icons
+import {
+  faEnvelope as faEnvelopeRegular
+} from '@fortawesome/free-regular-svg-icons';
+// Import solid icons for those that don't have regular versions
 import {
   faGlobe,
   faPhone,
-  faMapMarkerAlt,
-  faEnvelope
+  faMapMarkerAlt
 } from '@fortawesome/free-solid-svg-icons';
+// Import brand icons
 import {
   faWhatsapp,
   faInstagram,
@@ -63,13 +68,13 @@ function Footer() {
             <h5 style={styles.heading}>Contact</h5>
             <ul style={styles.contactList}>
               <li style={styles.contactItem}>
-                <FontAwesomeIcon icon={faGlobe} style={styles.icon} />
+                <FontAwesomeIcon icon={faGlobe} style={{...styles.icon, fontWeight: 'lighter',color: 'white'}} />
                 <a href="https://stipe.so/" target="_blank" rel="noopener noreferrer" style={styles.link}>
                   stipe.so
                 </a>
               </li>
               <li style={styles.contactItem}>
-                <FontAwesomeIcon icon={faPhone} style={styles.icon} />
+                <FontAwesomeIcon icon={faPhone} style={{...styles.icon, fontWeight: 'lighter',color: 'white'}} />
                 <a href="tel:+919448388572" style={styles.link}>+91 9448388572</a>
               </li>
               <li style={styles.contactItem}>
@@ -77,7 +82,7 @@ function Footer() {
                 <a href="tel:+919886115772" style={styles.link}>+91 9886115772</a>
               </li>
               <li style={styles.contactItem}>
-                <FontAwesomeIcon icon={faMapMarkerAlt} style={{...styles.icon, marginTop: '4px'}} />
+                <FontAwesomeIcon icon={faMapMarkerAlt} style={{...styles.icon, fontWeight: 'lighter', marginTop: '4px',color: 'white'}} />
                 <a
                   href="https://maps.google.com/?q=247,1st+Floor,4th+Main+Road,Domlur,2nd+Stage,Bengaluru,560071"
                   target="_blank"
@@ -88,7 +93,7 @@ function Footer() {
                 </a>
               </li>
               <li style={styles.contactItem}>
-                <FontAwesomeIcon icon={faEnvelope} style={styles.icon} />
+                <FontAwesomeIcon icon={faEnvelopeRegular} style={styles.icon} />
                 <a
                   href="mailto:info@realroadies.com"
                   style={styles.link}
@@ -215,7 +220,7 @@ const styles = {
     marginBottom: '0.75rem'
   },
   icon: {
-    color: '#ffc107',
+    color: 'white',
     fontSize: '1rem',
     marginRight: '0.75rem',
     width: '16px',
@@ -231,8 +236,8 @@ const styles = {
   },
   copyright: {
     color: '#adb5bd',  
-    fontSize: '14px',  // Changed from 0.9rem to 14px to match small text in CommonCss.css
-    fontWeight: '400',  // Added to match small text in CommonCss.css
+    fontSize: '14px',  
+    fontWeight: '400',  
     marginBottom: '0'
   },
   socialList: {
