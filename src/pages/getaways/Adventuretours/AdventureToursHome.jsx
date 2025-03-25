@@ -115,13 +115,13 @@ const handleNavigateToTripsDetails = (id) => {
           </Row>
 
           {/* coming soon */}
-          <Row className="mt-5 justify-content-center">
+          {/* <Row className="mt-5 justify-content-center">
             <Col md={10} className="text-center">
               <div style={styles.comingsoon}>
                 <p style={styles.comingsoonText}>More adventures coming soon</p>
               </div>
             </Col>
-          </Row>
+          </Row> */}
         </Container>
       </Container>
     </section>
@@ -161,7 +161,7 @@ const styles = {
   tourImage: {
     width: '100%',
     height: '100%',
-    objectFit: 'cover',
+    objectFit: 'fit',
     transition: 'transform 0.3s ease',
   },
   tourContent: {
