@@ -19,7 +19,8 @@ const DetailsCards = ({
   eventType, 
   eventDuration,
   eventInclusions = [],
-  eventExclusions = []
+  eventExclusions = [],
+  eventItinerary = []
 }) => {
   // Add state for Read More functionality
   const [expanded, setExpanded] = useState(false);
@@ -91,6 +92,13 @@ const DetailsCards = ({
 
   // Check if we have inclusions or exclusions to display
   const hasInclusionsOrExclusions = eventType === 'trip' && (eventInclusions.length > 0 || eventExclusions.length > 0);
+  
+  // Check if we have itinerary to display
+  const hasItinerary = eventType === 'trip' && Array.isArray(eventItinerary) && eventItinerary.length > 0;
+  
+  // Debug logs
+  console.log('Itinerary data in DetailsCards:', eventItinerary);
+  console.log('Has itinerary:', hasItinerary);
 
   return (
     <div style={styles.wrapper}>
@@ -144,74 +152,153 @@ const DetailsCards = ({
                     )}
                   </div>
                   
-                  {/* Inclusions and Exclusions Accordion (for trips only) */}
-                  {hasInclusionsOrExclusions && (
-                    <div style={styles.accordionWrapper}>
-                      <Accordion>
-                        <Accordion.Item eventKey="inclusions" style={styles.accordionItem}>
-                          <Accordion.Header style={styles.accordionHeader}>
-                            Inclusions & Exclusions
-                          </Accordion.Header>
-                          <Accordion.Body style={styles.accordionBody}>
-                            {eventInclusions.length > 0 && (
-                              <div style={styles.inclusionSection}>
-                                <h6 style={styles.inclusionTitle}>
-                                  <FontAwesomeIcon icon={faCheckCircle} style={{...styles.inclusionIcon, color: '#28a745'}} />
-                                  Inclusions:
-                                </h6>
-                                <ul style={styles.inclusionList}>
-                                  {eventInclusions.map((item, index) => (
-                                    <li key={`inclusion-${index}`} style={styles.inclusionItem}>{item}</li>
-                                  ))}
-                                </ul>
-                              </div>
-                            )}
-                            
-                            {eventExclusions.length > 0 && (
-                              <div style={styles.inclusionSection}>
-                                <h6 style={styles.inclusionTitle}>
-                                  <FontAwesomeIcon icon={faTimesCircle} style={{...styles.inclusionIcon, color: '#dc3545'}} />
-                                  Exclusions:
-                                </h6>
-                                <ul style={styles.inclusionList}>
-                                  {eventExclusions.map((item, index) => (
-                                    <li key={`exclusion-${index}`} style={styles.inclusionItem}>{item}</li>
-                                  ))}
-                                </ul>
-                              </div>
-                            )}
-                          </Accordion.Body>
-                        </Accordion.Item>
-                      </Accordion>
-                    </div>
-                  )}
-                 
-                  {/* Enhanced Accordion with better styling */}
+                {/* Inclusions Accordion (for trips only) */}
+{eventType === 'trip' && eventInclusions.length > 0 && (
+  <div style={styles.accordionWrapper}>
+    <Accordion>
+      <Accordion.Item eventKey="inclusions" style={styles.accordionItem}>
+        <Accordion.Header style={styles.accordionHeader}>
+          Inclusions
+        </Accordion.Header>
+        <Accordion.Body style={styles.accordionBody}>
+          <div style={styles.inclusionSection}>
+            <ul style={styles.inclusionList}>
+              {eventInclusions.map((item, index) => (
+                <li key={`inclusion-${index}`} style={styles.inclusionItem}>
+                  <FontAwesomeIcon icon={faCheckCircle} style={{...styles.inclusionIcon, color: '#28a745'}} />
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </Accordion.Body>
+      </Accordion.Item>
+    </Accordion>
+  </div>
+)}
+
+{/* Exclusions Accordion (for trips only) */}
+{eventType === 'trip' && eventExclusions.length > 0 && (
+  <div style={styles.accordionWrapper}>
+    <Accordion>
+      <Accordion.Item eventKey="exclusions" style={styles.accordionItem}>
+        <Accordion.Header style={styles.accordionHeader}>
+          Exclusions
+        </Accordion.Header>
+        <Accordion.Body style={styles.accordionBody}>
+          <div style={styles.inclusionSection}>
+            <ul style={styles.inclusionList}>
+              {eventExclusions.map((item, index) => (
+                <li key={`exclusion-${index}`} style={styles.inclusionItem}>
+                  <FontAwesomeIcon icon={faTimesCircle} style={{...styles.inclusionIcon, color: '#dc3545'}} />
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </Accordion.Body>
+      </Accordion.Item>
+    </Accordion>
+  </div>
+)}
+
+                  
+                {/* Itinerary Accordion (for trips only) */}
+{hasItinerary && (
+  <div style={styles.accordionWrapper}>
+    <Accordion>
+      <Accordion.Item eventKey="itinerary" style={styles.accordionItem}>
+        <Accordion.Header style={styles.accordionHeader}>
+          Itinerary
+        </Accordion.Header>
+        <Accordion.Body style={styles.accordionBody}>
+          {eventItinerary.map((day, index) => {
+            // Extract day information
+            const dayNumber = day.day_number || index + 1;
+            const dayTitle = day.title || `Day ${dayNumber}`;
+            const dayDescription = day.description || '';
+            
+            // Format locations if available
+            const locations = day.locations && day.locations.length > 0 
+              ? <p style={styles.itineraryLocations}><strong>Locations:</strong> {day.locations.join(' → ')}</p> 
+              : null;
+            
+            // Format activities if available
+            let activities = null;
+            if (day.activities && day.activities.length > 0) {
+              // Handle if activities is a single string that needs to be split
+              const activitiesList = typeof day.activities[0] === 'string' && day.activities[0].includes(',')
+                ? day.activities[0].split(',')
+                : day.activities;
+              
+              activities = (
+                <div style={styles.itineraryActivities}>
+                  <p style={styles.itineraryActivitiesTitle}><strong>Activities:</strong></p>
+                  <ul style={styles.itineraryActivitiesList}>
+                    {activitiesList.map((activity, actIndex) => (
+                      <li key={`activity-${dayNumber}-${actIndex}`} style={styles.itineraryActivityItem}>
+                        {activity.trim()}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              );
+            }
+            
+            return (
+              <div key={`day-${index}`} style={styles.itineraryDay}>
+                <h6 style={styles.itineraryDayTitle}>Day {dayNumber}: {dayTitle}</h6>
+                {dayDescription && <p style={styles.itineraryDayDescription}>{dayDescription}</p>}
+                {locations}
+                {activities}
+              </div>
+            );
+          })}
+        </Accordion.Body>
+      </Accordion.Item>
+    </Accordion>
+  </div>
+)}
+
+                  {/* Terms and Conditions Accordion */}
                   <div style={styles.accordionWrapper}>
                     <Accordion>
-                      <Accordion.Item eventKey="0" style={styles.accordionItem}>
-                        <Accordion.Header style={styles.accordionHeader}>
-                          FAQs
-                        </Accordion.Header>
-                        <Accordion.Body style={styles.accordionBody}>
-                          <p style={styles.faqQuestion}><strong>Q: What should I bring?</strong></p>
-                          <p style={styles.faqAnswer}>A: Comfortable clothes, running shoes, water bottle, and your enthusiasm!</p>
-                         
-                          <p style={styles.faqQuestion}><strong>Q: Is there parking available?</strong></p>
-                          <p style={styles.faqAnswer}>A: Yes, free parking is available at the venue.</p>
-                        </Accordion.Body>
-                      </Accordion.Item>
                       <Accordion.Item eventKey="1" style={styles.accordionItem}>
                         <Accordion.Header style={styles.accordionHeader}>
-                          Terms and Conditions
+                          Policy
                         </Accordion.Header>
                         <Accordion.Body style={styles.accordionBody}>
-                          <p style={styles.termsText}>By registering for this event, you agree to the following terms:</p>
-                          <ul style={styles.termsList}>
-                            <li style={styles.termsItem}>No refunds for cancellations less than 48 hours before the event</li>
-                            <li style={styles.termsItem}>Participants must follow all safety guidelines</li>
-                            <li style={styles.termsItem}>The organizer reserves the right to modify the event schedule</li>
-                          </ul>
+                         {/* Policies Section */}
+
+
+  <div style={styles.policyLinksContainer}>
+    <a 
+      href="/termsconditions" 
+      target="_blank" 
+      rel="noopener noreferrer" 
+      style={styles.policyLink}
+    >
+      Terms & Conditions
+    </a>
+    <a 
+      href="/privacypolicy" 
+      target="_blank" 
+      rel="noopener noreferrer" 
+      style={styles.policyLink}
+    >
+      Privacy Policy
+    </a>
+    <a 
+      href="/refundpolicy" 
+      target="_blank" 
+      rel="noopener noreferrer" 
+      style={styles.policyLink}
+    >
+      Refund Policy
+    </a>
+  </div>
+
+
                         </Accordion.Body>
                       </Accordion.Item>
                     </Accordion>
@@ -240,227 +327,298 @@ const DetailsCards = ({
                         style={styles.mapIframe}
                         allowFullScreen=""
                         loading="lazy"
-                      ></iframe>
-                    </div>
-                  ) : (
-                    <div>
-                      <p style={styles.venueAddress}>
-                        {venueAddress}
-                      </p>
-                      {/* Embedded Google Map for event location */}
-                      <iframe
-                        title="Event Location"
-                        src={`https://maps.google.com/maps?q=${encodeURIComponent(venueAddress)}&t=&z=13&ie=UTF8&iwloc=&output=embed`}
-                        width="100%"
-                        height="150"
-                        style={styles.mapIframe}
-                        allowFullScreen=""
-                        loading="lazy"
-                      ></iframe>
-                    </div>
-                  )}
-                </Card>
+                        ></iframe>
+                        </div>
+                      ) : (
+                        <div>
+                          <p style={styles.venueAddress}>
+                            {venueAddress}
+                          </p>
+                          {/* Embedded Google Map for event location */}
+                          <iframe
+                            title="Event Location"
+                            src={`https://maps.google.com/maps?q=${encodeURIComponent(venueAddress)}&t=&z=13&ie=UTF8&iwloc=&output=embed`}
+                            width="100%"
+                            height="150"
+                            style={styles.mapIframe}
+                            allowFullScreen=""
+                            loading="lazy"
+                          ></iframe>
+                        </div>
+                      )}
+                    </Card>
+                  </Col>
+                </Row>
               </Col>
             </Row>
-          </Col>
-        </Row>
-      </Container>
-    </div>
-  );
-};
+          </Container>
+        </div>
+      );
+    };
+    
+    // Styles updated to match BikingEventHome
+    const styles = {
+      wrapper: {
+        backgroundColor: '#000000',
+        padding: '20px 0',
+      },
+      container: {
+        paddingLeft: '15px',
+        paddingRight: '15px'
+      },
+      card: {
+        padding: '20px',
+        border: 'none',
+        borderRadius: '0',
+        backgroundColor: '#ffffff',
+        marginBottom: '15px', 
+      },
+      cardTitle: {
+        marginBottom: '15px',
+        fontWeight: '600',
+        fontSize: '16px',
+        color: '#212529'
+      },
+      cardTextContainer: {
+        marginBottom: '20px'
+      },
+      cardText: {
+        fontSize: '16px',
+        fontWeight: '400',
+        lineHeight: '1.6',
+        color: '#495057',
+        whiteSpace: 'pre-line'
+      },
+      socialIconsContainer: {
+        display: 'flex',
+        gap: '5px',
+        marginTop: '5px'
+      },
+      iconLink: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: '40px',
+        height: '40px',
+        borderRadius: '50%',
+        backgroundColor: '#f8f9fa',
+        textDecoration: 'none',
+        transition: 'background-color 0.3s ease',
+        cursor: 'pointer'
+      },
+      socialIcon: {
+        fontSize: '1.2rem',
+        cursor: 'pointer',
+        transition: 'transform 0.3s ease'
+      },
+      facebookIcon: {
+        color: '#1877F2'
+      },
+      instagramIcon: {
+        color: '#E4405F'
+      },
+      whatsappIcon: {
+        color: '#25D366'
+      },
+      twitterIcon: {
+        color: '#000000'
+      },
+      readMoreLink: {
+        color: '#dc3545',
+        textDecoration: 'none',
+        fontWeight: '500',
+        fontSize: '16px',
+        display: 'inline-block',
+        cursor: 'pointer'
+      },
+      accordionWrapper: {
+        marginTop: '1px',
+        marginBottom: '1px',
+      },
+      accordionItem: {
+        border: 'none',
+        borderBottom: '1px solid #dee2e6',
+        borderRadius: '0',
+      },
+      accordionHeader: {
+        fontSize: '16px',
+        padding: '0'
+      },
+      accordionBody: {
+        fontSize: '16px',
+        fontWeight: '400',
+        lineHeight: '1.6',
+        backgroundColor: '#ffffff',
+        padding: '15px 20px',
+        border: 'none'
+      },
+      faqQuestion: {
+        marginBottom: '8px',
+        fontSize: '16px',
+        fontWeight: '400',
+      },
+      faqAnswer: {
+        marginBottom: '15px',
+        fontSize: '16px',
+        fontWeight: '400',
+      },
+      termsText: {
+        marginBottom: '10px',
+        fontSize: '16px',
+        fontWeight: '400',
+      },
+      termsList: {
+        paddingLeft: '20px',
+        marginBottom: '0'
+      },
+      termsItem: {
+        marginBottom: '8px',
+        fontSize: '16px',
+        fontWeight: '400',
+      },
 
-// Styles updated to match BikingEventHome
-const styles = {
-  wrapper: {
-    backgroundColor: '#000000',
-    padding: '20px 0',
-  },
-  container: {
-    paddingLeft: '15px',
-    paddingRight: '15px'
-  },
-  card: {
-    padding: '20px',
-    border: 'none',
-    borderRadius: '0',
-    backgroundColor: '#ffffff',
-    marginBottom: '15px', 
-  },
-  cardTitle: {
-    marginBottom: '15px',
-    fontWeight: '600',
-    fontSize: '16px',
-    color: '#212529'
-  },
-  cardTextContainer: {
-    marginBottom: '20px'
-  },
-  cardText: {
-    fontSize: '16px',
-    fontWeight: '400',
-    lineHeight: '1.6',
-    color: '#495057',
-    whiteSpace: 'pre-line'
-  },
-  socialIconsContainer: {
-    display: 'flex',
-    gap: '5px',
-    marginTop: '5px'
-  },
-  iconLink: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: '40px',
-    height: '40px',
-    borderRadius: '50%',
-    backgroundColor: '#f8f9fa',
-    textDecoration: 'none',
-    transition: 'background-color 0.3s ease',
-    cursor: 'pointer'
-  },
-  socialIcon: {
-    fontSize: '1.2rem',
-    cursor: 'pointer',
-    transition: 'transform 0.3s ease'
-  },
-  facebookIcon: {
-    color: '#1877F2'
-  },
-  instagramIcon: {
-    color: '#E4405F'
-  },
-  whatsappIcon: {
-    color: '#25D366'
-  },
-  twitterIcon: {
-    color: '#000000'
-  },
-  readMoreLink: {
-    color: '#dc3545',
-    textDecoration: 'none',
-    fontWeight: '500',
-    fontSize: '16px',
-    display: 'inline-block',
-    cursor: 'pointer'
-  },
-  accordionWrapper: {
-    marginTop: '1px',
-    marginBottom: '10px',
-  },
-  accordionItem: {
-    border: 'none',
-    borderBottom: '1px solid #dee2e6',
-    borderRadius: '0',
-  },
-  accordionHeader: {
-    fontSize: '16px',
-    padding: '0'
-  },
-  accordionBody: {
-    fontSize: '16px',
-    fontWeight: '400',
-    lineHeight: '1.6',
-    backgroundColor: '#f8f9fa',
-    padding: '15px 20px',
-    border: 'none'
-  },
-  faqQuestion: {
-    marginBottom: '8px',
-    fontSize: '16px',
-    fontWeight: '400',
-  },
-  faqAnswer: {
-    marginBottom: '15px',
-    fontSize: '16px',
-    fontWeight: '400',
-  },
-  termsText: {
-    marginBottom: '10px',
-    fontSize: '16px',
-    fontWeight: '400',
-  },
-  termsList: {
-    paddingLeft: '20px',
-    marginBottom: '0'
-  },
-  termsItem: {
-    marginBottom: '8px',
-    fontSize: '16px',
-    fontWeight: '400',
-  },
-  locationTitle: {
-    fontSize: '16px',
-    fontWeight: '500',
-    marginBottom: '10px',
-    color: '#212529'
-  },
-  venueName: {
-    fontSize: '16px',
-    fontWeight: '500',
-    marginBottom: '8px'
-  },
-  venueAddress: {
-    fontSize: '14px',
-    fontWeight: '400',
-    color: '#000000',
-    marginBottom: '15px'
-  },
-  mapIframe: {
-    border: '0',
-    borderRadius: '0'
-  },
-  durationContainer: {
-    marginBottom: '20px',
-    padding: '10px 0',
-    borderTop: '1px solid #dee2e6',
-    borderBottom: '1px solid #dee2e6',
-  },
-  durationTitle: {
-    fontSize: '16px',
-    fontWeight: '600',
-    marginBottom: '5px',
-    color: '#212529'
-  },
-  durationText: {
-    fontSize: '16px',
-    fontWeight: '400',
-    color: '#495057',
-    margin: 0
-  },
-  // New styles for inclusions and exclusions
-  inclusionSection: {
-    marginBottom: '15px'
-  },
-  inclusionTitle: {
-    fontSize: '16px',
-    fontWeight: '600',
-    marginBottom: '8px',
-    display: 'flex',
-    alignItems: 'center'
-  },
-  inclusionIcon: {
-    marginRight: '8px',
-    fontSize: '14px'
-  },
-  inclusionList: {
-    listStyleType: 'none',
-    paddingLeft: '10px',
-    marginBottom: '10px'
-  },
-  inclusionItem: {
-    fontSize: '14px',
-    marginBottom: '5px',
-    position: 'relative',
-    paddingLeft: '15px',
-    lineHeight: '1.4',
-    '&:before': {
-      content: '"•"',
-      position: 'absolute',
-      left: '0',
-      color: '#6c757d'
-    }
-  }
-};
+      policyLinksContainer: {
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '10px', 
+      },
+      policyLink: {
+        color: '#212529',
+        textDecoration: 'none',
+        fontSize: '14px',
+        fontWeight: '400',
+        transition: 'color 0.2s ease',
+        display: 'flex',
+        alignItems: 'center',
+        '&:hover': {
+          color: '#dc3545',
+          textDecoration: 'underline',
+        },
+      },      
+      locationTitle: {
+        fontSize: '16px',
+        fontWeight: '500',
+        marginBottom: '10px',
+        color: '#212529'
+      },
+      venueName: {
+        fontSize: '16px',
+        fontWeight: '500',
+        marginBottom: '8px'
+      },
+      venueAddress: {
+        fontSize: '14px',
+        fontWeight: '400',
+        color: '#000000',
+        marginBottom: '15px'
+      },
+      mapIframe: {
+        border: '0',
+        borderRadius: '0'
+      },
+      durationContainer: {
+        marginBottom: '20px',
+        padding: '10px 0',
+        borderTop: '1px solid #dee2e6',
+        borderBottom: '1px solid #dee2e6',
+      },
+      durationTitle: {
+        fontSize: '16px',
+        fontWeight: '600',
+        marginBottom: '5px',
+        color: '#212529'
+      },
+      durationText: {
+        fontSize: '16px',
+        fontWeight: '400',
+        color: '#495057',
+        margin: 0
+      },
+      // Styles for inclusions and exclusions
+      inclusionSection: {
+        marginBottom: '15px'
+      },
+      inclusionTitle: {
+        fontSize: '16px',
+        fontWeight: '600',
+        marginBottom: '8px',
+        display: 'flex',
+        alignItems: 'center'
+      },
+      inclusionIcon: {
+        marginRight: '8px',
+        fontSize: '14px'
+      },
+      inclusionList: {
+        listStyleType: 'none',
+        paddingLeft: '10px',
+        marginBottom: '10px'
+      },
+      inclusionItem: {
+        fontSize: '14px',
+        marginBottom: '5px',
+        position: 'relative',
+        paddingLeft: '15px',
+        lineHeight: '1.4',
+        '&:before': {
+          content: '"•"',
+          position: 'absolute',
+          left: '0',
+          color: '#6c757d'
+        }
+      },
+      // New styles for itinerary
+      itineraryDay: {
+        marginBottom: '20px',
+        paddingBottom: '15px',
+        borderBottom: '1px dashed #dee2e6'
+      },
+      itineraryDayTitle: {
+        fontSize: '18px',
+        fontWeight: '600',
+        marginBottom: '10px',
+        color: '#212529'
+      },
+      itineraryDayDescription: {
+        fontSize: '14px',
+        lineHeight: '1.5',
+        color: '#495057',
+        marginBottom: '10px'
+      },
+      itineraryLocations: {
+        fontSize: '14px',
+        lineHeight: '1.5',
+        color: '#495057',
+        marginBottom: '10px'
+      },
+      itineraryActivities: {
+        marginTop: '10px'
+      },
+      itineraryActivitiesTitle: {
+        fontSize: '14px',
+        fontWeight: '600',
+        marginBottom: '5px'
+      },
+      itineraryActivitiesList: {
+        listStyleType: 'none',
+        paddingLeft: '5px',
+        marginBottom: '0'
+      },
+      itineraryActivityItem: {
+        fontSize: '14px',
+        marginBottom: '5px',
+        position: 'relative',
+        paddingLeft: '15px',
+        lineHeight: '1.4',
+        '&:before': {
+          content: '"•"',
+          position: 'absolute',
+          left: '0',
+          color: '#6c757d'
+        },
 
-export default DetailsCards;
+      }
+    };
+    
+    export default DetailsCards;
+    

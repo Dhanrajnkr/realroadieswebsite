@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Navbar, Container, Nav, Row, Col } from 'react-bootstrap';
 import { useLocation, Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -7,6 +7,8 @@ import rrLogo from '../../assets/images/RealRoadieslogo.png';
 function NavbarSection() {
   const location = useLocation();
   const currentPath = location.pathname;
+  // Add state to track navbar expanded status
+  const [expanded, setExpanded] = useState(false);
 
   // Function to determine if a link is active
   const isActive = (path) => {
@@ -24,12 +26,23 @@ function NavbarSection() {
     };
   };
 
+  // Function to handle link click - close the navbar
+  const handleLinkClick = () => {
+    setExpanded(false);
+  };
+
   return (
     <section id="headernav" style={styles.headerNav}>
       <Container fluid style={styles.container}>
         <Row className="justify-content-center">
           <Col xs={12} md={12} lg={12} xl={12}>
-            <Navbar expand="lg" variant="dark" style={styles.navbar}>
+            <Navbar 
+              expand="lg" 
+              variant="dark" 
+              style={styles.navbar}
+              expanded={expanded}
+              onToggle={(value) => setExpanded(value)}
+            >
               <Navbar.Brand href="/" style={styles.brand}>
                 <img
                   src={rrLogo}
@@ -47,22 +60,25 @@ function NavbarSection() {
                     to="/about" 
                     className="mx-lg-1 px-3 py-2" 
                     style={getLinkStyle('/about')}
+                    onClick={handleLinkClick}
                   >
                     About
-                    </Nav.Link>
+                  </Nav.Link>
                   <Nav.Link 
                     as={Link} 
                     to="/corporateevent" 
                     className="mx-lg-1 px-3 py-2" 
                     style={getLinkStyle('/corporateevent')}
+                    onClick={handleLinkClick}
                   >
                     Corporate Events
-                    </Nav.Link>
+                  </Nav.Link>
                   <Nav.Link 
                     as={Link} 
                     to="/talenthunt" 
                     className="mx-lg-1 px-3 py-2" 
                     style={getLinkStyle('/talenthunt')}
+                    onClick={handleLinkClick}
                   >
                     Talent Hunt
                   </Nav.Link>
@@ -71,15 +87,16 @@ function NavbarSection() {
                     to="/getaways" 
                     className="mx-lg-1 px-3 py-2" 
                     style={getLinkStyle('/getaways')}
+                    onClick={handleLinkClick}
                   >
                     Getaways
-                 
                   </Nav.Link>
                   <Nav.Link 
                     as={Link} 
                     to="/contact" 
                     className="mx-lg-1 px-3 py-2" 
                     style={getLinkStyle('/contact')}
+                    onClick={handleLinkClick}
                   >
                     Contact
                   </Nav.Link>
@@ -94,7 +111,6 @@ function NavbarSection() {
 }
 
 export default NavbarSection;
-
 const styles = {
   headerNav: {
     boxShadow: '0 2px 10px rgba(0, 0, 0, 0.1)',

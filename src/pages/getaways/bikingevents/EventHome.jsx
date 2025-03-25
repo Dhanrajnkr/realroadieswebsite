@@ -115,17 +115,20 @@ const EventHome = () => {
                                   </p>
                                 )}
                               </div> */}
-                              <div style={styles.tourDetailsRow}>
-                                <div style={styles.tourDetails}>
-                                  <span style={styles.tourOrganizer}>Organized by {event.organizer}</span>
-                                </div>
-                                <Button 
-                                  style={styles.tourButton}
-                                  onClick={() => handleNavigateToEventDetails(event.id)}
-                                >
-                                  Starting at ₹{event.price}
-                                </Button>
-                              </div>
+                             <div style={styles.tourDetailsRow}>
+  <div style={styles.tourDetails}>
+    <span style={styles.tourOrganizer}>Organized by {event.organizer}</span>
+  </div>
+  <div style={styles.tourButtonContainer}>
+    <Button 
+      style={styles.tourButton}
+      onClick={() => handleNavigateToEventDetails(event.id)}
+    >
+      Starting at ₹{event.price}
+    </Button>
+  </div>
+</div>
+
                             </div>
                           </div>
                         </div>
@@ -244,9 +247,9 @@ const styles = {
   },
   tourDetailsRow: {
     display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    flexDirection: 'column', // Stack elements vertically
     width: '100%',
+    gap: '10px', // Add space between organizer and button
     marginTop: '10px',
   },
   tourDetails: {
@@ -256,14 +259,22 @@ const styles = {
     fontWeight: '400',
     color: '#a0a0a0',
     margin: 0,
+    width: '100%',
   },
   tourOrganizer: {
     fontSize: '12px',
   },
+  tourButtonContainer: {
+    display: 'flex',
+    justifyContent: 'center', // Center the button
+    width: '100%', // Take full width
+  },
+  
   tourButton: {
     backgroundColor: '#FFDD00',
     color: '#000000',
     fontWeight: '500',
+    width: '100%',
     fontSize: '15px',
     padding: '8px 12px',
     border: 'none',

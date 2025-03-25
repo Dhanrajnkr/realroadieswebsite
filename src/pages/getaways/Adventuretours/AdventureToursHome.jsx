@@ -88,14 +88,17 @@ const handleNavigateToTripsDetails = (id) => {
                                 </h4>
                               </div>
                               <div style={styles.tourDetailsRow}>
-                                <div style={styles.tourDetails}>
-                                  <span style={styles.tourOrganizer}>Organized by {tour.organized_by}</span>
-                                </div>
-                                <Button style={styles.tourButton} 
-                                onClick={() => handleNavigateToTripsDetails(tour._id)}>
-                                  Starting at ₹{calculatePrice(tour.starting_market_price, tour.discount_starts)}
-                                </Button>
-                              </div>
+  <div style={styles.tourDetails}>
+    <span style={styles.tourOrganizer}>Organized by {tour.organized_by}</span>
+  </div>
+  <div style={styles.tourButtonContainer}>
+    <Button style={styles.tourButton} 
+      onClick={() => handleNavigateToTripsDetails(tour._id)}>
+      Starting at ₹{calculatePrice(tour.starting_market_price, tour.discount_starts)}
+    </Button>
+  </div>
+</div>
+
                             </div>
                           </div>
                         </div>
@@ -187,9 +190,9 @@ const styles = {
   },
   tourDetailsRow: {
     display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    flexDirection: 'column', // Stack elements vertically
     width: '100%',
+    gap: '10px', // Add space between organizer and button
   },
   tourDetails: {
     display: 'flex',
@@ -198,16 +201,23 @@ const styles = {
     fontWeight: '400',
     color: '#a0a0a0',
     margin: 0,
+    width: '100%',
   },
   tourOrganizer: {
     fontSize: '12px',
+  },
+  tourButtonContainer: {
+    display: 'flex',
+    justifyContent: 'center', // Center the button
+    width: '100%', // Take full width
   },
   tourButton: {
     backgroundColor: '#FFDD00',
     color: '#000000',
     fontWeight: '500',
+    width: '100%', // Take full width
     fontSize: '15px',
-    padding: '8px 12px',
+    padding: '8px 20px',
     border: 'none',
     borderRadius: 0,
     cursor: 'pointer',

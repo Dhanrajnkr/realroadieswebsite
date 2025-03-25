@@ -155,16 +155,50 @@ const Details = () => {
     return tags.slice(0, 3).join(' ');
   };
 
-  // Format inclusions/exclusions for display
+  // Format inclusions/exclusions/itinerary for display
   const formatListItems = (items) => {
     if (!items || !items.length) return [];
     
-    // If the items are in a single string separated by commas, split them
-    if (items.length === 1 && items[0].includes(',')) {
+    // If items is a string, try to parse it
+    if (typeof items === 'string') {
+      try {
+        // Try to parse as JSON first
+        const parsed = JSON.parse(items);
+        return Array.isArray(parsed) ? parsed : [items];
+      } catch (e) {
+        // If not JSON, split by commas if it contains commas
+        return items.includes(',') ? items.split(',').map(item => item.trim()) : [items];
+      }
+    }
+    
+    // If the items are already an array but with a single string containing commas
+    if (items.length === 1 && typeof items[0] === 'string' && items[0].includes(',')) {
       return items[0].split(',').map(item => item.trim());
     }
     
     return items;
+  };
+
+  // Check for alternative field names for itinerary data
+  const getItineraryData = (data) => {
+    if (!data) return [];
+    
+    // Check various possible field names
+    const possibleFields = ['itinerary', 'itineraries', 'day_wise_itinerary', 'trip_itinerary', 'schedule'];
+    
+    for (const field of possibleFields) {
+      if (data[field] && (Array.isArray(data[field]) || typeof data[field] === 'string')) {
+        console.log(`Found itinerary data in field: ${field}`, data[field]);
+        return formatListItems(data[field]);
+      }
+    }
+    
+    // If we have a nested data structure, try to find itinerary there
+    if (data.details && typeof data.details === 'object') {
+      return getItineraryData(data.details);
+    }
+    
+    return [];
   };
 
   if (loading) {
@@ -210,7 +244,7 @@ const Details = () => {
       <Container fluid style={styles.container}>
         <Row className="justify-content-center">
           <Col xs={12} md={10} lg={10} xl={8}>
-            <div style={styles.errorContainer}>
+          <div style={styles.errorContainer}>
               <h3 style={styles.errorText}>Details not found</h3>
               <Button 
                 variant="outline-dark" 
@@ -234,474 +268,440 @@ const Details = () => {
                   (itemType === 'trip' ? "../src/assets/images/ab1.png" : "../src/assets/images/event1.png");
  
   // Get the contact phone
-  // const contactPhone = itemData.contact_phone || '919999999999';
+  const contactPhone = itemData.contact_phone || '919999999999';
  
-   // Get the price information with discount calculation for trips
-   let displayPrice;
-   let originalPrice;
-   let discountPercentage;
+  // Get the price information with discount calculation for trips
+  let displayPrice;
+  let originalPrice;
+  let discountPercentage;
    
-   if (itemType === 'trip') {
-     const basePrice = itemData.starting_market_price || 'Contact for price';
-     const discount = itemData.discount_starts;
+  if (itemType === 'trip') {
+    const basePrice = itemData.starting_market_price || 'Contact for price';
+    const discount = itemData.discount_starts;
      
-     if (typeof basePrice === 'number' && typeof discount === 'number' && discount > 0) {
-       const discountedPrice = calculateDiscountedPrice(basePrice, discount);
-       displayPrice = `₹ ${discountedPrice}`;
-       originalPrice = basePrice;
-       discountPercentage = discount;
-     } else {
-       displayPrice = `₹ ${basePrice}`;
-     }
-   } else {
-     displayPrice = `₹ ${itemData.price || 'Contact for price'}`;
-   }
+    if (typeof basePrice === 'number' && typeof discount === 'number' && discount > 0) {
+      const discountedPrice = calculateDiscountedPrice(basePrice, discount);
+      displayPrice = `₹ ${discountedPrice}`;
+      originalPrice = basePrice;
+      discountPercentage = discount;
+    } else {
+      displayPrice = `₹ ${basePrice}`;
+    }
+  } else {
+    displayPrice = `₹ ${itemData.price || 'Contact for price'}`;
+  }
   
-   // Get the location/address - check multiple possible fields for trips
-   const locationAddress = itemType === 'trip'
-     ? (itemData.meetup_point_name || itemData.location || itemData.destination || itemData.trip_location || itemData.address || 'Location not specified')
-     : (itemData.address || itemData.location || itemData.venue || 'Address not specified');
+  // Get the location/address - check multiple possible fields for trips
+  const locationAddress = itemType === 'trip'
+    ? (itemData.meetup_point_name || itemData.location || itemData.destination || itemData.trip_location || itemData.address || 'Location not specified')
+    : (itemData.address || itemData.location || itemData.venue || 'Address not specified');
+ 
+  // Get the organizer
+  const organizer = itemType === 'trip'
+    ? (itemData.organized_by || 'Organizer not specified')
+    : (itemData.organizer || 'Organizer not specified');
+ 
+  // Get the description for DetailsCards
+  const description = itemData.description || '';
+
+  // Format inclusions and exclusions
+  const inclusions = formatListItems(itemData.inclusions || []);
+  const exclusions = formatListItems(itemData.exclusions || []);
   
-   // Get the organizer
-   const organizer = itemType === 'trip'
-     ? (itemData.organized_by || 'Organizer not specified')
-     : (itemData.organizer || 'Organizer not specified');
+  // Get itinerary data using the helper function
+  const itinerary = getItineraryData(itemData);
   
-   // Get the description for DetailsCards
-   const description = itemData.description || '';
- 
-   // Format inclusions and exclusions
-   const inclusions = formatListItems(itemData.inclusions || []);
-   const exclusions = formatListItems(itemData.exclusions || []);
- 
-   return (
-     <>
-       <Container fluid style={styles.container}>
-         <Row className="justify-content-center">
-           <Col xs={12} md={10} lg={10} xl={10}>
-             <div style={styles.card}>
-               <div style={styles.imageContainer}>
-                 <img
-                   src={imageUrl}
-                   alt={title}
-                   style={styles.image}
-                   onError={(e) => {
-                     e.target.src = itemType === 'trip'
-                       ? "../src/assets/images/ab1.png"
-                       : "../src/assets/images/event1.png";
-                   }}
-                 />
-                 {/* {itemType === 'trip' && itemData.is_sponsored && (
-                   <div style={styles.sponsoredBadge}>
-                     Sponsored
-                   </div>
-                 )} */}
-                 {itemType === 'event' && itemData.level && (
-                   <div style={styles.levelBadge}>
-                     {formatLevel(itemData.level)}
-                   </div>
-                 )}
-               </div>
-               <div style={styles.cardBody}>
-                 {/* Header with title and button side by side */}
-                 <div style={styles.cardHeader}>
-                   <div style={styles.titleContainer}>
-                     <h5 style={styles.title}>{title}</h5>
-                     <p style={styles.tags}>
-                       {generateHashtags(itemData)}
-                     </p>
-                   </div>
-                   <Button
-                     style={styles.button}
-                     onClick={() => window.open(`https://wa.me/${contactPhone}?text=I'm interested in the ${title} ${itemType}`, '_blank')}
-                   >
-                     Book Now
-                   </Button>
-                 </div>
-                
-                 {/* Price section with discount if applicable */}
-                 <div style={styles.priceSection}>
-                   <h5 style={styles.price}>
-                     {displayPrice} <span style={styles.priceLabel}>Onwards</span>
-                    
-                   </h5>
-                   {/* {originalPrice && discountPercentage && (
-                     <div style={styles.discountContainer}>
-                       <span style={styles.originalPrice}>₹ {originalPrice} </span>
-                       <Badge style={styles.discountBadge}>{discountPercentage}% OFF</Badge>
-                     </div>
-                   )} */}
-                 </div>
- 
-                 {/* Main info section */}
-                 <div style={styles.infoSection}>
-                   <Row className="g-0" style={styles.infoRow}>
-                     <Col xs={12} md={6} style={styles.infoItem}>
-                       <FontAwesomeIcon icon={faCalendarAlt} style={styles.icon} />
-                       <div style={styles.infoContent}>
-                         <span style={styles.infoLabel}>Date</span>
-                         <span style={styles.infoText}>
-                           {itemType === 'trip'
-                             ? (itemData.start_date ? formatDate(itemData.start_date) : 'Flexible dates')
-                             : (formatDate(itemData.start_date) + (itemData.is_multiple_days ? ` - ${formatDate(itemData.end_date)}` : ''))}
-                         </span>
-                       </div>
-                     </Col>
-                    
-                     <Col xs={12} md={6} style={styles.infoItem}>
-                       <FontAwesomeIcon icon={faClock} style={styles.icon} />
-                       <div style={styles.infoContent}>
-                         <span style={styles.infoLabel}>{itemType === 'trip' ? 'Duration' : 'Time'}</span>
-                         <span style={styles.infoText}>
-                           {itemType === 'trip'
-                             ? (itemData.duration || 'Duration not specified')
-                             : (itemData.timings || 'Flexible')}
-                         </span>
-                       </div>
-                     </Col>
-                   </Row>
- 
-                   <Row className="g-0" style={styles.infoRow}>
-                     <Col xs={12} md={6} style={styles.infoItem}>
-                       <FontAwesomeIcon icon={faMapMarkerAlt} style={styles.icon} />
-                       <div style={styles.infoContent}>
-                         <span style={styles.infoLabel}>{itemType === 'trip' ? 'Meetup Point' : 'Location'}</span>
-                         <span style={styles.infoText}>{locationAddress}</span>
-                       </div>
-                     </Col>
-                    
-                     <Col xs={12} md={6} style={styles.infoItem}>
-                       <FontAwesomeIcon icon={faUser} style={styles.icon} />
-                       <div style={styles.infoContent}>
-                         <span style={styles.infoLabel}>Organized by</span>
-                         <span style={styles.infoText}>{organizer}</span>
-                       </div>
-                     </Col>
-                   </Row>
- 
-                   {/* Trip-specific details */}
-                   {itemType === 'trip' && (
-                     <>
-                       {/* Meetup details */}
-                       {itemData.meetup_time && (
-                         <Row className="g-0" style={styles.infoRow}>
-                           <Col xs={12} md={6} style={styles.infoItem}>
-                             <FontAwesomeIcon icon={faClock} style={styles.icon} />
-                             <div style={styles.infoContent}>
-                               <span style={styles.infoLabel}>Meetup Time</span>
-                               <span style={styles.infoText}>{formatTime(itemData.meetup_time)}</span>
-                             </div>
-                           </Col>
-                           
-                           {itemData.terraintype && (
-                             <Col xs={12} md={6} style={styles.infoItem}>
-                               <FontAwesomeIcon icon={faMountain} style={styles.icon} />
-                               <div style={styles.infoContent}>
-                                 <span style={styles.infoLabel}>Terrain</span>
-                                 <span style={styles.infoText}>{itemData.terraintype}</span>
-                               </div>
-                             </Col>
-                           )}
-                         </Row>
-                       )}
- 
-                       {/* Route information
-                       {(itemData.start_location_name || itemData.end_location_name || itemData.total_kms) && (
-                         <Row className="g-0" style={styles.infoRow}>
-                           {(itemData.start_location_name && itemData.end_location_name) && (
-                             <Col xs={12} md={6} style={styles.infoItem}>
-                               <FontAwesomeIcon icon={faMapMarkedAlt} style={styles.icon} />
-                               <div style={styles.infoContent}>
-                                 <span style={styles.infoLabel}>Route</span>
-                                 <span style={styles.infoText}>
-                                   {itemData.start_location_name} <FontAwesomeIcon icon={faArrowRight} style={styles.routeArrow} /> {itemData.end_location_name}
-                                 </span>
-                               </div>
-                             </Col>
-                           )}
-                           
-                           {itemData.total_kms && (
-                             <Col xs={12} md={6} style={styles.infoItem}>
-                               <FontAwesomeIcon icon={faRoad} style={styles.icon} />
-                               <div style={styles.infoContent}>
-                                 <span style={styles.infoLabel}>Distance</span>
-                                 <span style={styles.infoText}>{itemData.total_kms} km</span>
-                               </div>
-                             </Col>
-                           )}
-                         </Row>
-                       )} */}
- 
-                       {/* Capacity information */}
-                       {(itemData.total_seats || itemData.available_seats) && (
-                         <Row className="g-0" style={styles.infoRow}>
-                           <Col xs={12} style={styles.infoItem}>
-                             <FontAwesomeIcon icon={faUsers} style={styles.icon} />
-                             <div style={styles.infoContent}>
-                               <span style={styles.infoLabel}>Capacity</span>
-                               <span style={styles.infoText}>
-                                 <Badge style={styles.availabilityBadge}>
-                                   {itemData.available_seats || 0} seats available
-                                 </Badge> 
-                                 {/* out of {itemData.total_seats || 0} total seats */}
-                               </span>
-                             </div>
-                           </Col>
-                         </Row>
-                       )}
-                     </>
-                   )}
-                 </div>
-               </div>
-             </div>
-           </Col>
-         </Row>
-       </Container>
-       <DetailsCards 
-         eventDescription={description} 
-         eventAddress={locationAddress} 
-         eventType={itemType}
-         eventDuration={itemData.duration}
-         eventInclusions={itemType === 'trip' ? inclusions : []}
-         eventExclusions={itemType === 'trip' ? exclusions : []}
-       />
-     </>
-   );
- };
- 
- // Enhanced styles with improved visual hierarchy and responsiveness
- const styles = {
-   container: {
-     backgroundColor: '#000000',
-     minHeight: '50vh',
-     paddingLeft: '15px',
-     paddingRight: '15px',
-     paddingTop: '10px',
-     paddingBottom: '10px'
-   },
-   card: {
-     backgroundColor: '#ffffff',
-     overflow: 'hidden',
-     border: 'none',
-     borderRadius: '0px',
-     transition: 'transform 0.3s ease',
-     maxWidth: '100%',
-     boxShadow: '0 4px 20px rgba(0,0,0,0.15)'
-   },
-   imageContainer: {
-     width: '100%',
-     height: '350px',
-     overflow: 'hidden',
-     position: 'relative'
-   },
-   image: {
-     width: '100%',
-     height: '100%',
-     objectFit: 'cover',
-     transition: 'transform 0.5s ease'
-   },
-   sponsoredBadge: {
-     position: 'absolute',
-     top: '15px',
-     left: '15px',
-     backgroundColor: 'rgba(255, 221, 0, 0.9)',
-     color: '#000',
-     padding: '5px 10px',
-     borderRadius: '4px',
-     fontSize: '12px',
-     fontWeight: '600',
-     textTransform: 'uppercase',
-     letterSpacing: '1px'
-   },
-   levelBadge: {
-     position: 'absolute',
-     top: '15px',
-     left: '15px',
-     backgroundColor: 'rgba(40, 167, 69, 0.9)',
-     color: 'white',
-     padding: '5px 10px',
-     borderRadius: '4px',
-     fontSize: '12px',
-     fontWeight: '600',
-     textTransform: 'uppercase',
-     letterSpacing: '1px'
-   },
-   cardBody: {
-     padding: '1.8rem',
-     position: 'relative'
-   },
-   cardHeader: {
-     display: 'flex',
-     justifyContent: 'space-between',
-     alignItems: 'flex-start',
-     marginBottom: '10px',
-     flexWrap: 'wrap',
-     gap: '15px'
-   },
-   titleContainer: {
-     flex: '1 1 auto'
-   },
-   title: {
-     fontSize: '26px',
-     fontWeight: '500',
-     color: '#212529',
-     margin: '0 0 8px 0',
-     lineHeight: '1.2'
-   },
-   tags: {
-     color: '#6c757d',
-     fontSize: '14px',
-     fontWeight: '500',
-     margin: 0
-   },
-   priceSection: {
-     marginBottom: '10px',
-     borderRadius: '6px',
-     display: 'flex',
-     justifyContent: 'space-between',
-     alignItems: 'center',
-     flexWrap: 'wrap',
-   },
-   price: {
-     fontSize: '20px',
-     fontWeight: '500',
-     color: '#000000',
-     margin: 0
-   },
-   priceLabel: {
-     fontSize: '14px',
-     fontWeight: '400',
-     color: '#6c757d'
-   },
-   discountContainer: {
-     display: 'flex',
-     alignItems: 'center',
-     gap: '10px'
-   },
-   originalPrice: {
-     fontSize: '12px',
-     fontWeight: '400',
-     color: '#6c757d',
-     textDecoration: 'line-through'
-   },
-   discountBadge: {
-    //  backgroundColor: '#dc3545',
-     color: 'white',
-     padding: '5px 8px',
-     borderRadius: '0px',
-     fontSize: '10px',
-     fontWeight: '600'
-   },
-   infoSection: {
-     borderTop: '1px solid #e9ecef',
-     paddingTop: '1px'
-   },
-   infoRow: {
-     marginBottom: '0px',
-     marginLeft: 0,
-     marginRight: 0,
-   },
-   infoItem: {
-     display: 'flex',
-     alignItems: 'flex-start',
-     padding: '8px 15px 8px 0',
-   },
-   icon: {
-     marginRight: '12px',
-     color: '#495057',
-     width: '16px',
-     fontSize: '18px',
-     marginTop: '4px'
-   },
-   routeArrow: {
-     fontSize: '12px',
-     margin: '0 5px'
-   },
-   infoContent: {
-     display: 'flex',
-     flexDirection: 'column'
-   },
-   infoLabel: {
-     fontSize: '12px',
-     fontWeight: '600',
-     color: '#6c757d',
-     textTransform: 'uppercase',
-     marginBottom: '4px'
-   },
-   infoText: {
-     fontSize: '16px',
-     fontWeight: '500',
-     color: '#212529',
-     lineHeight: '1.4'
-   },
-   availabilityBadge: {
-     backgroundColor: '#28a745',
-     color: 'white',
-     padding: '4px 8px',
-     borderRadius: '4px',
-     fontSize: '12px',
-     fontWeight: '600'
-   },
-   button: {
-     backgroundColor: '#FFDD00',
-     color: '#000',
-     border: 'none',
-     padding: '10px 20px',
-     fontSize: '16px',
-     fontWeight: '600',
-     cursor: 'pointer',
-     transition: 'all 0.3s ease',
-     borderRadius: '0px',
-     boxShadow: '0 2px 5px rgba(0,0,0,0.1)',
-     '&:hover': {
-       backgroundColor: '#e6c700',
-       transform: 'translateY(-2px)',
-       boxShadow: '0 4px 8px rgba(0,0,0,0.15)'
-     }
-   },
-   loadingContainer: {
-    //  backgroundColor: '#ffffff',
-     padding: '50px 20px',
-     textAlign: 'center',
-     borderRadius: '8px',
-     boxShadow: '0 4px 20px rgba(0,0,0,0.15)'
-   },
-   spinner: {
-     color: '#FFDD00',
-     width: '3rem',
-     height: '3rem',
-     marginBottom: '20px'
-   },
-   loadingText: {
-     color: '#6c757d',
-     fontSize: '20px',
-     fontWeight: '500'
-   },
-   errorContainer: {
-     backgroundColor: '#ffffff',
-     padding: '50px 20px',
-     textAlign: 'center',
-     borderRadius: '8px',
-     boxShadow: '0 4px 20px rgba(0,0,0,0.15)'
-   },
-   errorText: {
-    color: '#dc3545',
-    fontSize: '20px',
-    marginBottom: '20px'
+  // Debug logs
+  console.log('Itinerary data from API:', itemData.itinerary);
+  console.log('Formatted itinerary:', itinerary);
+
+  return (
+    <>
+      <Container fluid style={styles.container}>
+        <Row className="justify-content-center">
+          <Col xs={12} md={10} lg={10} xl={10}>
+            <div style={styles.card}>
+              <div style={styles.imageContainer}>
+                <img
+                  src={imageUrl}
+                  alt={title}
+                  style={styles.image}
+                  onError={(e) => {
+                    e.target.src = itemType === 'trip'
+                      ? "../src/assets/images/ab1.png"
+                      : "../src/assets/images/event1.png";
+                  }}
+                />
+                {itemType === 'event' && itemData.level && (
+                  <div style={styles.levelBadge}>
+                    {formatLevel(itemData.level)}
+                  </div>
+                )}
+              </div>
+              <div style={styles.cardBody}>
+                {/* Header with title and button side by side */}
+                <div style={styles.cardHeader}>
+                  <div style={styles.titleContainer}>
+                    <h5 style={styles.title}>{title}</h5>
+                    <p style={styles.tags}>
+                      {generateHashtags(itemData)}
+                    </p>
+                  </div>
+                  <Button
+                    style={styles.button}
+                    onClick={() => window.open(`https://wa.me/${contactPhone}?text=I'm interested in the ${title} ${itemType}`, '_blank')}
+                  >
+                    Book Now
+                  </Button>
+                </div>
+               
+                {/* Price section with discount if applicable */}
+                <div style={styles.priceSection}>
+                  <h5 style={styles.price}>
+                    {displayPrice} <span style={styles.priceLabel}>Onwards</span>
+                  </h5>
+                </div>
+
+                {/* Main info section */}
+                <div style={styles.infoSection}>
+                  <Row className="g-0" style={styles.infoRow}>
+                    <Col xs={12} md={6} style={styles.infoItem}>
+                      <FontAwesomeIcon icon={faCalendarAlt} style={styles.icon} />
+                      <div style={styles.infoContent}>
+                        <span style={styles.infoLabel}>Date</span>
+                        <span style={styles.infoText}>
+                          {itemType === 'trip'
+                            ? (itemData.start_date ? formatDate(itemData.start_date) : 'Flexible dates')
+                            : (formatDate(itemData.start_date) + (itemData.is_multiple_days ? ` - ${formatDate(itemData.end_date)}` : ''))}
+                        </span>
+                      </div>
+                    </Col>
+                   
+                    <Col xs={12} md={6} style={styles.infoItem}>
+                      <FontAwesomeIcon icon={faClock} style={styles.icon} />
+                      <div style={styles.infoContent}>
+                        <span style={styles.infoLabel}>{itemType === 'trip' ? 'Duration' : 'Time'}</span>
+                        <span style={styles.infoText}>
+                          {itemType === 'trip'
+                            ? (itemData.duration || 'Duration not specified')
+                            : (itemData.timings || 'Flexible')}
+                        </span>
+                      </div>
+                    </Col>
+                  </Row>
+
+                  <Row className="g-0" style={styles.infoRow}>
+                    <Col xs={12} md={6} style={styles.infoItem}>
+                      <FontAwesomeIcon icon={faMapMarkerAlt} style={styles.icon} />
+                      <div style={styles.infoContent}>
+                        <span style={styles.infoLabel}>{itemType === 'trip' ? 'Meetup Point' : 'Location'}</span>
+                        <span style={styles.infoText}>{locationAddress}</span>
+                      </div>
+                    </Col>
+                   
+                    <Col xs={12} md={6} style={styles.infoItem}>
+                      <FontAwesomeIcon icon={faUser} style={styles.icon} />
+                      <div style={styles.infoContent}>
+                        <span style={styles.infoLabel}>Organized by</span>
+                        <span style={styles.infoText}>{organizer}</span>
+                      </div>
+                    </Col>
+                  </Row>
+
+                  {/* Trip-specific details */}
+                  {itemType === 'trip' && (
+                    <>
+                      {/* Meetup details */}
+                      {itemData.meetup_time && (
+                        <Row className="g-0" style={styles.infoRow}>
+                          <Col xs={12} md={6} style={styles.infoItem}>
+                            <FontAwesomeIcon icon={faClock} style={styles.icon} />
+                            <div style={styles.infoContent}>
+                              <span style={styles.infoLabel}>Meetup Time</span>
+                              <span style={styles.infoText}>{formatTime(itemData.meetup_time)}</span>
+                            </div>
+                          </Col>
+                          
+                          {itemData.terraintype && (
+                            <Col xs={12} md={6} style={styles.infoItem}>
+                              <FontAwesomeIcon icon={faMountain} style={styles.icon} />
+                              <div style={styles.infoContent}>
+                                <span style={styles.infoLabel}>Terrain</span>
+                                <span style={styles.infoText}>{itemData.terraintype}</span>
+                              </div>
+                            </Col>
+                          )}
+                        </Row>
+                      )}
+
+                      {/* Capacity information */}
+                      {(itemData.total_seats || itemData.available_seats) && (
+                        <Row className="g-0" style={styles.infoRow}>
+                          <Col xs={12} style={styles.infoItem}>
+                            <FontAwesomeIcon icon={faUsers} style={styles.icon} />
+                            <div style={styles.infoContent}>
+                              <span style={styles.infoLabel}>Capacity</span>
+                              <span style={styles.infoText}>
+                                <Badge style={styles.availabilityBadge}>
+                                  {itemData.available_seats || 0} seats available
+                                </Badge> 
+                              </span>
+                            </div>
+                          </Col>
+                        </Row>
+                      )}
+                    </>
+                  )}
+                </div>
+              </div>
+            </div>
+          </Col>
+        </Row>
+      </Container>
+      <DetailsCards 
+        eventDescription={description} 
+        eventAddress={locationAddress} 
+        eventType={itemType}
+        eventDuration={itemData.duration}
+        eventInclusions={itemType === 'trip' ? inclusions : []}
+        eventExclusions={itemType === 'trip' ? exclusions : []}
+        eventItinerary={itemType === 'trip' ? itinerary : []}
+      />
+    </>
+  );
+};
+
+// Enhanced styles with improved visual hierarchy and responsiveness
+const styles = {
+  container: {
+    backgroundColor: '#000000',
+    minHeight: '50vh',
+    paddingLeft: '15px',
+    paddingRight: '15px',
+    paddingTop: '10px',
+    paddingBottom: '10px'
   },
-  retryButton: {
-    backgroundColor: 'transparent',
+  card: {
+    backgroundColor: '#ffffff',
+    overflow: 'hidden',
+    border: 'none',
+    borderRadius: '0px',
+    transition: 'transform 0.3s ease',
+    maxWidth: '100%',
+    boxShadow: '0 4px 20px rgba(0,0,0,0.15)'
+  },
+  imageContainer: {
+    width: '100%',
+    height: '350px',
+    overflow: 'hidden',
+    position: 'relative'
+  },
+  image: {
+    width: '100%',
+    height: '100%',
+    objectFit: 'cover',
+    transition: 'transform 0.5s ease'
+  },
+  sponsoredBadge: {
+    position: 'absolute',
+    top: '15px',
+    left: '15px',
+    backgroundColor: 'rgba(255, 221, 0, 0.9)',
+    color: '#000',
+    padding: '5px 10px',
+    borderRadius: '4px',
+    fontSize: '12px',
+    fontWeight: '600',
+    textTransform: 'uppercase',
+    letterSpacing: '1px'
+  },
+  levelBadge: {
+    position: 'absolute',
+    top: '15px',
+    left: '15px',
+    backgroundColor: 'rgba(40, 167, 69, 0.9)',
+    color: 'white',
+    padding: '5px 10px',
+    borderRadius: '4px',
+    fontSize: '12px',
+    fontWeight: '600',
+    textTransform: 'uppercase',
+    letterSpacing: '1px'
+  },
+  cardBody: {
+    padding: '1.8rem',
+    position: 'relative'
+  },
+  cardHeader: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'flex-start',
+    marginBottom: '10px',
+    flexWrap: 'wrap',
+    gap: '15px'
+  },
+  titleContainer: {
+    flex: '1 1 auto'
+  },
+  title: {
+    fontSize: '26px',
+    fontWeight: '500',
     color: '#212529',
-    borderColor: '#212529',
-    padding: '8px 20px',
+    margin: '0 0 8px 0',
+    lineHeight: '1.2'
+  },
+  tags: {
+    color: '#6c757d',
+    fontSize: '14px',
+    fontWeight: '500',
+    margin: 0
+  },
+  priceSection: {
+    marginBottom: '10px',
+    borderRadius: '6px',
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    flexWrap: 'wrap',
+  },
+  price: {
+    fontSize: '20px',
+    fontWeight: '500',
+    color: '#000000',
+    margin: 0
+  },
+  priceLabel: {
+    fontSize: '14px',
+    fontWeight: '400',
+    color: '#6c757d'
+  },
+  discountContainer: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '10px'
+  },
+  originalPrice: {
+    fontSize: '12px',
+    fontWeight: '400',
+    color: '#6c757d',
+    textDecoration: 'line-through'
+  },
+  discountBadge: {
+    color: 'white',
+    padding: '5px 8px',
+    borderRadius: '0px',
+    fontSize: '10px',
+    fontWeight: '600'
+  },
+  infoSection: {
+    borderTop: '1px solid #e9ecef',
+    paddingTop: '1px'
+  },
+  infoRow: {
+    marginBottom: '0px',
+    marginLeft: 0,
+    marginRight: 0,
+  },
+  infoItem: {
+    display: 'flex',
+    alignItems: 'flex-start',
+    padding: '8px 15px 8px 0',
+  },
+  icon: {
+    marginRight: '12px',
+    color: '#495057',
+    width: '16px',
+    fontSize: '18px',
+    marginTop: '4px'
+  },
+  routeArrow: {
+    fontSize: '12px',
+    margin: '0 5px'
+  },
+  infoContent: {
+    display: 'flex',
+    flexDirection: 'column'
+  },
+  infoLabel: {
+    fontSize: '12px',
+    fontWeight: '600',
+    color: '#6c757d',
+    textTransform: 'uppercase',
+    marginBottom: '4px'
+  },
+  infoText: {
     fontSize: '16px',
     fontWeight: '500',
-    borderRadius: '0px',
+    color: '#212529',
+    lineHeight: '1.4'
+  },
+  availabilityBadge: {
+    backgroundColor: '#28a745',
+    color: 'white',
+    padding: '4px 8px',
+    borderRadius: '4px',
+    fontSize: '12px',
+    fontWeight: '600'
+  },
+  button: {
+    backgroundColor: '#FFDD00',
+    color: '#000',
+    border: 'none',
+    padding: '10px 20px',
+    fontSize: '16px',
+    fontWeight: '600',
+    cursor: 'pointer',
     transition: 'all 0.3s ease',
+    borderRadius: '0px',
+    boxShadow: '0 2px 5px rgba(0,0,0,0.1)',
     '&:hover': {
-      backgroundColor: '#212529',
-      color: '#ffffff'
+      backgroundColor: '#e6c700',
+      transform: 'translateY(-2px)',
+      boxShadow: '0 4px 8px rgba(0,0,0,0.15)'
     }
+  },
+  loadingContainer: {
+    padding: '50px 20px',
+    textAlign: 'center',
+    borderRadius: '8px',
+    boxShadow: '0 4px 20px rgba(0,0,0,0.15)'
+  },
+  spinner: {
+    color: '#FFDD00',
+    width: '3rem',
+    height: '3rem',
+    marginBottom: '20px'
+  },
+  loadingText: {
+    color: '#6c757d',
+    fontSize: '20px',
+    fontWeight: '500'
+  },
+  errorContainer: {
+    backgroundColor: '#ffffff',
+    padding: '50px 20px',
+    textAlign: 'center',
+    borderRadius: '8px',
+    boxShadow: '0 4px 20px rgba(0,0,0,0.15)'
+  },
+  errorText: {
+   color: '#dc3545',
+   fontSize: '20px',
+   marginBottom: '20px'
+  },
+  retryButton: {
+   backgroundColor: 'transparent',
+   color: '#212529',
+   borderColor: '#212529',
+   padding: '8px 20px',
+   fontSize: '16px',
+   fontWeight: '500',
+   borderRadius: '0px',
+   transition: 'all 0.3s ease',
+   '&:hover': {
+     backgroundColor: '#212529',
+     color: '#ffffff'
+   }
   }
 };
 
