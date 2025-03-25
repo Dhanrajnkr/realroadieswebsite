@@ -78,67 +78,61 @@ const EventHome = () => {
                 </div>
               ) : (
                 <Row className="g-4">
-                  {allEvents.length > 0 ? (
-                    allEvents.map((event) => (
-                      <Col md={6} key={event.id}>
-                        <div style={styles.tourCard}>
-                          <div style={styles.imageContainer}>
-                            <img
-                              src={event.primary_image?.link_url || "../src/assets/images/ab1.png"}
-                              alt={event.title}
-                              style={styles.tourImage}
-                              onError={(e) => {
-                                e.target.src = "../src/assets/images/ab1.png";
-                              }}
-                            />
-                          </div>
-                          <div style={styles.tourContent}>
-                            <div style={styles.tourInfo}>
-                              <div style={styles.titleContainer}>
-                                <h4 style={styles.tourTitle}>
-                                  {event.title} | <span style={styles.tourDays}>{formatLevel(event.level)}</span>
-                                </h4>
-                              </div>
-                              {/* <div style={styles.eventDetails}>
-                                <p style={styles.eventDate}>
-                                  <span style={styles.eventLabel}>Date:</span> {formatDate(event.start_date)}
-                                </p>
-                                <p style={styles.eventTime}>
-                                  <span style={styles.eventLabel}>Time:</span> {event.timings}
-                                </p>
-                                <p style={styles.eventLocation}>
-                                  <span style={styles.eventLabel}>Location:</span> {event.address}
-                                </p>
-                                {event.is_multiple_days && (
-                                  <p style={styles.eventMultiDay}>
-                                    <span style={styles.eventLabel}>Duration:</span> Multiple days
-                                  </p>
-                                )}
-                              </div> */}
-                             <div style={styles.tourDetailsRow}>
-  <div style={styles.tourDetails}>
-    <span style={styles.tourOrganizer}>Organized by {event.organizer}</span>
-  </div>
-  <div style={styles.tourButtonContainer}>
-    <Button 
-      style={styles.tourButton}
-      onClick={() => handleNavigateToEventDetails(event.id)}
-    >
-      Starting at ₹{event.price}
-    </Button>
-  </div>
-</div>
+                 {allEvents.length > 0 ? (
+  allEvents.map((event) => (
+    <Col md={6} key={event.id}>
+      <div 
+        style={{
+          ...styles.tourCard,
+          cursor: 'pointer' // Add pointer cursor to indicate clickability
+        }}
+        onClick={() => handleNavigateToEventDetails(event.id)}
+      >
+        <div style={styles.imageContainer}>
+          <img
+            src={event.primary_image?.link_url || "../src/assets/images/ab1.png"}
+            alt={event.title}
+            style={styles.tourImage}
+            onError={(e) => {
+              e.target.src = "../src/assets/images/ab1.png";
+            }}
+          />
+        </div>
+        <div style={styles.tourContent}>
+          <div style={styles.tourInfo}>
+            <div style={styles.titleContainer}>
+              <h4 style={styles.tourTitle}>
+                {event.title} | <span style={styles.tourDays}>{formatLevel(event.level)}</span>
+              </h4>
+            </div>
+            <div style={styles.tourDetailsRow}>
+              <div className="d-flex flex-column flex-sm-row justify-content-between  w-100">
+                <div className="text-start text-sm-start mb-2 mb-sm-0">
+                  <span style={styles.tourOrganizer} className='text-start'>Organized by {event.organizer}</span>
+                </div>
+                
+                <Button 
+                  style={styles.tourButton} 
+                  onClick={(e) => {
+                    e.stopPropagation(); // Prevent the card's onClick from triggering
+                    handleNavigateToEventDetails(event.id);
+                  }}
+                >
+                  Starting at ₹{event.price}
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </Col>
+  ))
+) : (
+  <Col className="text-center">
+    <p style={styles.noEvents}>No events available at the moment.</p>
+  </Col>
+)}
 
-                            </div>
-                          </div>
-                        </div>
-                      </Col>
-                    ))
-                  ) : (
-                    <Col className="text-center">
-                      <p style={styles.noEvents}>No events available at the moment.</p>
-                    </Col>
-                  )}
                 </Row>
               )}
             </Col>
@@ -191,7 +185,7 @@ const styles = {
   tourImage: {
     width: '100%',
     height: '100%',
-    objectFit: 'fill',
+    objectFit: 'fit',
     transition: 'transform 0.3s ease',
   },
   tourContent: {
@@ -247,9 +241,7 @@ const styles = {
   },
   tourDetailsRow: {
     display: 'flex',
-    flexDirection: 'column', // Stack elements vertically
     width: '100%',
-    gap: '10px', // Add space between organizer and button
     marginTop: '10px',
   },
   tourDetails: {
@@ -259,24 +251,16 @@ const styles = {
     fontWeight: '400',
     color: '#a0a0a0',
     margin: 0,
-    width: '100%',
   },
   tourOrganizer: {
     fontSize: '12px',
   },
-  tourButtonContainer: {
-    display: 'flex',
-    justifyContent: 'center', // Center the button
-    width: '100%', // Take full width
-  },
-  
   tourButton: {
     backgroundColor: '#FFDD00',
     color: '#000000',
     fontWeight: '500',
-    width: '100%',
     fontSize: '15px',
-    padding: '8px 12px',
+    padding: '8px 20px',
     border: 'none',
     borderRadius: 0,
     cursor: 'pointer',
