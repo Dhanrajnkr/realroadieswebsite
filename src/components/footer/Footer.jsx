@@ -10,6 +10,7 @@ import { CiFacebook } from "react-icons/ci";
 import { CiLinkedin } from "react-icons/ci";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
+import fonts from '../common/fonts';
 
 function Footer() {
   return (
@@ -168,14 +169,17 @@ const styles = {
     position: 'relative',
     paddingBottom: '0.5rem',
     borderBottom: '2px solid #ffc107',  // Yellow accent border
-    display: 'inline-block'
+    display: 'inline-block',
+    fontFamily:fonts.poppins,
+
   },
   paragraph: {
     color: '#adb5bd',  // Light gray for readability on black
     fontSize: '14px',  // Changed from 0.95rem to 16px to match paragraph in CommonCss.css
     fontWeight: '400',  // Added to match paragraph in CommonCss.css
     lineHeight: '1.6',  // Already matches CommonCss.css
-    marginBottom: '1rem'
+    marginBottom: '1rem',
+    fontFamily:fonts.poppins,
   },
   linksList: {
     listStyle: 'none',
@@ -190,7 +194,8 @@ const styles = {
     textDecoration: 'none',
     transition: 'color 0.3s ease',
     fontSize: '16px',  // Changed from 0.95rem to 16px to match links in CommonCss.css
-    fontWeight: '400'  // Added to match links in CommonCss.css
+    fontWeight: '400',  // Added to match links in CommonCss.css
+    fontFamily:fonts.poppins,
   },
   contactList: {
     listStyle: 'none',
@@ -221,7 +226,8 @@ const styles = {
     color: '#adb5bd',  
     fontSize: '14px',  
     fontWeight: '400',  
-    marginBottom: '0'
+    marginBottom: '0',
+    fontFamily:fonts.poppins,
   },
   socialList: {
     display: 'flex',

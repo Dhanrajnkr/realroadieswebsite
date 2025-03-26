@@ -3,6 +3,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 import CorporateEventFeature from './CorporateEventFeature';
 import eventimg1 from '../../assets/images/event.png';
 import fullscreenimg from '../../assets/images/fullimage.jpeg';
+import fonts from '../../components/common/fonts';
 
 const CorporateEvent = () => {
   return (
@@ -26,11 +27,11 @@ const CorporateEvent = () => {
           }}
         />
       </div>
-      <div className="ms-md-4">
-        <h4 className="fw-bold mb-3">
+      <div className="ms-md-4" >
+        <h4 className="fw-bold mb-3" style={{fontFamily: fonts.poppins}}>
           Elevate Your Corporate Engagement with High-Octane Experiences
         </h4>
-        <p>
+        <p style={{fontFamily: fonts.poppins}}>
           At RealRoadies, we redefine corporate events by merging adventure,
           teamwork, and brand visibility—powered by motorcycles. Whether it's about
           brand promotions, CSR initiatives, diversity & inclusion, or wellness programs,
@@ -196,6 +197,7 @@ const styles = {
     fontSize: '16px',
     color: '#fff',
     marginBottom: '15px',
+    fontFamily: fonts.poppins,
   },
   featureContainer: {
     display: 'flex',
@@ -213,6 +215,7 @@ const styles = {
     fontWeight: '700',
     fontSize: '42px',
     lineHeight: '1', 
+    fontFamily: fonts.poppins,
   },
   featureContent: {
     flex: 1,
@@ -225,12 +228,14 @@ const styles = {
     fontSize: '12px',
     color: '#fff',
     display: 'inline',
+    fontFamily: fonts.poppins,
   },
   featureText: {
     fontSize: '12px',
     lineHeight: '1.4', 
     color: '#a0a0a0',
     margin: 0,
+    fontFamily: fonts.poppins,
   },
 
    // Full-screen Image Section Styles

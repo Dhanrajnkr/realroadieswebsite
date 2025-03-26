@@ -22,6 +22,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { useParams, useLocation } from 'react-router-dom';
 import DetailsCards from '../details/DetailsCards';
+import fonts from '../../../components/common/fonts';
 
 const Details = () => {
   const { id } = useParams();
@@ -523,6 +524,7 @@ const styles = {
     borderRadius: '4px',
     fontSize: '12px',
     fontWeight: '600',
+    fontFamily:fonts.poppins,
     textTransform: 'uppercase',
     letterSpacing: '1px'
   },
@@ -536,6 +538,7 @@ const styles = {
     borderRadius: '4px',
     fontSize: '12px',
     fontWeight: '600',
+    fontFamily: fonts.poppins,
     textTransform: 'uppercase',
     letterSpacing: '1px'
   },
@@ -557,6 +560,7 @@ const styles = {
   title: {
     fontSize: '26px',
     fontWeight: '500',
+    fontFamily: fonts.poppins,
     color: '#212529',
     margin: '0 0 8px 0',
     lineHeight: '1.2'
@@ -565,6 +569,7 @@ const styles = {
     color: '#6c757d',
     fontSize: '14px',
     fontWeight: '500',
+    fontFamily: fonts.poppins,
     margin: 0
   },
   priceSection: {
@@ -578,17 +583,20 @@ const styles = {
   price: {
     fontSize: '20px',
     fontWeight: '500',
+    fontFamily: fonts.poppins,
     color: '#000000',
     margin: 0
   },
   priceLabel: {
     fontSize: '14px',
     fontWeight: '400',
+    fontFamily: fonts.poppins,
     color: '#6c757d'
   },
   originalPrice: {
     fontSize: '14px',
     fontWeight: '400',
+    fontFamily: fonts.poppins,
     color: '#6c757d',
     textDecoration: 'line-through',
     marginLeft: '4px',
@@ -605,7 +613,8 @@ const styles = {
     padding: '5px 8px',
     borderRadius: '0px',
     fontSize: '10px',
-    fontWeight: '600'
+    fontWeight: '600',
+    fontFamily:fonts.poppins,
   },
   infoSection: {
     borderTop: '1px solid #e9ecef',
@@ -637,6 +646,7 @@ const styles = {
   infoLabel: {
     fontSize: '10px',
     fontWeight: '600',
+    fontFamily: fonts.poppins,
     color: '#6c757d',
     textTransform: 'uppercase',
     marginBottom: '4px'
@@ -644,6 +654,7 @@ const styles = {
   infoText: {
     fontSize: '14px',
     fontWeight: '500',
+    fontFamily: fonts.poppins,
     color: '#212529',
     lineHeight: '1.4'
   },
@@ -653,7 +664,8 @@ const styles = {
     padding: '4px 8px',
     borderRadius: '4px',
     fontSize: '12px',
-    fontWeight: '600'
+    fontWeight: '600',
+    fontFamily:fonts.poppins,
   },
   button: {
     backgroundColor: '#FFDD00',
@@ -662,6 +674,7 @@ const styles = {
     padding: '10px 20px',
     fontSize: '16px',
     fontWeight: '600',
+    fontFamily:fonts.poppins,
     cursor: 'pointer',
     transition: 'all 0.3s ease',
     borderRadius: '0px',
@@ -687,7 +700,9 @@ const styles = {
   loadingText: {
     color: '#6c757d',
     fontSize: '20px',
-    fontWeight: '500'
+    fontWeight: '500',
+    fontFamily: fonts.poppins,
+    
   },
   errorContainer: {
     backgroundColor: '#ffffff',

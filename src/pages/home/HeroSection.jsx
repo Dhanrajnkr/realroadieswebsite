@@ -6,7 +6,7 @@ import FeatureSection from './FeatureSection';
 import OfferSection from './OfferSection';
 import homevideo from '../../assets/images/home1.mp4';
 import Qrcode from '../../components/qr/qrcode';
-
+import fonts from '../../components/common/fonts';
 
 const HeroSection = () => {
   return (
@@ -63,6 +63,7 @@ const styles = {
     fontWeight: '500',
     marginBottom: '18px',
     color: '#ffffff',
+    fontFamily: fonts.poppins,
   },
   video: {
     position: 'absolute',

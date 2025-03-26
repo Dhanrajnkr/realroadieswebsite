@@ -1,5 +1,6 @@
 import React from 'react';
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
+import fonts from '../../../components/common/fonts';
 
 const AdventureToursDetails = () => {
   // Sample tour data
@@ -147,12 +148,14 @@ const styles = {
   tourTitle: {
     fontSize: '18px',
     fontWeight: '600',
+    fontFamily:fonts.poppins,
     color: '#ffffff',
     margin: 0,
   },
   tourDays: {
     fontSize: '14px',
     fontWeight: '500',
+    fontFamily:fonts.poppins,
     color: '#FFDD00',
     backgroundColor: 'rgba(255, 221, 0, 0.1)',
     padding: '4px 8px',
@@ -168,17 +171,20 @@ const styles = {
     display: 'flex',
     alignItems: 'center',
     fontSize: '14px',
+    fontFamily:fonts.poppins,
     color: '#a0a0a0',
     margin: 0,
   },
   tourOrganizer: {
     fontSize: '12px',
+    fontWeight: '500',
   },
   tourButton: {
     backgroundColor: '#FFDD00',
     color: '#000000',
     fontWeight: '600',
     fontSize: '14px',
+    fontFamily:fonts.poppins,
     padding: '8px 16px',
     border: 'none',
     borderRadius: '4px',

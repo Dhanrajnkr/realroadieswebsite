@@ -12,6 +12,7 @@ import {
   faCheckCircle,
   faTimesCircle
 } from '@fortawesome/free-solid-svg-icons';
+import fonts from '../../../components/common/fonts';
 
 const DetailsCards = ({
   eventDescription,

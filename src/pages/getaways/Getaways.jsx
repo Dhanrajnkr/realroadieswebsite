@@ -4,6 +4,7 @@ import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import TrainingHome from './trainings/TrainingHome';
 import AdventureToursHome from './Adventuretours/AdventureToursHome';
 import EventHome from './bikingevents/EventHome';
+import fonts from '../../components/common/fonts';
 
 const Getaways = () => {
   const location = useLocation();
@@ -124,6 +125,7 @@ const styles = {
     fontWeight: '400',
     transition: 'color 0.3s ease, border-bottom 0.3s ease',
     fontSize: '14px',
+    fontFamilly: fonts.poppins,
     cursor: 'pointer',
     textDecoration: 'none',
     margin: 0,
@@ -132,6 +134,7 @@ const styles = {
   activeNavLink: {
     color: '#ffffff',
     fontWeight: '400',
+    fontFamilly: fonts.poppins,
     borderBottom: '3px solid #FFDD00'
   },
   contentContainer: {
