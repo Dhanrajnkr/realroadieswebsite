@@ -190,7 +190,7 @@ const styles = {
   tourImage: {
     width: '100%',
     height: '100%',
-    objectFit: 'fill',
+    objectFit: 'fit',
     transition: 'transform 0.3s ease',
   },
   tourContent: {

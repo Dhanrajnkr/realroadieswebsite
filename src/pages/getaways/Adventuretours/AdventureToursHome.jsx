@@ -173,7 +173,7 @@ const styles = {
   tourImage: {
     width: '100%',
     height: '100%',
-    objectFit: 'cover',
+    objectFit: 'fit',
     transition: 'transform 0.3s ease',
   },
   tourContent: {
