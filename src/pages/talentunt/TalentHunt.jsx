@@ -2,6 +2,7 @@ import React from 'react'
 import { Container, Row, Col } from 'react-bootstrap';
 import image from '../../assets/images/talenthunt.png';
 import TalentHuntFeatures from './TalentHuntFeatures';
+import fonts from '../../components/common/fonts'
 
 const TalentHunt = () => {
   return (
@@ -87,12 +88,14 @@ const styles = {
   title: {
     fontSize: '24px',
     fontWeight: '600',
-    marginBottom: '15px' 
+    marginBottom: '15px' ,
+    fontFamily: fonts.poppins,
   },
   description: {
     fontSize: '14px',
     lineHeight: '1.6',
-    marginBottom: '20px' 
+    marginBottom: '20px',
+    fontFamily: fonts.poppins,
   },
   imagePlaceholder: {
     width: '100%',
@@ -113,12 +116,14 @@ const styles = {
     fontWeight: '500', 
     marginBottom: '1rem',
     color: '#000',
+    fontFamily: fonts.poppins,
   },
   text: {
     fontSize: '16px',
     fontWeight: '400', 
     lineHeight: '1.6', 
     color: '#000',
+    fontFamily: fonts.poppins,
   },
   button1:{
     backgroundColor: '#000000',
@@ -131,6 +136,7 @@ const styles = {
     marginBottom: '10px',
     fontSize: '14px',
     fontWeight: '500',
+    fontFamily: fonts.poppins,
     transition: 'background-color 0.3s ease',
     textDecoration: 'none',
     '&:hover': {
@@ -148,6 +154,7 @@ const styles = {
     marginBottom: '10px',
     fontSize: '14px',
     fontWeight: '500',
+    fontFamily: fonts.poppins,
     transition: 'background-color 0.3s ease',
     '&:hover': {
       backgroundColor: '#333',

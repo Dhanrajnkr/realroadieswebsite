@@ -1,24 +1,16 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// Import regular (outline) icons
-import {
-  faEnvelope as faEnvelopeRegular
-} from '@fortawesome/free-regular-svg-icons';
-// Import solid icons for those that don't have regular versions
-import {
-  faGlobe,
-  faPhone,
-  faMapMarkerAlt
-} from '@fortawesome/free-solid-svg-icons';
-// Import brand icons
-import {
-  faWhatsapp,
-  faInstagram,
-  faFacebook,
-  faLinkedinIn
-} from '@fortawesome/free-brands-svg-icons';
+import { MdOutlinePhone } from "react-icons/md";
+import { IoMailOutline } from "react-icons/io5";
+import { LuMapPin } from "react-icons/lu";
+import { FaWhatsapp } from "react-icons/fa";
+import { FaInstagram } from "react-icons/fa";
+import { CiFacebook } from "react-icons/ci";
+import { CiLinkedin } from "react-icons/ci";
+
 import 'bootstrap/dist/css/bootstrap.min.css';
+import fonts from '../common/fonts';
 
 function Footer() {
   return (
@@ -68,7 +60,7 @@ function Footer() {
             <h5 style={styles.heading}>Contact</h5>
             <ul style={styles.contactList}>
             <li style={styles.contactItem}>
-                <FontAwesomeIcon icon={faEnvelopeRegular} style={styles.icon} />
+                <IoMailOutline style={styles.icon} />
                 <a
                   href="mailto:info@realroadies.com"
                   style={styles.link}
@@ -77,12 +69,12 @@ function Footer() {
                 </a>
               </li>
               <li style={styles.contactItem}>
-                <FontAwesomeIcon icon={faPhone} style={{...styles.icon, fontWeight: 'lighter',color: 'white'}} />
+                <MdOutlinePhone style={styles.icon } />
                 <a href="tel:+91 90082 90111" style={styles.link}>+91 90082 90111</a>
               </li>
               
               <li style={styles.contactItem}>
-                <FontAwesomeIcon icon={faMapMarkerAlt} style={{...styles.icon, fontWeight: 'lighter', marginTop: '4px',color: 'white'}} />
+                <LuMapPin style={{...styles.icon,width:'20px' }} />
                 <a
                   href="https://maps.google.com/?q=247,1st+Floor,4th+Main+Road,Domlur,2nd+Stage,Bengaluru,560071"
                   target="_blank"
@@ -118,7 +110,7 @@ function Footer() {
                   aria-label="WhatsApp"
                   style={styles.socialLink}
                 >
-                  <FontAwesomeIcon icon={faWhatsapp} />
+                  <FaWhatsapp />
                 </a>
               </li>
               <li style={styles.socialItem}>
@@ -129,7 +121,7 @@ function Footer() {
                   aria-label="Instagram"
                   style={styles.socialLink}
                 >
-                  <FontAwesomeIcon icon={faInstagram} />
+                  <FaInstagram />
                 </a>
               </li>
               <li style={styles.socialItem}>
@@ -140,7 +132,7 @@ function Footer() {
                   aria-label="Facebook"
                   style={styles.socialLink}
                 >
-                  <FontAwesomeIcon icon={faFacebook} />
+                  <CiFacebook />
                 </a>
               </li>
               <li style={styles.socialItem}>
@@ -151,7 +143,7 @@ function Footer() {
                   aria-label="LinkedIn"
                   style={styles.socialLink}
                 >
-                  <FontAwesomeIcon icon={faLinkedinIn} />
+                  <CiLinkedin />
                 </a>
               </li>
             </ul>
@@ -177,14 +169,17 @@ const styles = {
     position: 'relative',
     paddingBottom: '0.5rem',
     borderBottom: '2px solid #ffc107',  // Yellow accent border
-    display: 'inline-block'
+    display: 'inline-block',
+    fontFamily:fonts.poppins,
+
   },
   paragraph: {
     color: '#adb5bd',  // Light gray for readability on black
     fontSize: '14px',  // Changed from 0.95rem to 16px to match paragraph in CommonCss.css
     fontWeight: '400',  // Added to match paragraph in CommonCss.css
     lineHeight: '1.6',  // Already matches CommonCss.css
-    marginBottom: '1rem'
+    marginBottom: '1rem',
+    fontFamily:fonts.poppins,
   },
   linksList: {
     listStyle: 'none',
@@ -199,7 +194,8 @@ const styles = {
     textDecoration: 'none',
     transition: 'color 0.3s ease',
     fontSize: '16px',  // Changed from 0.95rem to 16px to match links in CommonCss.css
-    fontWeight: '400'  // Added to match links in CommonCss.css
+    fontWeight: '400',  // Added to match links in CommonCss.css
+    fontFamily:fonts.poppins,
   },
   contactList: {
     listStyle: 'none',
@@ -230,7 +226,8 @@ const styles = {
     color: '#adb5bd',  
     fontSize: '14px',  
     fontWeight: '400',  
-    marginBottom: '0'
+    marginBottom: '0',
+    fontFamily:fonts.poppins,
   },
   socialList: {
     display: 'flex',

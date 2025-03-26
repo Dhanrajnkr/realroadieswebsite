@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+import Qrcode from '../../../components/qr/qrcode';
 
 const TrainingHome = () => {
   const navigate = useNavigate();
@@ -25,7 +26,7 @@ const TrainingHome = () => {
       })
       .then(data => {
         setEventData(data);
-        
+
         // Extract all events from different categories into a single array
         const extractedEvents = [];
         if (data && data.data) {
@@ -35,7 +36,7 @@ const TrainingHome = () => {
             }
           });
         }
-        
+
         setAllEvents(extractedEvents);
         setLoading(false);
       })
@@ -48,112 +49,89 @@ const TrainingHome = () => {
 
   // Function to handle navigation to EventDetails
   const handleNavigateToEventDetails = (id) => {
-    navigate(`/details/${id}`);
+    navigate(`/details/${id}`, { state: { type: 'event' } });
   };
 
-  // Format date for display
-  const formatDate = (dateString) => {
-    if (!dateString) return '';
-    const date = new Date(dateString);
-    return date.toLocaleDateString('en-US', { 
-      year: 'numeric', 
-      month: 'short', 
-      day: 'numeric' 
-    });
-  };
-
-  // Format level for display
-  const formatLevel = (level) => {
-    if (!level) return 'All Levels';
-    return level.replace(/_/g, ' ');
+  // Calculate discounted price
+  const calculatePrice = (price, discount) => {
+    if (!price || !discount) return price;
+    return Math.round(price * (1 - discount / 100));
   };
 
   return (
-    <section id="adventureTours" style={styles.section}>
-      <Container fluid style={styles.mainContainer}>
-        <Container style={styles.container}>
-          {/* Tour Grid */}
-          <Row className="justify-content-center">
-            <Col md={10}>
-              {loading ? (
-                <div style={styles.loading}>Loading events...</div>
-              ) : error ? (
-                <div style={styles.errorContainer}>
-                  <p>Error loading events: {error}</p>
-                </div>
-              ) : (
-                <Row className="g-4">
-                 {allEvents.length > 0 ? (
-  allEvents.map((event) => (
-    <Col md={6} key={event.id}>
-      <div 
-        style={{
-          ...styles.tourCard,
-          cursor: 'pointer' // Add pointer cursor to indicate clickability
-        }}
-        onClick={() => handleNavigateToEventDetails(event.id)}
-      >
-        <div style={styles.imageContainer}>
-          <img
-            src={event.primary_image?.link_url || "../src/assets/images/ab1.png"}
-            alt={event.title}
-            style={styles.tourImage}
-            onError={(e) => {
-              e.target.src = "../src/assets/images/ab1.png";
-            }}
-          />
-        </div>
-        <div style={styles.tourContent}>
-          <div style={styles.tourInfo}>
-            <div style={styles.titleContainer}>
-              <h4 style={styles.tourTitle}>
-                {event.title} | <span style={styles.tourDays}>{formatLevel(event.level)}</span>
-              </h4>
-            </div>
-            <div style={styles.tourDetailsRow}>
-              <div className="d-flex flex-column flex-sm-row justify-content-between w-100">
-                <div className="text-start text-sm-start mb-2 mb-sm-0">
-                  <span style={styles.tourOrganizer}>Organized by {event.organizer}</span>
-                </div>
-                
-                <Button 
-                  style={styles.tourButton}
-                  onClick={(e) => {
-                    e.stopPropagation(); // Prevent the card's onClick from triggering
-                    handleNavigateToEventDetails(event.id);
-                  }}
-                >
-                  Starting at ₹{event.price}
-                </Button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </Col>
-  ))
-) : (
-  <Col className="text-center">
-    <p style={styles.noEvents}>No training events available at the moment.</p>
-  </Col>
-)}
-
-                </Row>
-              )}
-            </Col>
-          </Row>
-
-          {/* coming soon */}
-          {/* <Row className="mt-5 justify-content-center">
-            <Col md={10} className="text-center">
-              <div style={styles.comingsoon}>
-                <p style={styles.comingsoontext}>more coming soon</p>
-              </div>
-            </Col>
-          </Row> */}
+    <>
+      <section id="trainingEvents" style={styles.section}>
+        <Container fluid style={styles.mainContainer}>
+          <Container style={styles.container}>
+            {/* Event Grid */}
+            <Row className="justify-content-center">
+              <Col md={10}>
+                {loading ? (
+                  <div style={styles.loading}>Loading trainings...</div>
+                ) : error ? (
+                  <div style={styles.errorContainer}>
+                    <p>Error loading trainings: {error}</p>
+                  </div>
+                ) : (
+                  <Row className="g-4">
+                    {allEvents.length > 0 ? (
+                      allEvents.map((event) => (
+                        <Col md={6} key={event.id}>
+                          <div
+                            style={{
+                              ...styles.tourCard,
+                              cursor: 'pointer'
+                            }}
+                            onClick={() => handleNavigateToEventDetails(event.id)}
+                          >
+                            <div style={styles.imageContainer}>
+                              <img
+                                src={event.primary_image?.link_url || "../src/assets/images/ab1.png"}
+                                alt={event.title}
+                                style={styles.tourImage}
+                                onError={(e) => {
+                                  e.target.src = "../src/assets/images/ab1.png";
+                                }}
+                              />
+                            </div>
+                            <div style={styles.tourContent}>
+                              <div style={styles.tourInfo}>
+                                <div style={styles.titleContainer}>
+                                  <h6 style={styles.tourTitle}>
+                                    {event.title}
+                                  </h6>
+                                  <br /><span style={styles.tourOrganizer} className='text-start'>Organized by {event.organizer}</span>
+                                  <div style={styles.tourDetails}>
+                                    <Button
+                                      style={styles.tourButton}
+                                      onClick={(e) => {
+                                        e.stopPropagation();
+                                        handleNavigateToEventDetails(event.id);
+                                      }}
+                                    >
+                                      Starting at ₹{calculatePrice(event.price, event.discount || 0)}
+                                    </Button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </Col>
+                      ))
+                    ) : (
+                      <Col className="text-center">
+                        <p style={styles.noEvents}>No training events available at the moment.</p>
+                      </Col>
+                    )}
+                  </Row>
+                )}
+              </Col>
+            </Row>
+          </Container>
         </Container>
-      </Container>
-    </section>
+      </section>
+      <Qrcode />
+    </>
   );
 };
 
@@ -169,7 +147,7 @@ const styles = {
     width: '100%',
   },
   container: {
-    maxWidth: '1200px',
+    maxWidth: '1000px',
     margin: '0 auto'
   },
   tourCard: {
@@ -203,51 +181,25 @@ const styles = {
     flex: 1,
   },
   titleContainer: {
-    marginBottom: '10px',
+    marginBottom: '0px',
   },
   tourTitle: {
     fontSize: '16px',
     fontWeight: '400',
     color: '#ffffff',
-    margin: 0,
     display: 'inline-block',
+    paddingBottom: '0px',
   },
   tourDays: {
     fontSize: '10px',
     fontWeight: '400',
     color: '#ffffff',
   },
-  eventDetails: {
-    marginBottom: '15px',
-  },
-  eventDate: {
-    fontSize: '12px',
-    color: '#a0a0a0',
-    margin: '2px 0',
-  },
-  eventTime: {
-    fontSize: '12px',
-    color: '#a0a0a0',
-    margin: '2px 0',
-  },
-  eventLocation: {
-    fontSize: '12px',
-    color: '#a0a0a0',
-    margin: '2px 0',
-  },
-  eventMultiDay: {
-    fontSize: '12px',
-    color: '#a0a0a0',
-    margin: '2px 0',
-  },
-  eventLabel: {
-    color: '#ffffff',
-    fontWeight: '500',
-  },
   tourDetailsRow: {
     display: 'flex',
+    flexDirection: 'column',
     width: '100%',
-    marginTop: '10px',
+    gap: '10px',
   },
   tourDetails: {
     display: 'flex',
@@ -256,9 +208,16 @@ const styles = {
     fontWeight: '400',
     color: '#a0a0a0',
     margin: 0,
+    width: '100%',
   },
   tourOrganizer: {
+    color: '#a0a0a0',
     fontSize: '12px',
+  },
+  tourButtonContainer: {
+    display: 'flex',
+    justifyContent: 'center',
+    width: '100%',
   },
   tourButton: {
     backgroundColor: '#FFDD00',
@@ -271,18 +230,8 @@ const styles = {
     cursor: 'pointer',
     transition: 'background-color 0.3s ease',
     whiteSpace: 'nowrap',
-  },
-  comingsoon: {
-    borderTop: '1px solid #333333',
-    borderBottom: '1px solid #333333',
-    paddingTop: '20px',
-    marginTop: '20px',
-    paddingBottom: '10px',
-  },
-  comingsoontext: {
-    color: '#a0a0a0',
-    fontSize: '20px',
-    fontWeight: '400',
+    width: '100%',
+    marginTop: '10px'
   },
   loading: {
     textAlign: 'center',

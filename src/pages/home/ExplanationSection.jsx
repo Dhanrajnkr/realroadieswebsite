@@ -1,5 +1,6 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
+import fonts from '../../components/common/fonts';
 
 function ExplanationSection() {
   return (
@@ -34,11 +35,13 @@ const styles = {
     fontWeight: '500', // Changed from 600 to 500 to match h5 in CommonCss.css
     marginBottom: '1rem',
     color: '#000',
+    fontFamily:fonts.poppins,
   },
   text: {
     fontSize: '16px', // Fixed from '16' (missing 'px') to '16px' to match paragraph in CommonCss.css
     fontWeight: '400', // Added to match paragraph in CommonCss.css
     // lineHeight: '1.6', // Already matches CommonCss.css
     color: '#000',
+    fontFamily:fonts.poppins,
   }
 };

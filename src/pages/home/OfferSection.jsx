@@ -4,6 +4,7 @@ import Getawaysimg from '../../assets/images/4.png'
 import Garageimg from '../../assets/images/garage.png'
 import Eventsimg from '../../assets/images/rr-events.png'
 import Storeimg from '../../assets/images/5.png'
+import fonts from '../../components/common/fonts';
 
 function OfferSection() {
   return (
@@ -93,6 +94,7 @@ const styles = {
     fontWeight: '500', // Changed to match h5 in CommonCss.css
     marginBottom: '18px',
     color: '#ffffff',
+    fontFamily: fonts.poppins,
   },
   featureCard: {
     height: '100%',
@@ -112,6 +114,7 @@ const styles = {
     marginTop: '1rem',
     textAlign: 'center',
     color: '#fff',
+    fontFamily: fonts.poppins,
   },
   cardText: {
     fontSize: '13px', // Changed to match paragraph in CommonCss.css
@@ -119,5 +122,6 @@ const styles = {
     lineHeight: '1.3', // Matches the line-height in CommonCss.css
     color: '#fff',
     textAlign: 'center',
+    fontFamily: fonts.poppins,
   }
 };

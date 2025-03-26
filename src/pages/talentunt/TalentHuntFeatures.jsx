@@ -4,6 +4,7 @@ import carousel1 from '../../assets/images/rushab4.jpeg';
 import carousel2 from '../../assets/images/rushab7.jpeg';
 import carousel3 from '../../assets/images/rushab6.jpeg';
 import carousel4 from '../../assets/images/rushab1.jpeg';
+import fonts from '../../components/common/fonts';
 
 const ImageGallery = () => {
   // Add state to track the active carousel index
@@ -157,7 +158,8 @@ const styles = {
     marginBottom: '25px',
     fontWeight: '700',
     color: '#ffffff',
-    fontSize: '16px'
+    fontSize: '16px',
+    fontsFamily:fonts.poppins,
   },
   carouselContainer: {
     position: 'relative',
@@ -188,12 +190,15 @@ const styles = {
     fontWeight: '500', 
     marginBottom: '1rem',
     color: '#000',
+    fontFamily: fonts.poppins,
   },
   text: {
     fontSize: '16px',
     fontWeight: '400', 
     lineHeight: '1.6', 
     color: '#000',
+    fontFamily: fonts.poppins,
+   
   },
   button1:{
     backgroundColor: '#000000',
@@ -206,6 +211,7 @@ const styles = {
     marginBottom: '10px',
     fontSize: '14px',
     fontWeight: '500',
+    fontFamily: fonts.poppins,
     transition: 'background-color 0.3s ease',
     textDecoration: 'none',
     '&:hover': {

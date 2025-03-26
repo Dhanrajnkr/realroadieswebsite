@@ -9,6 +9,7 @@ import utiles from '../../assets/images/utilities.png';
 import hunt from '../../assets/images/5.png';
 import mission from '../../assets/images/we-are-rr.jpeg';
 import backimg from '../../assets/images/ourCulture.jpeg';
+import fonts from '../../components/common/fonts';
 
 const FeaturesAndMission = () => {
   return (
@@ -108,7 +109,7 @@ const FeaturesAndMission = () => {
         <Col xs={12} className="p-0">
           <div style={{
             position: 'relative',
-            width: '100vw',  // Use viewport width
+            width: '99.2vw',  // Use viewport width
             minHeight: '300px',
             display: 'flex',
             alignItems: 'center',
@@ -146,13 +147,14 @@ const FeaturesAndMission = () => {
             <div className="container-fluid" style={{ position: 'relative', zIndex: 3, }}>
               <div className="row">
                 <div className="col-12 col-md-10 offset-md-1 text-start">
-                  <h3 style={{...styles.sectionTitle, marginBottom: '25px'}} className="text-start text-md-start">Our Culture</h3>
+                  <h3 style={{...styles.sectionTitle, marginBottom: '25px',fontFamily:fonts.poppins}} className="text-start text-md-start">Our Culture</h3>
                   <p style={{
                     color: '#ffffff',
                     textShadow: '1px 1px 3px rgba(0,0,0,0.8)',
-                    fontSize: '16px',
+                    fontSize: '14px',
                     lineHeight: '1.6',
-                    textAlign: 'left'
+                    textAlign: 'left',
+                    fontFamily: fonts.poppins,
                   }}>
                     We are riders first. Our team is built on a shared passion for motorcycles, adventure, and the spirit of the open road.
                     As enthusiasts, experts, and innovators, we believe in the power of community and the bond that unites all bikers.
@@ -211,6 +213,7 @@ const styles = {
     fontWeight: '700',
     color: '#ffffff',
     fontSize: 'calc(1.2rem + 0.3vw)', // Responsive font size
+    fontFamily: fonts.poppins,
   },
   featureCard: {
     backgroundColor: 'transparent',
@@ -240,13 +243,15 @@ const styles = {
   featureTitle: {
     marginBottom: '0.5rem',
     fontWeight: '500',
-    fontSize: 'calc(0.8rem + 0.1vw)' // Responsive font size
+    fontSize: 'calc(0.8rem + 0.1vw)' ,
+    fontFamily: fonts.poppins,
   },
   featureDescription: {
     color: '#a0a0a0',
     fontSize: 'calc(0.75rem + 0.1vw)', // Responsive font size
     marginBottom: '0.5rem',
-    lineHeight: '1.4' // Improved line height for readability
+    lineHeight: '1.4' ,
+    fontFamily: fonts.poppins,
   },
   missionRow: {
     marginTop: '3.5rem',
@@ -257,6 +262,7 @@ const styles = {
     lineHeight: '1.6',
     fontSize: 'calc(0.85rem + 0.1vw)', // Responsive font size
     fontWeight: '400',
+    fontFamily: fonts.poppins,
   },
   missionImage: {
     width: '100%',
@@ -277,6 +283,7 @@ const styles = {
     fontSize: 'calc(1.2rem + 0.3vw)', // Responsive font size
     color: '#fff',
     marginBottom: '15px',
+    fontFamily: fonts.poppins,
   },
   cultureText: {
     color: '#fff',

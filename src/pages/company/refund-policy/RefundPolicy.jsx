@@ -1,5 +1,6 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
+import fonts from '../../../components/common/fonts';
 
 
 const RefundPolicy = () => {
@@ -100,6 +101,7 @@ const styles = {
   title: {
     fontSize: '2rem',
     fontWeight: '500',
+    fontFamily:fonts.poppins,
     marginBottom: '1.5rem',
     color: '#ffffff',
     borderBottom: '1px solid #333',
@@ -108,6 +110,7 @@ const styles = {
   subheading: {
     fontSize: '1.25rem',
     fontWeight: '500',
+    fontFamily:fonts.poppins,
     marginBottom: '1rem',
     marginTop: '2rem',
     color: '#ffffff',
@@ -116,6 +119,7 @@ const styles = {
   },
   text: {
     fontSize: '1rem',
+    fontFamily:fonts.poppins,
     lineHeight: '1.8',
     color: '#ffffff',
     marginBottom: '1.5rem',

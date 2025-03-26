@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Navbar, Container, Nav } from 'react-bootstrap';
 import { useLocation } from 'react-router-dom';
+import fonts from '../../components/common/fonts';
 
 const GetawaysNavbar = () => {
   const [scrollPosition, setScrollPosition] = useState(0);
@@ -104,6 +105,7 @@ const styles = {
     borderRadius: '4px',
     textDecoration: 'none',
     fontSize: '14px',
+    fontFamily:fonts.poppins,
     cursor: 'pointer'
   },
   activeNavLink: {

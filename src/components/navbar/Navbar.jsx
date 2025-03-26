@@ -3,6 +3,7 @@ import { Navbar, Container, Nav, Row, Col } from 'react-bootstrap';
 import { useLocation, Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import rrLogo from '../../assets/images/RealRoadieslogo.png'; 
+import fonts from '../common/fonts';
 
 function NavbarSection() {
   const location = useLocation();
@@ -151,7 +152,8 @@ const styles = {
     transition: 'color 0.3s ease',
     margin: 0,
     borderRadius: 0,
-    padding: '8px 12px' // Reduced padding
+    padding: '8px 12px',   // Reduced padding 
+    fontFamily: fonts.poppins,
   },
   activeNavLink: {
     color: '#FFDD00', 
