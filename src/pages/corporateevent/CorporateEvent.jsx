@@ -46,9 +46,9 @@ const CorporateEvent = () => {
           {/* Section Title */}
           <Row className="justify-content-center mb-3">
             <Col md={10}>
-              <h4 style={styles.subHeading2}>
+              {/* <h4 style={styles.subHeading2}>
                 Elevate Your Corporate Engagement with High-Octane Experiences
-              </h4>
+              </h4> */}
             </Col>
           </Row>
 

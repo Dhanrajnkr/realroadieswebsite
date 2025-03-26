@@ -37,8 +37,12 @@ const HeroSection = () => {
                 */}
              
             </Row>
+            
           </Container>
         </div>
+          <div style={styles.qr}>
+            <img src="https://realroadies.com/wp-content/uploads/2023/09/QR-Code-1.png" alt="QR Code" style={styles.qrCode} />
+          </div>
       </section>
       <OfferSection/>
       <FeatureSection/>

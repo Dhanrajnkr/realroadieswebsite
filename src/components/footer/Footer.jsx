@@ -68,20 +68,20 @@ function Footer() {
           <Col md={3} lg={4} className="text-start">
             <h5 style={styles.heading}>Contact</h5>
             <ul style={styles.contactList}>
-              <li style={styles.contactItem}>
-                <FontAwesomeIcon icon={faGlobe} style={{...styles.icon, fontWeight: 'lighter',color: 'white',fontFamily:fonts.poppins}} />
-                <a href="https://stipe.so/" target="_blank" rel="noopener noreferrer" style={styles.link}>
-                  stipe.so
+            <li style={styles.contactItem}>
+                <FontAwesomeIcon icon={faEnvelopeRegular} style={styles.icon} />
+                <a
+                  href="mailto:info@realroadies.com"
+                  style={styles.link}
+                >
+                  info@realroadies.com
                 </a>
               </li>
               <li style={styles.contactItem}>
                 <FontAwesomeIcon icon={faPhone} style={{...styles.icon, fontWeight: 'lighter',color: 'white',fontFamily:fonts.poppins}} />
                 <a href="tel:+91 90082 90111" style={styles.link}>+91 90082 90111</a>
               </li>
-              <li style={styles.contactItem}>
-                <span style={styles.phoneIndent}></span>
-                <a href="tel:+919886115772" style={styles.link}>+91 9886115772</a>
-              </li>
+              
               <li style={styles.contactItem}>
                 <FontAwesomeIcon icon={faMapMarkerAlt} style={{...styles.icon, fontWeight: 'lighter', marginTop: '4px',color: 'white'}} />
                 <a
@@ -93,15 +93,7 @@ function Footer() {
                   #247, 1st Floor, 4th Main Road, Domlur, 2nd Stage, Bengaluru, 560071.
                 </a>
               </li>
-              <li style={styles.contactItem}>
-                <FontAwesomeIcon icon={faEnvelopeRegular} style={styles.icon} />
-                <a
-                  href="mailto:info@realroadies.com"
-                  style={styles.link}
-                >
-                  info@realroadies.com
-                </a>
-              </li>
+             
             </ul>
           </Col>
         </Row>
