@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Row, Col, Card } from "react-bootstrap";
 import Garage from '../../assets/images/garage.png'
-import event from '../../assets/images/event.png';
+import event from '../../assets/images/rr-events.png';
 import reward from '../../assets/images/rewards.png';
 import get from '../../assets/images/4.png';
 import store from '../../assets/images/3.png';

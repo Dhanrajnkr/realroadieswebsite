@@ -2,7 +2,7 @@ import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import Getawaysimg from '../../assets/images/4.png'
 import Garageimg from '../../assets/images/garage.png'
-import Eventsimg from '../../assets/images/event.png'
+import Eventsimg from '../../assets/images/rr-events.png'
 import Storeimg from '../../assets/images/5.png'
 
 function OfferSection() {
