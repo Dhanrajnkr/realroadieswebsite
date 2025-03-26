@@ -1,33 +1,31 @@
-# Step 1: Use Node.js image to build the app
+# Step 1: Use an official Node.js runtime as the base image
 FROM node:18-alpine AS build
 
-# Set working directory
+# Step 2: Set the working directory in the container
 WORKDIR /app
 
-# Copy package files
+# Step 3: Copy package.json and package-lock.json (or yarn.lock) first to leverage Docker caching
 COPY package.json package-lock.json ./
 
-# Install dependencies
+# Step 4: Install dependencies
 RUN npm install
 
-# Copy all project files
+# Step 5: Copy all project files to the container
 COPY . .
-
-# Set environment variable (for Docker build)
 ARG VITE_API_BASE_URL
 ENV VITE_API_BASE_URL=$VITE_API_BASE_URL
 
-# Build the Vite app
+# Step 6: Build the Vite app (output will be in /app/dist)
 RUN npm run build
 
-# Step 2: Use a lightweight Nginx image to serve the built files
+# Step 7: Use a lightweight Nginx image to serve the built files
 FROM nginx:alpine
 
-# Copy built files from the previous stage
+# Step 8: Copy built files from the previous build stage
 COPY --from=build /app/dist /usr/share/nginx/html
 
-# Expose port 80
+# Step 9: Expose port 80 to make the app accessible
 EXPOSE 80
 
-# Start Nginx
+# Step 10: Start Nginx to serve the app
 CMD ["nginx", "-g", "daemon off;"]
