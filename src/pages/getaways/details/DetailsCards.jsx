@@ -36,7 +36,7 @@ const DetailsCards = ({
 
   // Shortened content for collapsed view - create a shortened version of the description
   const shortContent = eventDescription
-    ? (eventDescription.length > 150 ? eventDescription.substring(0, 150) + '...' : eventDescription)
+    ? (eventDescription.length > 150 ? eventDescription.substring(0, 150) + ' ' : eventDescription)
     : `Looking for a fun run with your sisters? Or a time trial ahead of
       the racing season in Bangalore? Or just want to experience an
       easy, breezy run on a Sunday morning in a space that doesn't make
@@ -138,7 +138,7 @@ const DetailsCards = ({
                   <div style={styles.cardTextContainer}>
                     <p style={styles.cardText}>
                       {expanded ? fullContent : shortContent}
-                    </p>
+                    
                     {fullContent.length > 150 && (
                       <a
                         href="#"
@@ -151,6 +151,7 @@ const DetailsCards = ({
                         {expanded ? "Read Less" : "Read More..."}
                       </a>
                     )}
+                    </p>
                   </div>
 
                   {/* Itinerary Section (for trips only) */}
@@ -270,33 +271,33 @@ const DetailsCards = ({
 
                   {/* Terms and Conditions Accordion */}
                   <div style={styles.accordionWrapper}>
-                    <h6 style={{ ...styles.cardTitle, marginTop: '20px', marginBottom: '15px' }}>Policy</h6>
+                    
                     <div style={styles.policyLinksContainer}>
 
-                      <a
+                    <span>  <a
                         href="/termsconditions"
                         target="_blank"
                         rel="noopener noreferrer"
                         style={styles.policyLink}
                       >
-                        Terms & Conditions
-                      </a>
-                      <a
+                        Terms & Conditions <span style={{ color: '#000000',marginLeft:'8px' }}> |</span>
+                      </a></span>
+                      <span>  <a
                         href="/privacypolicy"
                         target="_blank"
                         rel="noopener noreferrer"
                         style={styles.policyLink}
                       >
-                        Privacy Policy
-                      </a>
-                      <a
+                        Privacy Policy <span style={{ color: '#000000',marginLeft:'8px' }}> |</span>
+                      </a></span>
+                      <span> <a
                         href="/refundpolicy"
                         target="_blank"
                         rel="noopener noreferrer"
                         style={styles.policyLink}
                       >
                         Refund Policy
-                      </a>
+                      </a></span>
                     </div>
                     {/* <Accordion>
                     <Accordion.Item eventKey="1" style={styles.accordionItem}>
@@ -410,9 +411,7 @@ const styles = {
     fontSize: '16px',
     color: '#212529'
   },
-  cardTextContainer: {
-    marginBottom: '20px'
-  },
+  
   cardText: {
     fontSize: '16px',
     fontWeight: '400',
@@ -455,7 +454,7 @@ const styles = {
     color: '#000000'
   },
   readMoreLink: {
-    color: '#dc3545',
+    color: '#hhh222',
     textDecoration: 'none',
     fontWeight: '500',
     fontSize: '16px',
@@ -510,8 +509,9 @@ const styles = {
 
   policyLinksContainer: {
     display: 'flex',
-    flexDirection: 'column',
-    gap: '10px',
+    flexDirection: 'row',
+    gap: '8px',
+    marginTop: '15px',
   },
   policyLink: {
     color: '#hhh222',
