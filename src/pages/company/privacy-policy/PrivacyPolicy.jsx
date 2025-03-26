@@ -149,6 +149,7 @@ const styles = {
     },
     text: {
         fontSize: '1rem',
+        fontFamily:fonts.poppins,
         lineHeight: '1.8',
         color: '#ffffff',
         marginBottom: '1.5rem',
