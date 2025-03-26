@@ -109,7 +109,7 @@ const FeaturesAndMission = () => {
         <Col xs={12} className="p-0">
           <div style={{
             position: 'relative',
-            width: '100vw',  // Use viewport width
+            width: '99.2vw',  // Use viewport width
             minHeight: '300px',
             display: 'flex',
             alignItems: 'center',
