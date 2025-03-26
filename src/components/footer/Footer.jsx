@@ -40,16 +40,16 @@ function Footer() {
             <h5 style={styles.heading}>Useful Links</h5>
             <ul style={styles.linksList}>
               <li style={styles.listItem}><a href="/" style={styles.link}>Home</a></li>
-              <li style={styles.listItem}><a href="/about" style={styles.link}>About Us</a></li>
-              <li style={styles.listItem}><a href="/getaways" style={styles.link}>Getaways</a></li>
-              <li style={styles.listItem}><a href="/corporateevent" style={styles.link}>Corporate Events</a></li>
-              <li style={styles.listItem}><a href="/contact" style={styles.link}>Contact Us</a></li>
+              <li style={styles.listItem}><a href="/corporateevent" style={styles.link}>Coporate events</a></li>
               <li style={styles.listItem}><a href="/talentHunt" style={styles.link}>Talent Hunt</a></li>
+              <li style={styles.listItem}><a href="/getaways" style={styles.link}>Getaways</a></li>
+              <li style={styles.listItem}><a href="/about" style={styles.link}>About Us</a></li>
+              <li style={styles.listItem}><a href="/contact" style={styles.link}>Contact us</a></li>
             </ul>
           </Col>
           {/* Company Policies */}
           <Col md={3} lg={2} className="text-start">
-            <h5 style={styles.heading}>Company</h5>
+            <h5 style={styles.heading}>policies</h5>
             <ul style={styles.linksList}>
               <li style={styles.listItem}>
                 <a href="/termsconditions" style={styles.link}>Terms & Conditions</a>
@@ -78,7 +78,7 @@ function Footer() {
               </li>
               <li style={styles.contactItem}>
                 <FontAwesomeIcon icon={faPhone} style={{...styles.icon, fontWeight: 'lighter',color: 'white'}} />
-                <a href="tel:+919448388572" style={styles.link}>+91 9448388572</a>
+                <a href="tel:+91 90082 90111" style={styles.link}>+91 90082 90111</a>
               </li>
               
               <li style={styles.contactItem}>

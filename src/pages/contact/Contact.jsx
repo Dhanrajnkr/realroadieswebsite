@@ -89,7 +89,7 @@ const Contact = () => {
                  2nd Stage, Bengaluru, 560071.</p>
 
                   <h6 style={styles.addressTitle}>PHONE</h6>
-                  <p style={styles.addressText}>+91 9448388572<br/>
+                  <p style={styles.addressText}>+91 90082 90111<br/>
                   +91 9886115772</p>
 
                   <h6 style={styles.addressTitle}>EMAIL</h6>
