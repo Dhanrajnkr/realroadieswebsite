@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+import fonts from '../../../components/common/fonts';
 
 const EventHome = () => {
   const navigate = useNavigate();
@@ -102,7 +103,7 @@ const EventHome = () => {
           <div style={styles.tourInfo}>
             <div style={styles.titleContainer}>
               <h4 style={styles.tourTitle}>
-                {event.title} | <span style={styles.tourDays}>{formatLevel(event.level)}</span>
+                {event.title} | <span style={styles.tourDays}></span>
               </h4>
             </div>
             <div style={styles.tourDetailsRow}>
@@ -203,6 +204,7 @@ const styles = {
   tourTitle: {
     fontSize: '16px',
     fontWeight: '400',
+    fontFamily:fonts.poppins,
     color: '#ffffff',
     margin: 0,
     display: 'inline-block',
@@ -210,6 +212,7 @@ const styles = {
   tourDays: {
     fontSize: '10px',
     fontWeight: '400',
+    fontFamily:fonts.poppins,
     color: '#ffffff',
   },
   eventDetails: {
@@ -217,21 +220,25 @@ const styles = {
   },
   eventDate: {
     fontSize: '12px',
+    fontFamily:fonts.poppins,
     color: '#a0a0a0',
     margin: '2px 0',
   },
   eventTime: {
     fontSize: '12px',
+    fontFamily:fonts.poppins,
     color: '#a0a0a0',
     margin: '2px 0',
   },
   eventLocation: {
     fontSize: '12px',
+    fontFamily:fonts.poppins,
     color: '#a0a0a0',
     margin: '2px 0',
   },
   eventMultiDay: {
     fontSize: '12px',
+    fontFamily:fonts.poppins,
     color: '#a0a0a0',
     margin: '2px 0',
   },
@@ -249,16 +256,19 @@ const styles = {
     alignItems: 'center',
     fontSize: '12px',
     fontWeight: '400',
+    fontFamily:fonts.poppins,
     color: '#a0a0a0',
     margin: 0,
   },
   tourOrganizer: {
     fontSize: '12px',
+    fontFamily:fonts.poppins,
   },
   tourButton: {
     backgroundColor: '#FFDD00',
     color: '#000000',
     fontWeight: '500',
+    fontFamily:fonts.poppins,
     fontSize: '15px',
     padding: '8px 20px',
     border: 'none',
@@ -283,11 +293,14 @@ const styles = {
     textAlign: 'center',
     padding: '40px',
     fontSize: '18px',
+    fontWeight: '400',
+    fontFamily:fonts.poppins,
     color: '#a0a0a0',
   },
   noEvents: {
     color: '#a0a0a0',
     fontSize: '18px',
+    fontFamily:fonts.poppins,
     padding: '30px',
   },
   errorContainer: {

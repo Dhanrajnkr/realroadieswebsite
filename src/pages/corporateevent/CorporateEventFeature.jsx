@@ -9,6 +9,7 @@ import Feature2 from '../../assets/images/team.jpg';
 import Feature3 from '../../assets/images/iclu.jpg';
 import Feature4 from '../../assets/images/base.jpg';
 import Feature5 from '../../assets/images/fuel.jpg';
+import fonts from '../../components/common/fonts';
 
 const CorporateEventFeature = () => {
   // Add state to track the active carousel index
@@ -255,7 +256,8 @@ const styles = {
     marginBottom: '25px',
     fontWeight: '700',
     color: '#ffffff',
-    fontSize: '16px'
+    fontSize: '16px',
+    fontFamily: fonts.poppins,
   },
   featureCard: {
     backgroundColor: 'transparent',
@@ -284,12 +286,14 @@ const styles = {
   featureTitle: {
     marginBottom: '0.5rem',
     fontWeight: '500',
-    fontSize: '14px'
+    fontSize: '14px',
+    fontFamily: fonts.poppins,
   },
   featureDescription: {
     color: '#a0a0a0',
     fontSize: '12px',
     marginBottom: '0.5rem',
+    fontFamily: fonts.poppins,
     // Removed line-height: 1 to improve readability
   },
   carouselContainer: {

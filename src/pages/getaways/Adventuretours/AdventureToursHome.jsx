@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+import fonts from '../../../components/common/fonts'
 
 const AdventureToursHome = () => {
   const navigate = useNavigate();
@@ -191,6 +192,7 @@ const styles = {
   tourTitle: {
     fontSize: '16px',
     fontWeight: '400',
+    fontFamily:fonts.poppins,
     color: '#ffffff',
     margin: 0,
     display: 'inline-block',
@@ -198,6 +200,7 @@ const styles = {
   tourDays: {
     fontSize: '10px',
     fontWeight: '400',
+    fontFmaily:fonts.poppins,
     color: '#ffffff',
   },
   tourDetailsRow: {
@@ -211,12 +214,14 @@ const styles = {
     alignItems: 'center',
     fontSize: '12px',
     fontWeight: '400',
+    fontFamily:fonts.poppins,
     color: '#a0a0a0',
     margin: 0,
     width: '100%',
   },
   tourOrganizer: {
     fontSize: '12px',
+  fontFamily:fonts.poppins,
   },
   tourButtonContainer: {
     display: 'flex',
@@ -228,6 +233,7 @@ const styles = {
     color: '#000000',
     fontWeight: '500', 
     fontSize: '15px',
+    fontFamily:fonts.poppins,
     padding: '8px 20px',
     border: 'none',
     borderRadius: 0,
@@ -246,17 +252,22 @@ const styles = {
     color: '#a0a0a0',
     fontSize: '20px',
     fontWeight: '400',
+    fontFamily:fonts.poppins,
     fontStyle: 'italic',
   },
   loading: {
     textAlign: 'center',
     padding: '40px',
     fontSize: '18px',
+    fontWeight: '400',
+    fontFamily: fonts.poppins,
     color: '#a0a0a0',
   },
   noTrips: {
     color: '#a0a0a0',
     fontSize: '18px',
+    fontWeight: '400',
+    fontFamily:fonts.poppins,
     padding: '30px',
   }
 };

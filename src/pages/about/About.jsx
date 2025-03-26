@@ -4,6 +4,7 @@ import AboutFeaturesAndMission from './AboutFeaturesAndMission';
 import weAreRR from '../../assets/images/we-are-rr.jpeg'; // Keep for fallback
 import wheelsVideo from '../../assets/images/wheels.mp4'; // Import the video file
 import homevideo from '../../assets/images/home1.mp4';
+import fonts from '../../components/common/fonts';
 
 const About = () => {
   return (
@@ -100,18 +101,21 @@ const styles = {
   greeting: {
     fontSize: '24px',
     marginBottom: '10px',
-    fontWeight: '700'
+    fontWeight: '700',
+    fontFamily:fonts.poppins,
   },
   title: {
     fontSize: '32px',
     fontWeight: '700',
-    marginBottom: '15px' 
+    marginBottom: '15px' ,
+    fontFamily:fonts.poppins
   },
   description: {
     fontSize: '16px',
     lineHeight: '1.6',
     marginBottom: '20px',
-    width: '100%'
+    width: '100%',
+    fontFamily:fonts.poppins
   },
   imagePlaceholder: {
     width: '100%',

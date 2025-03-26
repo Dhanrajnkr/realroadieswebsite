@@ -3,6 +3,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 import appimg from '../../assets/images/pic-type1.png'
 import appstoreimg from '../../assets/images/playstore.png'
 import playstoreimg from '../../assets/images/appstore.png'
+import  fonts from '../../components/common/fonts';
 
 function FeatureSection() {
   return (
@@ -92,6 +93,7 @@ const styles = {
     fontWeight: '500', // Changed from 600 to 500 to match h5 in CommonCss.css
     lineHeight: '1.4',
     color: '#333',
+    fontFamily: fonts.poppins,
   },
   paragraph: {
     marginBottom: '1rem',
@@ -99,6 +101,7 @@ const styles = {
     fontWeight: '400', // Added to match paragraph in CommonCss.css
     lineHeight: '1.6', // Already matches CommonCss.css
     color: '#555',
+    fontFamily: fonts.poppins,  
   },
   storeButtons: {
     marginTop: '1.5rem',

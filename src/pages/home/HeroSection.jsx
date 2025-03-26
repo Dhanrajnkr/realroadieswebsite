@@ -5,6 +5,10 @@ import ExplanationSection from './ExplanationSection';
 import FeatureSection from './FeatureSection';
 import OfferSection from './OfferSection';
 import homevideo from '../../assets/images/home1.mp4';
+import fonts from '../../components/common/fonts';
+
+
+
 
 const HeroSection = () => {
   return (
@@ -57,6 +61,7 @@ const styles = {
     fontWeight: '500', // Changed to match h5 in CommonCss.css
     marginBottom: '18px',
     color: '#ffffff',
+    fontFamily: fonts.poppins,
   },
   video: {
     position: 'absolute',
@@ -82,6 +87,7 @@ const styles = {
     color: 'white',
     textAlign: 'start',
     margin: 0,
+    fontFamily: fonts.poppins,
     // padding: '0 1rem'
   },
   buttonContainer: {

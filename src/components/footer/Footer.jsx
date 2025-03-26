@@ -19,6 +19,7 @@ import {
   faLinkedinIn
 } from '@fortawesome/free-brands-svg-icons';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import fonts from '../common/fonts';
 
 function Footer() {
   return (
@@ -68,13 +69,13 @@ function Footer() {
             <h5 style={styles.heading}>Contact</h5>
             <ul style={styles.contactList}>
               <li style={styles.contactItem}>
-                <FontAwesomeIcon icon={faGlobe} style={{...styles.icon, fontWeight: 'lighter',color: 'white'}} />
+                <FontAwesomeIcon icon={faGlobe} style={{...styles.icon, fontWeight: 'lighter',color: 'white',fontFamily:fonts.poppins}} />
                 <a href="https://stipe.so/" target="_blank" rel="noopener noreferrer" style={styles.link}>
                   stipe.so
                 </a>
               </li>
               <li style={styles.contactItem}>
-                <FontAwesomeIcon icon={faPhone} style={{...styles.icon, fontWeight: 'lighter',color: 'white'}} />
+                <FontAwesomeIcon icon={faPhone} style={{...styles.icon, fontWeight: 'lighter',color: 'white',fontFamily:fonts.poppins}} />
                 <a href="tel:+91 90082 90111" style={styles.link}>+91 90082 90111</a>
               </li>
               <li style={styles.contactItem}>
@@ -185,14 +186,17 @@ const styles = {
     position: 'relative',
     paddingBottom: '0.5rem',
     borderBottom: '2px solid #ffc107',  // Yellow accent border
-    display: 'inline-block'
+    display: 'inline-block',
+    fontFamily:fonts.poppins,
+
   },
   paragraph: {
     color: '#adb5bd',  // Light gray for readability on black
     fontSize: '14px',  // Changed from 0.95rem to 16px to match paragraph in CommonCss.css
     fontWeight: '400',  // Added to match paragraph in CommonCss.css
     lineHeight: '1.6',  // Already matches CommonCss.css
-    marginBottom: '1rem'
+    marginBottom: '1rem',
+    fontFamily:fonts.poppins,
   },
   linksList: {
     listStyle: 'none',
@@ -207,7 +211,8 @@ const styles = {
     textDecoration: 'none',
     transition: 'color 0.3s ease',
     fontSize: '16px',  // Changed from 0.95rem to 16px to match links in CommonCss.css
-    fontWeight: '400'  // Added to match links in CommonCss.css
+    fontWeight: '400',  // Added to match links in CommonCss.css
+    fontFamily:fonts.poppins,
   },
   contactList: {
     listStyle: 'none',
@@ -238,7 +243,8 @@ const styles = {
     color: '#adb5bd',  
     fontSize: '14px',  
     fontWeight: '400',  
-    marginBottom: '0'
+    marginBottom: '0',
+    fontFamily:fonts.poppins,
   },
   socialList: {
     display: 'flex',

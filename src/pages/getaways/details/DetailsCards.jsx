@@ -12,6 +12,7 @@ import {
   faCheckCircle,
   faTimesCircle
 } from '@fortawesome/free-solid-svg-icons';
+import fonts from '../../../components/common/fonts';
 
 const DetailsCards = ({ 
   eventDescription, 
@@ -375,6 +376,7 @@ const DetailsCards = ({
       cardTitle: {
         marginBottom: '15px',
         fontWeight: '600',
+        fontFamily:fonts.poppins,
         fontSize: '16px',
         color: '#212529'
       },
@@ -384,6 +386,7 @@ const DetailsCards = ({
       cardText: {
         fontSize: '16px',
         fontWeight: '400',
+        fontFamily: fonts.poppins,
         lineHeight: '1.6',
         color: '#495057',
         whiteSpace: 'pre-line'
@@ -427,6 +430,7 @@ const DetailsCards = ({
         textDecoration: 'none',
         fontWeight: '500',
         fontSize: '16px',
+        fontFamily: fonts.poppins,
         display: 'inline-block',
         cursor: 'pointer'
       },
@@ -446,6 +450,7 @@ const DetailsCards = ({
       accordionBody: {
         fontSize: '16px',
         fontWeight: '400',
+        fontFamily: fonts.poppins,
         lineHeight: '1.6',
         backgroundColor: '#ffffff',
         padding: '15px 20px',
@@ -455,16 +460,20 @@ const DetailsCards = ({
         marginBottom: '8px',
         fontSize: '16px',
         fontWeight: '400',
+        fontFamily: fonts.poppins,
       },
       faqAnswer: {
         marginBottom: '15px',
         fontSize: '16px',
         fontWeight: '400',
+        fontFamily: fonts.poppins,
       },
       termsText: {
         marginBottom: '10px',
         fontSize: '16px',
         fontWeight: '400',
+        fontFamily: fonts.poppins,
+        
       },
       termsList: {
         paddingLeft: '20px',
@@ -474,6 +483,7 @@ const DetailsCards = ({
         marginBottom: '8px',
         fontSize: '16px',
         fontWeight: '400',
+        fontFamily: fonts.poppins,
       },
 
       policyLinksContainer: {
@@ -486,6 +496,7 @@ const DetailsCards = ({
         textDecoration: 'none',
         fontSize: '12px',
         fontWeight: '500',
+        fontFamily: fonts.poppins,
         transition: 'color 0.2s ease',
         display: 'flex',
         alignItems: 'center',
@@ -497,6 +508,7 @@ const DetailsCards = ({
       locationTitle: {
         fontSize: '16px',
         fontWeight: '500',
+        fontFamily: fonts.poppins,
         marginBottom: '10px',
         color: '#212529'
       },
@@ -508,6 +520,7 @@ const DetailsCards = ({
       venueAddress: {
         fontSize: '14px',
         fontWeight: '400',
+        fontFamily:fonts.poppins,
         color: '#000000',
         marginBottom: '15px'
       },
@@ -524,12 +537,14 @@ const DetailsCards = ({
       durationTitle: {
         fontSize: '16px',
         fontWeight: '600',
+        fontFamily: fonts.poppins,
         marginBottom: '5px',
         color: '#212529'
       },
       durationText: {
         fontSize: '16px',
         fontWeight: '400',
+        fontFamily: fonts.poppins,  
         color: '#495057',
         margin: 0
       },
@@ -540,6 +555,8 @@ const DetailsCards = ({
       inclusionTitle: {
         fontSize: '16px',
         fontWeight: '600',
+        fontFamily: fonts.poppins,
+      
         marginBottom: '8px',
         display: 'flex',
         alignItems: 'center'
@@ -575,17 +592,20 @@ const DetailsCards = ({
       itineraryDayTitle: {
         fontSize: '18px',
         fontWeight: '600',
+        fontFamily: fonts.poppins,
         marginBottom: '10px',
         color: '#212529'
       },
       itineraryDayDescription: {
         fontSize: '14px',
+        fontFamily : fonts.poppins,
         lineHeight: '1.5',
         color: '#495057',
         marginBottom: '10px'
       },
       itineraryLocations: {
         fontSize: '14px',
+        fontFamily:fonts.poppins,
         lineHeight: '1.5',
         color: '#495057',
         marginBottom: '10px'
@@ -596,6 +616,7 @@ const DetailsCards = ({
       itineraryActivitiesTitle: {
         fontSize: '14px',
         fontWeight: '600',
+        fontFamily: fonts.poppins,
         marginBottom: '5px'
       },
       itineraryActivitiesList: {
